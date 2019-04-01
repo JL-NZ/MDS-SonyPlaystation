@@ -22,6 +22,11 @@ bool readRawTextureData(const char *path, void *address, size_t size)
 
 Model::Model(ModelType modelType)
 {
+	translation = Vector3(0.0f, 0.0f, 0.0f);
+	rotateAxis = Vector3(0.0f, 0.0f, 1.0f);
+	scale = Vector3(0.0f, 0.0f, 0.0f);
+	angle = 0.0f;
+
 	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
 
 	switch (modelType)
@@ -30,10 +35,13 @@ Model::Model(ModelType modelType)
 		Utils::setTriData(vertices, indices);
 		break;
 	case kQuad:
+		Utils::setQuadData(vertices, indices);
 		break;
 	case kCube:
+		Utils::setCubeData(vertices, indices);
 		break;
 	case kSphere:
+		Utils::setSphereData(vertices, indices);
 		break;
 	default:
 		break;
@@ -238,10 +246,12 @@ void Model::Draw()
 
 	// Define constants
 	ShaderConstants *constants = static_cast<ShaderConstants*>(gfxc.allocateFromCommandBuffer(sizeof(ShaderConstants), Gnm::kEmbeddedDataAlignment4));
-
+	
 	if (constants)
-	{
-		Matrix4 model = Matrix4::identity();
+	{		
+		angle+= 0.0002f;
+		if (angle > 360) angle = 0.0f;
+		Matrix4 model = Matrix4::translation(translation) * Matrix4::rotation((angle * (180/M_PI)), rotateAxis) * Matrix4::scale(scale);
 		const float kAspectRatio = float(Render::GetInstance()->kDisplayBufferWidth) / float(Render::GetInstance()->kDisplayBufferHeight);
 		Matrix4 projection = Matrix4::perspective(3.14f / 4.0f, 1920.0f / 1080.0f, 1.0f, 1000.0f);
 		Matrix4 view = Matrix4::lookAt(Point3(0.0f, 0.0f, 20.0f), Point3(0.0f, 0.0f, 0.0f),	Vector3(0.0f, 1.0f, 0.0f));

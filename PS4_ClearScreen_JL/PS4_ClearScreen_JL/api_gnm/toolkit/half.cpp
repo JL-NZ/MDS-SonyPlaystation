@@ -8,7 +8,7 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 
 namespace sce { namespace Gnmx { namespace Toolkit {
 
-const uint16_t Half::s_arrExpLUT[1<<9] = {
+const uint32_t Half::s_arrExpLUT[1<<9] = {
 	0,
 	0,
 	0,
@@ -622,7 +622,7 @@ int16_t Half::Convert(int32_t i)
             // We convert f to a half zero with the same sign as f.
             //
 
-            return (uint16_t)s;
+            return (uint32_t)s;
         }
 
         //
@@ -658,7 +658,7 @@ int16_t Half::Convert(int32_t i)
         // Assemble the half from s, e (zero) and m.
         //
 
-        return (uint16_t) (s | m);
+        return (uint32_t) (s | m);
     }
     else if (e == 0xff - (127 - 15))
     {
@@ -669,7 +669,7 @@ int16_t Half::Convert(int32_t i)
             // infinity with the same sign as f.
             //
 
-            return (uint16_t)(s | 0x7c00);
+            return (uint32_t)(s | 0x7c00);
         }
         else
         {
@@ -683,7 +683,7 @@ int16_t Half::Convert(int32_t i)
             //
 
             m >>= 13;
-            return (uint16_t)(s | 0x7c00 | m | (m == 0));
+            return (uint32_t)(s | 0x7c00 | m | (m == 0));
         }
     }
     else
@@ -712,14 +712,14 @@ int16_t Half::Convert(int32_t i)
 
         if (e > 30)
         {
-            return (uint16_t)(s | 0x7c00);	// if this returns, the half becomes an
+            return (uint32_t)(s | 0x7c00);	// if this returns, the half becomes an
         }   			// infinity with the same sign as f.
 
         //
         // Assemble the half from s, e and m.
         //
 
-        return (uint16_t)(s | (e << 10) | (m >> 13));
+        return (uint32_t)(s | (e << 10) | (m >> 13));
     }
 }
 

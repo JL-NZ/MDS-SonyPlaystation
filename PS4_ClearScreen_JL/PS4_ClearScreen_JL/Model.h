@@ -25,7 +25,31 @@ enum ModelType
 class Model
 {
 public:
-	Model(ModelType modelType);
+	/*Create model with default transforms.*/
+	Model(ModelType modelType);		
+
+	/*Create model with translate set by param, rest default.*/
+	Model(ModelType modelType, Vector3 _translate) : Model(modelType) 
+	{ 
+		translation = _translate;
+	};
+
+	/*Create model with scale and translation set by param, rest default.*/
+	Model(ModelType modelType, Vector3 _translate, Vector3 _scale) : Model(modelType)
+	{
+		translation = _translate;
+		scale = _scale;
+	};
+
+	/*Create model with scale, translate and rotation set by param.*/
+	Model(ModelType modelType, Vector3 _translate, Vector3 _scale, Vector3 _rotateAxis, float _rotation) : Model(modelType)
+	{
+		translation = _translate;
+		scale = _scale;
+		rotateAxis = _rotateAxis;
+		angle = _rotation;
+	};
+
 	~Model();
 
 	// Member Functions
@@ -61,5 +85,11 @@ public:
 	// GNF texture functions
 	bool InitializeGNFTextures();
 	bool DrawGNFTextures();
+
+	// Transform
+	Vector3 translation;
+	Vector3 rotateAxis;
+	Vector3 scale;
+	float angle;
 };
 

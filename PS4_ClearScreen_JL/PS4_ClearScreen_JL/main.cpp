@@ -18,7 +18,8 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
-	Model* NewModel = new Model(ModelType::kTriangle);
+	Model* NewModel = new Model(ModelType::kSphere, Vector3(1.0f, 1.0f, 1.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	
 	NewModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 		
 	sceUserServiceInitialize(NULL);

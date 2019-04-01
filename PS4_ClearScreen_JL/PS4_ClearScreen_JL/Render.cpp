@@ -277,7 +277,7 @@ void Render::SetPipelineState()
 	Gnm::PrimitiveSetup primSetupReg;
 	primSetupReg.init();
 	primSetupReg.setCullFace(Gnm::kPrimitiveSetupCullFaceBack);
-	primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCcw);
+	primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCw);
 	gfxc.setPrimitiveSetup(primSetupReg);
 
 	// Setup an additive blending mode

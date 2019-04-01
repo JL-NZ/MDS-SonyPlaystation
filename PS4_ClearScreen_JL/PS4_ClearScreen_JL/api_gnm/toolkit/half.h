@@ -108,11 +108,11 @@ public:
 	};
 
 	Half() {}
-	Half(uint16_t h);
+	Half(uint32_t h);
 	Half(float f);
 
 	operator float() const;
-	operator uint16_t() const { return m_data; }
+	operator uint32_t() const { return m_data; }
 
 	Half operator-() const;
 
@@ -153,16 +153,16 @@ public:
 	static Half SNAN();
 
 private:
-	uint16_t m_data;
+	uint32_t m_data;
 
-	static const uint16_t s_arrExpLUT[1<<9];
+	static const uint32_t s_arrExpLUT[1<<9];
 
 	static int16_t Convert(int32_t i);
 	static int32_t Convert(int16_t i);
 	static float Overflow();
 };
 
-inline Half::Half(uint16_t h)
+inline Half::Half(uint32_t h)
 : m_data(h)
 {
 }
@@ -200,7 +200,7 @@ inline Half::Half(float f)
 		{
 			// Simple case - round the mantissa and
 			// combine it with the sign and exponent.
-			m_data = (uint16_t)(e + (((x.i & 0x007fffff) + 0x00001000) >> 13));
+			m_data = (uint32_t)(e + (((x.i & 0x007fffff) + 0x00001000) >> 13));
 		}
 		else
 		{
@@ -288,20 +288,20 @@ inline Half &Half::operator /=(float f)
 
 inline bool	Half::IsFinite() const
 {
-	uint16_t e = (m_data >> 10) & 0x001f;
+	uint32_t e = (m_data >> 10) & 0x001f;
 	return e < 31;
 }
 
 inline bool Half::IsNormalized() const
 {
-	uint16_t e = (m_data >> 10) & 0x001f;
+	uint32_t e = (m_data >> 10) & 0x001f;
 	return e > 0 && e < 31;
 }
 
 inline bool Half::IsDenormalized() const
 {
-	uint16_t e = (m_data >> 10) & 0x001f;
-	uint16_t m =  m_data & 0x3ff;
+	uint32_t e = (m_data >> 10) & 0x001f;
+	uint32_t m =  m_data & 0x3ff;
 	return e == 0 && m != 0;
 }
 
@@ -312,15 +312,15 @@ inline bool Half::IsZero() const
 
 inline bool Half::IsNAN() const
 {
-	uint16_t e = (m_data >> 10) & 0x001f;
-	uint16_t m =  m_data & 0x3ff;
+	uint32_t e = (m_data >> 10) & 0x001f;
+	uint32_t m =  m_data & 0x3ff;
 	return e == 31 && m != 0;
 }
 
 inline bool Half::IsInf() const
 {
-	uint16_t e = (m_data >> 10) & 0x001f;
-	uint16_t m =  m_data & 0x3ff;
+	uint32_t e = (m_data >> 10) & 0x001f;
+	uint32_t m =  m_data & 0x3ff;
 	return e == 31 && m == 0;
 }
 

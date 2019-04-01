@@ -151,7 +151,7 @@ uint32_t Gnmx::Toolkit::floatToFloat11(float value)
 uint32_t Gnmx::Toolkit::floatToFloat16(float value)
 {    
     Half half(value);
-    return (uint16_t)half;
+    return (uint32_t)half;
 }
 
 uint32_t Gnmx::Toolkit::floatToFloat32(float value)
@@ -168,7 +168,7 @@ uint32_t Gnmx::Toolkit::floatToFloat32(float value)
       fromHalf.u = 4290772992;
     else
     {
-        Half half(static_cast<uint16_t>(value << 5));
+        Half half(static_cast<uint32_t>(value << 5));
         fromHalf.f = (float)half;
     }
     return fromHalf.f;
@@ -181,7 +181,7 @@ uint32_t Gnmx::Toolkit::floatToFloat32(float value)
       fromHalf.u = 4290772992;
     else
     {
-        Half half(static_cast<uint16_t>(value << 4));
+        Half half(static_cast<uint32_t>(value << 4));
         fromHalf.f = (float)half;
     }
     return fromHalf.f;
@@ -190,7 +190,7 @@ uint32_t Gnmx::Toolkit::floatToFloat32(float value)
 float Gnmx::Toolkit::float16ToFloat(uint32_t value)
 {
     f32 fromHalf;
-    Half half(static_cast<uint16_t>(value));
+    Half half(static_cast<uint32_t>(value));
     fromHalf.f = (float)half;
     return fromHalf.f;
 }

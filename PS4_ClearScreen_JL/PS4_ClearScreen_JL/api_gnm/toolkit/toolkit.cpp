@@ -804,13 +804,13 @@ int32_t sce::Gnmx::Toolkit::saveTextureToTga(const Gnm::Texture *texture, const 
 		uint8_t  idLength;          /* 00h  Size of Image ID field */
 		uint8_t  colorMapType;      /* 01h  Color map type */
 		uint8_t  imageType;         /* 02h  Image type code */
-		uint16_t colorMapIndex;     /* 03h  Color map origin */
-		uint16_t colorMapLength;    /* 05h  Color map length */
+		uint32_t colorMapIndex;     /* 03h  Color map origin */
+		uint32_t colorMapLength;    /* 05h  Color map length */
 		uint8_t  colorMapBits;      /* 07h  Depth of color map entries */
-		uint16_t xOrigin;           /* 08h  X origin of image */
-		uint16_t yOrigin;           /* 0Ah  Y origin of image */
-		uint16_t width;             /* 0Ch  Width of image */
-		uint16_t height;            /* 0Eh  Height of image */
+		uint32_t xOrigin;           /* 08h  X origin of image */
+		uint32_t yOrigin;           /* 0Ah  Y origin of image */
+		uint32_t width;             /* 0Ch  Width of image */
+		uint32_t height;            /* 0Eh  Height of image */
 		uint8_t  pixelDepth;        /* 10h  Image pixel size */
 		uint8_t  imageDescriptor;   /* 11h  bits 3-0 give the alpha channel depth, bits 5-4 give direction */
 
@@ -820,8 +820,8 @@ int32_t sce::Gnmx::Toolkit::saveTextureToTga(const Gnm::Texture *texture, const 
 	TargaHeader header;
     memset(&header,0, sizeof(header));
     header.imageType = 2;
-    header.width = (uint16_t)texture->getPitch(); // for simplicity assume pitch as width
-    header.height = (uint16_t)texture->getHeight();
+    header.width = (uint32_t)texture->getPitch(); // for simplicity assume pitch as width
+    header.height = (uint32_t)texture->getHeight();
     header.pixelDepth = (uint8_t) texture->getDataFormat().getBitsPerElement();
     header.imageDescriptor = 0x20; // y direction is reversed (from up to down)
 	fwrite(&header, sizeof(header), 1, file);
