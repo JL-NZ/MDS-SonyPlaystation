@@ -49,40 +49,52 @@ Model::Model(ModelType modelType)
 
 	// Allocate the vertex buffer memory and assign vertex data
 	Vertex* vertexData = static_cast<Vertex*>(Render::GetInstance()->garlicAllocator.allocate(sizeof(Vertex) * vertices.size(), Gnm::kAlignmentOfBufferInBytes));
+	
 	if (!vertexData)
 	{
 		printf("Cannot allocate vertex data\n");
 	}
 
 	// Copy the vertex/index data onto the GPU mapped memory
-	memset(vertexData, 0, sizeof(vertices) * vertices.size());
-	memcpy(vertexData, &vertices[0], sizeof(vertices) *	vertices.size());
+	memset(vertexData, 0, sizeof(Vertex) * vertices.size());
+	memcpy(vertexData, &vertices[0], sizeof(Vertex) *	vertices.size());
 
 	//set Position attribute
 	vertexBuffers[kVertexPosition].initAsVertexBuffer(
 		&vertexData->x, //base address 
 		Gnm::kDataFormatR32G32B32Float, //format
 		sizeof(Vertex), //stride
-		sizeof(vertices) * vertices.size() / sizeof(Vertex)
+		sizeof(Vertex) * vertices.size() / sizeof(Vertex)
 	); // no if elements
 
 
 	//set Color attribute
-	vertexBuffers[kVertexColor].initAsVertexBuffer(&vertexData->r, Gnm::kDataFormatR32G32B32Float, sizeof(Vertex), sizeof(Vertex) * vertices.size() / sizeof(Vertex));
+	vertexBuffers[kVertexColor].initAsVertexBuffer(
+		&vertexData->r, 
+		Gnm::kDataFormatR32G32B32Float, 
+		sizeof(Vertex),
+		sizeof(Vertex) * vertices.size() / sizeof(Vertex)
+	);
 
 	//set UV attribute
-	vertexBuffers[kVertexUv].initAsVertexBuffer(&vertexData->u, Gnm::kDataFormatR32G32Float, sizeof(Vertex), sizeof(Vertex) * vertices.size() / sizeof(Vertex));
+	vertexBuffers[kVertexUv].initAsVertexBuffer(
+		&vertexData->u, 
+		Gnm::kDataFormatR32G32Float, 
+		sizeof(Vertex), 
+		sizeof(Vertex) * vertices.size() / sizeof(Vertex)
+	);
 
 	// Define index data
-	indexData = static_cast<uint32_t*>(Render::GetInstance()->garlicAllocator.allocate(sizeof(indices),	Gnm::kAlignmentOfBufferInBytes));
+	indexData = static_cast<uint32_t*>(Render::GetInstance()->garlicAllocator.allocate(sizeof(uint32_t) * indices.size(),	Gnm::kAlignmentOfBufferInBytes));
+	
 	if (!indexData)
 	{
 		printf("Cannot allocate index data\n");
 	}
 
 	// Assign index data
-	memset(indexData, 0, sizeof(indices));
-	memcpy(indexData, &indices[0], sizeof(indices) * indices.size());	
+	memset(indexData, 0, sizeof(uint32_t));
+	memcpy(indexData, &indices[0], sizeof(uint32_t) * indices.size());	
 
 	//Init raw textures
 	//InitializeRawTextures();

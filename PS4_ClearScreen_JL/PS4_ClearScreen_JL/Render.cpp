@@ -277,8 +277,8 @@ void Render::SetPipelineState()
 	 //Cull clock-wise backfaces
 	Gnm::PrimitiveSetup primSetupReg;
 	primSetupReg.init();
-	primSetupReg.setCullFace(Gnm::kPrimitiveSetupCullFaceBack);
-	primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCw);
+	//primSetupReg.setCullFace(Gnm::kPrimitiveSetupCullFaceBack);
+	//primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCw);
 	gfxc.setPrimitiveSetup(primSetupReg);
 
 	// Setup an additive blending mode
