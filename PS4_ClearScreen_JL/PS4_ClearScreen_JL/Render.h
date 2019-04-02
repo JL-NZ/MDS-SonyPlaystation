@@ -40,7 +40,6 @@ enum RenderContextState
 class Render
 {
 public:
-
 	/// Variables
 
 	// Constants
@@ -82,7 +81,6 @@ public:
 	DisplayBuffer displayBuffers[kDisplayBufferCount];
 	DisplayBuffer *backBuffer = displayBuffers;
 	uint32_t backBufferIndex = 0;
-
 
 	/// Member Functions
 	void StartRender();

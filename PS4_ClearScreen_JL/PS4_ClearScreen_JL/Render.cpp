@@ -1,10 +1,11 @@
 #include "Render.h"
+#include <stdlib.h>
 
 using namespace sce;
 using namespace sce::Gnmx;
 
 Render* Render::p_Render = nullptr;
-
+size_t sceLibcHeapSize = 256 * 1024 * 1024;
 
 
 Render::Render()

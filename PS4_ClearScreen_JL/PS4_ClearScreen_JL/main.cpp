@@ -18,9 +18,11 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
-	Model* NewModel = new Model(ModelType::kSphere, Vector3(1.0f, 1.0f, 1.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* Model0 = new Model(ModelType::kSphere, Vector3(0.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* Model1 = new Model(ModelType::kCube, Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	
-	NewModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	Model0->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	Model1->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 		
 	sceUserServiceInitialize(NULL);
 	int ret = sceUserServiceGetInitialUser(&g_userID);
@@ -45,8 +47,9 @@ int main()
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
 			
-		NewModel->Draw();
-			
+		Model0->Draw();
+		Model1->Draw();
+
 		Render::GetInstance()->EndRender();
 
 		if (g_controllerContext.isButtonDown(0, Controller::Input::BUTTON_CROSS, Controller::Input::PATTERN_ANY))

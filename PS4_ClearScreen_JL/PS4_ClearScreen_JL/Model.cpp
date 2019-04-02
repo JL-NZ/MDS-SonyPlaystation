@@ -74,7 +74,7 @@ Model::Model(ModelType modelType)
 	vertexBuffers[kVertexUv].initAsVertexBuffer(&vertexData->u, Gnm::kDataFormatR32G32Float, sizeof(Vertex), sizeof(Vertex) * vertices.size() / sizeof(Vertex));
 
 	// Define index data
-	indexData = static_cast<uint16_t*>(Render::GetInstance()->garlicAllocator.allocate(sizeof(indices),	Gnm::kAlignmentOfBufferInBytes));
+	indexData = static_cast<uint32_t*>(Render::GetInstance()->garlicAllocator.allocate(sizeof(indices),	Gnm::kAlignmentOfBufferInBytes));
 	if (!indexData)
 	{
 		printf("Cannot allocate index data\n");
@@ -280,7 +280,7 @@ void Model::Draw()
 	gfxc.setPrimitiveType(Gnm::kPrimitiveTypeTriList);
 
 	// Set Index Siz
-	gfxc.setIndexSize(Gnm::kIndexSize16);
+	gfxc.setIndexSize(Gnm::kIndexSize32);
 
 	// Draw Index
 	gfxc.drawIndex(indices.size(), indexData);	

@@ -11,14 +11,14 @@ Utils::~Utils()
 {
 }
 
-void Utils::setTriData(std::vector<Vertex>& vertices, std::vector<uint16_t>& indices)
+void Utils::setTriData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
 	std::vector<Vertex> Vertices;	
 	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.0f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f));
 	Vertices.push_back(Vertex(0.5f, -0.5f, 0.0f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f));
 	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.0f,	1.0f, 0.0f, 0.0f,	0.0f, 0.0f));
 	
-	std::vector<uint16_t> Indices;
+	std::vector<uint32_t> Indices;
 	Indices.push_back(0);
 	Indices.push_back(2);
 	Indices.push_back(1);
@@ -29,7 +29,7 @@ void Utils::setTriData(std::vector<Vertex>& vertices, std::vector<uint16_t>& ind
 	indices = Indices;
 }
 
-void Utils::setQuadData(std::vector<Vertex>& vertices, std::vector<uint16_t>& indices)
+void Utils::setQuadData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
 	std::vector<Vertex> Vertices;
 	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 0.0f));
@@ -37,7 +37,7 @@ void Utils::setQuadData(std::vector<Vertex>& vertices, std::vector<uint16_t>& in
 	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f));
 	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f));
 
-	std::vector<uint16_t> Indices
+	std::vector<uint32_t> Indices
 	{		
 		0, 1, 2,
 		0, 2, 3,
@@ -49,7 +49,7 @@ void Utils::setQuadData(std::vector<Vertex>& vertices, std::vector<uint16_t>& in
 	indices = Indices;
 }
 
-void Utils::setCubeData(std::vector<Vertex>& vertices, std::vector<uint16_t>& indices)
+void Utils::setCubeData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
 	std::vector<Vertex> Vertices;
 
@@ -89,7 +89,7 @@ void Utils::setCubeData(std::vector<Vertex>& vertices, std::vector<uint16_t>& in
 	Vertices.push_back(Vertex(0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	1.0f, 1.0f));
 	Vertices.push_back(Vertex(-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.0f, 1.0f));
 
-	std::vector<uint16_t> Indices
+	std::vector<uint32_t> Indices
 	{
 		// Front Face
 		0, 1, 2,
@@ -123,10 +123,10 @@ void Utils::setCubeData(std::vector<Vertex>& vertices, std::vector<uint16_t>& in
 	indices = Indices;
 }
 
-void Utils::setSphereData(std::vector<Vertex>& vertices, std::vector<uint16_t>& indices)
+void Utils::setSphereData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
 	std::vector<Vertex> Vertices;
-	std::vector<uint16_t> Indices;
+	std::vector<uint32_t> Indices;
 
 	float radius = 1.5f;
 
