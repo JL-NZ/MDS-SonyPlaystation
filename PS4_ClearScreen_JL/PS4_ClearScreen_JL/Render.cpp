@@ -17,7 +17,7 @@ Render::Render()
 		SCE_KERNEL_PROT_CPU_RW |
 		SCE_KERNEL_PROT_GPU_ALL);
 
-	static const size_t kGarlicMemorySize = 64 * 1024 * 1024;
+	static const size_t kGarlicMemorySize = 128 * 1024 * 1024;
 	garlicAllocator.initialize(
 		kGarlicMemorySize,
 		SCE_KERNEL_WC_GARLIC,
@@ -275,11 +275,11 @@ void Render::SetPipelineState()
 	gfxc.setDepthStencilControl(dsc);
 
 	 //Cull clock-wise backfaces
-	Gnm::PrimitiveSetup primSetupReg;
-	primSetupReg.init();
+	//Gnm::PrimitiveSetup primSetupReg;
+	//primSetupReg.init();
 	//primSetupReg.setCullFace(Gnm::kPrimitiveSetupCullFaceBack);
 	//primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCw);
-	gfxc.setPrimitiveSetup(primSetupReg);
+	//gfxc.setPrimitiveSetup(primSetupReg);
 
 	// Setup an additive blending mode
 	Gnm::BlendControl blendControl;

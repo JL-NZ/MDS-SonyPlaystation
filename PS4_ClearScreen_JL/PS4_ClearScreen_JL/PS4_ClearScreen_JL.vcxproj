@@ -55,7 +55,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalOptions>"-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePosix_stub_weak" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" "-lSceGnf" "-lSceUserService_stub_weak" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>-lSceSystemService_stub;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -82,6 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <OrbisWavePsslc Include="CMshader_p.pssl" />
+    <OrbisWavePsslc Include="CMshader_vv.pssl" />
     <OrbisWavePsslc Include="shader_p.pssl" />
     <OrbisWavePsslc Include="shader_vv.pssl" />
   </ItemGroup>
