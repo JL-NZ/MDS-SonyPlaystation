@@ -98,7 +98,7 @@ Model::Model(ModelType modelType)
 
 	//Init raw textures
 	//InitializeRawTextures();
-	InitializeGNFTextures();
+	//InitializeGNFTextures("/app0/mytextures.gnf");
 }
 
 Model::~Model()
@@ -196,14 +196,14 @@ bool Model::DrawRawTextures()
 	return true;
 }
 
-bool Model::InitializeGNFTextures()
+bool Model::InitializeGNFTextures(const char* _filePath)
 {
 	// Get graphics context from render
 	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
  
 	GNFLoader::loadTextureFromGnf(
 		&texture, 
-		"/app0/mytextures.gnf",
+		_filePath,
 		0, 
 		&Render::GetInstance()->toolkitAllocators
 	);

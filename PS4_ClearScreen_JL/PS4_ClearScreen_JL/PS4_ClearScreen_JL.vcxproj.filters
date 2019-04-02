@@ -43,6 +43,12 @@
     <OrbisWavePsslc Include="shader_p.pssl">
       <Filter>shader</Filter>
     </OrbisWavePsslc>
+    <OrbisWavePsslc Include="CMshader_p.pssl">
+      <Filter>shader</Filter>
+    </OrbisWavePsslc>
+    <OrbisWavePsslc Include="CMshader_vv.pssl">
+      <Filter>shader</Filter>
+    </OrbisWavePsslc>
   </ItemGroup>
   <ItemGroup>
     <None Include="vsoutput.hs">

@@ -29,25 +29,28 @@ public:
 	Model(ModelType modelType);		
 
 	/*Create model with translate set by param, rest default.*/
-	Model(ModelType modelType, Vector3 _translate) : Model(modelType) 
+	Model(ModelType modelType, const char* _filePath, Vector3 _translate) : Model(modelType)
 	{ 
 		translation = _translate;
+		InitializeGNFTextures(_filePath);
 	};
 
 	/*Create model with scale and translation set by param, rest default.*/
-	Model(ModelType modelType, Vector3 _translate, Vector3 _scale) : Model(modelType)
+	Model(ModelType modelType, const char* _filePath, Vector3 _translate, Vector3 _scale) : Model(modelType)
 	{
 		translation = _translate;
 		scale = _scale;
+		InitializeGNFTextures(_filePath);
 	};
 
 	/*Create model with scale, translate and rotation set by param.*/
-	Model(ModelType modelType, Vector3 _translate, Vector3 _scale, Vector3 _rotateAxis, float _rotation) : Model(modelType)
+	Model(ModelType modelType, const char* _filePath, Vector3 _translate, Vector3 _scale, Vector3 _rotateAxis, float _rotation) : Model(modelType)
 	{
 		translation = _translate;
 		scale = _scale;
 		rotateAxis = _rotateAxis;
 		angle = _rotation;
+		InitializeGNFTextures(_filePath);
 	};
 
 	~Model();
@@ -83,7 +86,7 @@ public:
 	bool DrawRawTextures();
 
 	// GNF texture functions
-	bool InitializeGNFTextures();
+	bool InitializeGNFTextures(const char* _filePath);
 	bool DrawGNFTextures();
 
 	// Transform

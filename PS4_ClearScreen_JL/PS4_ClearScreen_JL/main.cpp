@@ -13,16 +13,16 @@
 using namespace sce;
 using namespace sce::Gnmx;
 
-Controller::Input::ControllerContext g_controllerContext;
+ControllerContext g_controllerContext;
 SceUserServiceUserId g_userID;
 
 int main()
 {
-	Model* Model0 = new Model(ModelType::kSphere, Vector3(0.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
-	Model* Model1 = new Model(ModelType::kCube, Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* Model0 = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* Model1 = new Model(ModelType::kCube, "/app0/cubemap2.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
 	Model0->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
-	Model1->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	Model1->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
 		
 	sceUserServiceInitialize(NULL);
 	int ret = sceUserServiceGetInitialUser(&g_userID);
@@ -37,25 +37,30 @@ int main()
 	{
 		printf("controller initialization failed: 0x%08X\n", ret);
 		return ret;
-	}
+	}	
 	
 	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
 	{		
 		//printf("%d \n", frameIndex);
-		g_controllerContext.update(frameIndex / 1000);
+		g_controllerContext.update();		
 
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
 			
 		Model0->Draw();
-		Model1->Draw();
+		Model1->Draw();			
 
 		Render::GetInstance()->EndRender();
 
-		if (g_controllerContext.isButtonDown(0, Controller::Input::BUTTON_CROSS, Controller::Input::PATTERN_ANY))
+		if (g_controllerContext.isButtonDown(0, BUTTON_CROSS, PATTERN_ANY))
 		{
-			printf("Button down");
+			//printf("Button down");
 		}
+		
+		Vector2 posXZ = g_controllerContext.getLeftStick(0);
+		
+		printf("LeftStick X: %d \n", posXZ.getX());
+		//printf("LeftStick Y: %f \n", g_controllerContext.getLeftStick(0).getY());
 	}
 	
 	Render::GetInstance()->Destroy();

@@ -18,26 +18,21 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 
 using namespace sce;
 
-const float Controller::Input::ControllerContext::m_defaultDeadZone 	= 0.25;
-const float Controller::Input::ControllerContext::m_recipMaxByteAsFloat	= 1.0f / 255.0f;
+const float ControllerContext::m_defaultDeadZone 	= 0.25;
+const float ControllerContext::m_recipMaxByteAsFloat	= 1.0f / 255.0f;
 
-Controller::Input::ControllerContext::ControllerContext(void)
+ControllerContext::ControllerContext(void)
 {
 
 }
 
-Controller::Input::ControllerContext::~ControllerContext(void)
+ControllerContext::~ControllerContext(void)
 {
 
 }
 
-int Controller::Input::ControllerContext::initialize(SceUserServiceUserId userId)
-{
-	m_previousSeconds = 0;
-	m_initialSecondsUntilNextRepeat = 0.25;
-	m_finalSecondsUntilNextRepeat = 0.05;
-    m_secondsUntilNextRepeat = m_initialSecondsUntilNextRepeat;
-
+int ControllerContext::initialize(SceUserServiceUserId userId)
+{	
 	m_deadZone = m_defaultDeadZone;
 
 	int ret = scePadInit();
@@ -82,32 +77,15 @@ int Controller::Input::ControllerContext::initialize(SceUserServiceUserId userId
 	return SCE_OK;
 }
 
-int Controller::Input::ControllerContext::finalize()
-{
-	return SCE_OK;
-}
-
-void Controller::Input::ControllerContext::update(double seconds)
+void ControllerContext::update()
 {
 	Data previousPadData[MAX_PAD_NUM];
 
 	memcpy(previousPadData, m_currentPadData, sizeof(previousPadData));
 
-	if(seconds - m_previousSeconds > m_secondsUntilNextRepeat)
-	{
-		memset(previousPadData, 0, sizeof(previousPadData));
-		m_previousSeconds = seconds;
-		m_secondsUntilNextRepeat = m_secondsUntilNextRepeat * 0.75 + m_finalSecondsUntilNextRepeat * 0.25;
-	}
-
 	memset(m_currentPadData, 0x0, sizeof(Data)*MAX_PAD_NUM);
 	updatePadData();
 
-	if(m_currentPadData[0].buttons == 0)
-	{
-		m_previousSeconds = seconds;
-		m_secondsUntilNextRepeat = m_initialSecondsUntilNextRepeat;
-	}
 
 	float lX, lY, rX, rY;
 
@@ -134,7 +112,7 @@ void Controller::Input::ControllerContext::update(double seconds)
 	//int ret = scePadGetControllerInformation(m_handle, &m_information);
 }
 
-bool Controller::Input::ControllerContext::isButtonDown(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
+bool ControllerContext::isButtonDown(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
 {
 	if(port >= MAX_PAD_NUM){
 		return false;
@@ -160,7 +138,7 @@ bool Controller::Input::ControllerContext::isButtonDown(uint32_t port, uint32_t 
 }
 
 
-bool Controller::Input::ControllerContext::isButtonUp(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
+bool ControllerContext::isButtonUp(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
 {
 	if(port >= MAX_PAD_NUM){
 		return true;
@@ -185,7 +163,7 @@ bool Controller::Input::ControllerContext::isButtonUp(uint32_t port, uint32_t bu
 	return true;
 }
 
-bool Controller::Input::ControllerContext::isButtonPressed(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
+bool ControllerContext::isButtonPressed(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
 {
 	if(port >= MAX_PAD_NUM){
 		return false;
@@ -210,7 +188,7 @@ bool Controller::Input::ControllerContext::isButtonPressed(uint32_t port, uint32
 	return false;
 }
 
-bool Controller::Input::ControllerContext::isButtonReleased(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
+bool ControllerContext::isButtonReleased(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
 {
 	if(port >= MAX_PAD_NUM){
 		return false;
@@ -235,7 +213,7 @@ bool Controller::Input::ControllerContext::isButtonReleased(uint32_t port, uint3
 	return false;
 }
 
-const Vector2& Controller::Input::ControllerContext::getLeftStick(uint32_t port) const
+const Vector2& ControllerContext::getLeftStick(uint32_t port) const
 {
 	if(port >= MAX_PAD_NUM){
 		return m_dummyStickXY;
@@ -244,7 +222,7 @@ const Vector2& Controller::Input::ControllerContext::getLeftStick(uint32_t port)
 	return m_leftStickXY[port];
 }
 
-const Vector2& Controller::Input::ControllerContext::getRightStick(uint32_t port) const
+const Vector2& ControllerContext::getRightStick(uint32_t port) const
 {
 	if(port >= MAX_PAD_NUM){
 		return m_dummyStickXY;
@@ -253,13 +231,13 @@ const Vector2& Controller::Input::ControllerContext::getRightStick(uint32_t port
 	return m_rightStickXY[port];
 }
 
-void Controller::Input::ControllerContext::setDeadZone(float deadZone)
+void ControllerContext::setDeadZone(float deadZone)
 {
 	m_deadZone = deadZone;
 }
 
 
-void Controller::Input::ControllerContext::updatePadData(void)
+void ControllerContext::updatePadData(void)
 {
 	for(int i = 0; i < MAX_PAD_NUM; i++){
 		ScePadData data;
@@ -277,3 +255,14 @@ void Controller::Input::ControllerContext::updatePadData(void)
 	}
 }
 
+int ControllerContext::ClosePort()
+{
+	int ret = scePadClose(m_handle);
+	if (ret != 0)
+	{
+		printf("scePadClose:: Controller Close Failed : 0x%08X\n", ret);
+		return ret;
+	}
+
+	return 0;
+}
