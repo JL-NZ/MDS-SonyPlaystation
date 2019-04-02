@@ -78,7 +78,7 @@ void CCamera::Process()
 		
 		m_vec3_TargetPos = 
 			m_vec3_CameraPos + 
-			Vector3(temp.getX(), 0.0f /*temp2.getX()*/, temp.getY()) * 10.0f;
+			Vector3(temp.getX(), temp2.getX(), temp.getY()) * 10.0f;
 	}
 
 	// View
