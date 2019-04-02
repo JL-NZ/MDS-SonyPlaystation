@@ -8,6 +8,7 @@
 #include "Model.h"
 #include "Utils.h"
 #include "controller.h"
+#include "CCamera.h"
 
 
 using namespace sce;
@@ -18,6 +19,7 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
+
 	Model* Model0 = new Model(ModelType::kSphere, Vector3(0.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* Model1 = new Model(ModelType::kCube, Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	
@@ -41,6 +43,8 @@ int main()
 	
 	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
 	{		
+		CCamera::GetInstance()->Process();
+		
 		//printf("%d \n", frameIndex);
 		g_controllerContext.update(frameIndex / 1000);
 
@@ -58,6 +62,8 @@ int main()
 		}
 	}
 	
+	// Cleanup
+	CCamera::GetInstance()->Destroy();
 	Render::GetInstance()->Destroy();
 
 	return 0;

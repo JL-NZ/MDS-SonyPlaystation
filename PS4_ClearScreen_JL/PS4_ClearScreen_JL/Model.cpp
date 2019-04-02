@@ -261,12 +261,15 @@ void Model::Draw()
 	
 	if (constants)
 	{		
+		// Angle increase to create constant rotation
 		angle+= 0.0002f;
 		if (angle > 360) angle = 0.0f;
-		Matrix4 model = Matrix4::translation(translation) * Matrix4::rotation((angle * (180/M_PI)), rotateAxis) * Matrix4::scale(scale);
+
 		const float kAspectRatio = float(Render::GetInstance()->kDisplayBufferWidth) / float(Render::GetInstance()->kDisplayBufferHeight);
-		Matrix4 projection = Matrix4::perspective(3.14f / 4.0f, 1920.0f / 1080.0f, 1.0f, 1000.0f);
-		Matrix4 view = Matrix4::lookAt(Point3(0.0f, 0.0f, 20.0f), Point3(0.0f, 0.0f, 0.0f),	Vector3(0.0f, 1.0f, 0.0f));
+
+		Matrix4 model = Matrix4::translation(translation) * Matrix4::rotation((angle * (180/M_PI)), rotateAxis) * Matrix4::scale(scale);
+		Matrix4 projection = CCamera::GetInstance()->GetProjection();
+		Matrix4 view = CCamera::GetInstance()->GetView();
 
 		// Define WVP
 		constants->m_WorldViewProj = ToMatrix4Unaligned(projection * view * model);
