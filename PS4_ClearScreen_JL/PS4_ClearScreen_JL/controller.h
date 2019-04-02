@@ -7,6 +7,7 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 #include <user_service.h>
 #include <pad.h>
 #include "api_gnm/toolkit/toolkit.h"
+#include "api_gnm\toolkit\geommath\geommath.h"
 
 #define MAX_PAD_NUM 4
 
@@ -40,8 +41,8 @@ typedef enum ButtonEventPattern
 
 typedef struct AnalogStick
 {
-	uint8_t x;
-	uint8_t y;
+	float x;
+	float y;
 } AnalogStick;
 
 typedef struct AnalogButtons
@@ -81,6 +82,9 @@ public:
 	const Vector2& getRightStick(uint32_t port) const;
 
 	void setDeadZone(float deadZone);
+
+	AnalogStick LeftStick;
+	AnalogStick RightStick;
 
 private:
 	Data m_currentPadData[MAX_PAD_NUM];

@@ -20,7 +20,7 @@ SceUserServiceUserId g_userID;
 int main()
 {
 	Model* Model0 = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
-	Model* Model1 = new Model(ModelType::kCube, "/app0/cubemap2.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	Model* Model1 = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
 	Model0->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	Model1->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
@@ -47,9 +47,10 @@ int main()
 			// Camera movement
 			{
 				// Move left
-				///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
-				///newPos.setX(newPos.getX() - 0.2f);
-				///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
+				Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
+				newPos.setX(newPos.getX() - g_controllerContext.LeftStick.x);
+				newPos.setY(newPos.getY() - g_controllerContext.LeftStick.y);
+				CCamera::GetInstance()->m_vec3_CameraPos = newPos;
 
 				// Move right
 				///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
@@ -68,18 +69,12 @@ int main()
 			}
 
 			// Camera rotation
-			{
-				// Rotate left
-				///CCamera::GetInstance()->m_fTargetPosXAngle += 0.01f;
+			{				
+				// Up/Down Rotation
+				CCamera::GetInstance()->m_fTargetPosYAngle -= (g_controllerContext.RightStick.y / 40.0f);
 
-				// Rotate right
-				CCamera::GetInstance()->m_fTargetPosXAngle -= 0.01f;
-
-				// Rotate up
-				CCamera::GetInstance()->m_fTargetPosYAngle += 0.01f;
-
-				// Rotate down
-				///CCamera::GetInstance()->m_fTargetPosYAngle -= 0.01f;
+				// Left/Right Rotation
+				CCamera::GetInstance()->m_fTargetPosXAngle -= (g_controllerContext.RightStick.x / 40.0f);
 			}
 
 			CCamera::GetInstance()->Process();
@@ -96,16 +91,6 @@ int main()
 		Model1->Draw();			
 
 		Render::GetInstance()->EndRender();
-
-		if (g_controllerContext.isButtonDown(0, BUTTON_CROSS, PATTERN_ANY))
-		{
-			//printf("Button down");
-		}
-		
-		Vector2 posXZ = g_controllerContext.getLeftStick(0);
-		
-		printf("LeftStick X: %d \n", posXZ.getX());
-		//printf("LeftStick Y: %f \n", g_controllerContext.getLeftStick(0).getY());
 	}
 	
 	// Cleanup

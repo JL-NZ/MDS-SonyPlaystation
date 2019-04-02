@@ -107,6 +107,18 @@ void ControllerContext::update()
 		m_rightStickXY[i].setX((fabsf(rX) < m_deadZone) ? 0.0f : rX);
 		m_rightStickXY[i].setY((fabsf(rY) < m_deadZone) ? 0.0f : rY);
 	}
+
+	LeftStick = { lX, lY };
+	RightStick = { rX, rY };
+
+	//if (rX != 0)
+	//{
+	//	printf("XAxis: %.10f \n", rX);
+	//}
+	//if (rY != 0)
+	//{
+	//	printf("YAxis: %.10f \n", rY);
+	//}
 	
 	//dead zones,  touch pad resolution,  pixel density and  whether remote play is being performed by using scePadGetControllerInformation().
 	//int ret = scePadGetControllerInformation(m_handle, &m_information);

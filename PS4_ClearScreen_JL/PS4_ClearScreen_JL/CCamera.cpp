@@ -18,6 +18,7 @@
 
 // This Includes //
 #include "CCamera.h"
+#include <math.h>
 
 // Static Variables //
 CCamera* CCamera::p_Self = nullptr;
@@ -66,11 +67,13 @@ void CCamera::Process()
 {
 	// Look at location updating
 	{
-		// Clamp values
-		//...
+		// Clamp values		
+		//m_fTargetPosXAngle;
+		m_fTargetPosYAngle = std::fmin(m_fTargetPosYAngle, 1.0);
+		m_fTargetPosYAngle = std::fmax(m_fTargetPosYAngle, -1.0);
 
 		float fXAngleRadians = 0;
-		float fYAngleRadians = 0;
+		float fYAngleRadians = 0;		
 
 		// Set target position
 		Vector2 temp = Vector2(sin(m_fTargetPosXAngle), cos(m_fTargetPosXAngle));
@@ -86,6 +89,10 @@ void CCamera::Process()
 		Point3(m_vec3_CameraPos.getX(), m_vec3_CameraPos.getY(), m_vec3_CameraPos.getZ()),
 		Point3(m_vec3_TargetPos.getX(), m_vec3_TargetPos.getY(), m_vec3_TargetPos.getZ()),
 		Vector3(0.0f, 1.0f, 0.0f));
+
+	
+	
+	
 }
 
 Matrix4 CCamera::GetView()
