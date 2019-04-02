@@ -262,8 +262,8 @@ void Model::Draw()
 	if (constants)
 	{		
 		// Angle increase to create constant rotation
-		angle+= 0.0002f;
-		if (angle > 360) angle = 0.0f;
+		///angle+= 0.0002f;
+		///if (angle > 360) angle = 0.0f;
 
 		const float kAspectRatio = float(Render::GetInstance()->kDisplayBufferWidth) / float(Render::GetInstance()->kDisplayBufferHeight);
 

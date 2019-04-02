@@ -41,7 +41,39 @@ int main()
 	}	
 	
 	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
-	{		
+	{	
+		// Camera movement
+		{
+			// Move left
+			///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
+			///newPos.setX(newPos.getX() - 0.2f);
+			///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
+
+			// Move right
+			///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
+			///newPos.setX(newPos.getX() + 0.2f);
+			///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
+
+			// Move up
+			///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
+			///newPos.setY(newPos.getY() + 0.2f);
+			///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
+
+			// Move down
+			///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
+			///newPos.setY(newPos.getY() - 0.2f);
+			///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
+		}
+
+		// Camera rotation
+		{
+			// Rotate left
+			///CCamera::GetInstance()->m_fTargetPosXAngle += 0.01f;
+
+			// Rotate right
+			CCamera::GetInstance()->m_fTargetPosXAngle -= 0.01f;
+		}
+
 		CCamera::GetInstance()->Process();
 		
 		//printf("%d \n", frameIndex);

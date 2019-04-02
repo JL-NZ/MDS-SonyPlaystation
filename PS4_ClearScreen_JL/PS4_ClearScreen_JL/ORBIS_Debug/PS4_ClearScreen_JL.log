@@ -1,9 +1,7 @@
 ﻿  CCamera.cpp
-  Model.cpp
-D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(30,24): warning : unused variable 'gfxc' [-Wunused-variable]
-D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(126,8): warning : 'generateVsFetchShader' is deprecated: please ensure instancingData is indexed by VertexInputSemantic::m_semantic and supply numElementsInInstancingData [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnmx/fetchshaderhelper.h(75,8):  note: 'generateVsFetchShader' has been explicitly marked deprecated here
-D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(202,24): warning : unused variable 'gfxc' [-Wunused-variable]
-D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(268,15): warning : unused variable 'kAspectRatio' [-Wunused-variable]
+D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\CCamera.cpp(72,9): warning : unused variable 'fXAngleRadians' [-Wunused-variable]
+D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\CCamera.cpp(77,11): warning : unused variable 'temp2' [-Wunused-variable]
+D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\CCamera.cpp(73,9): warning : unused variable 'fYAngleRadians' [-Wunused-variable]
   main.cpp
+D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(100,32): warning : format specifies type 'int' but the argument has type 'const sce::Vectormath::Scalar::floatInVec' [-Wformat]
   PS4_ClearScreen_JL.vcxproj -> D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf

@@ -50,7 +50,10 @@ class CCamera
     // Member variables //
         public:
 			Vector3 m_vec3_CameraPos;
+			
 			Vector3 m_vec3_TargetPos;
+			float m_fTargetPosXAngle; // Degrees
+			float m_fTargetPosYAngle; // Degrees
 
         protected:
 
