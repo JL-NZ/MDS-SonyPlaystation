@@ -31,7 +31,7 @@ using namespace std;
 // Constructor //
 CCamera::CCamera()
 {
-	m_vec3_CameraPos = Vector3(0.0f, 0.0f, 20.0f);
+	m_vec3_CameraPos = Vector3(0.0f, 0.0f, -20.0f);
 	//m_vec3_CameraPos = Vector3(0.0f, 0.0f, 0.0f);
 
 	m_vec3_TargetPos = Vector3(0.0f, 0.0f, 0.0f);
@@ -69,8 +69,8 @@ void CCamera::Process()
 	{
 		// Clamp values		
 		//m_fTargetPosXAngle;
-		m_fTargetPosYAngle = std::fmin(m_fTargetPosYAngle, 1.0);
-		m_fTargetPosYAngle = std::fmax(m_fTargetPosYAngle, -1.0);
+		m_fTargetPosYAngle = std::fmin(m_fTargetPosYAngle, 1.57);
+		m_fTargetPosYAngle = std::fmax(m_fTargetPosYAngle, -1.57);
 
 		float fXAngleRadians = 0;
 		float fYAngleRadians = 0;		
@@ -88,11 +88,7 @@ void CCamera::Process()
 	mat4_view = Matrix4::lookAt(
 		Point3(m_vec3_CameraPos.getX(), m_vec3_CameraPos.getY(), m_vec3_CameraPos.getZ()),
 		Point3(m_vec3_TargetPos.getX(), m_vec3_TargetPos.getY(), m_vec3_TargetPos.getZ()),
-		Vector3(0.0f, 1.0f, 0.0f));
-
-	
-	
-	
+		Vector3(0.0f, 1.0f, 0.0f));	
 }
 
 Matrix4 CCamera::GetView()

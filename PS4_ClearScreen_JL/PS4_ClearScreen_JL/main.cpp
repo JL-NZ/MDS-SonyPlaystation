@@ -19,11 +19,17 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
-	Model* Model0 = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
-	Model* Model1 = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
+	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* Model3 = new Model(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* Model4 = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
-	Model0->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
-	Model1->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
+	SphereModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	CubeModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	Model2->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	Model3->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	Model4->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
 		
 	sceUserServiceInitialize(NULL);
 	int ret = sceUserServiceGetInitialUser(&g_userID);
@@ -46,26 +52,10 @@ int main()
 		{
 			// Camera movement
 			{
-				// Move left
 				Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
-				newPos.setX(newPos.getX() - g_controllerContext.LeftStick.x);
+				newPos.setX(newPos.getX() + g_controllerContext.LeftStick.x);
 				newPos.setY(newPos.getY() - g_controllerContext.LeftStick.y);
 				CCamera::GetInstance()->m_vec3_CameraPos = newPos;
-
-				// Move right
-				///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
-				///newPos.setX(newPos.getX() + 0.2f);
-				///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
-
-				// Move up
-				///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
-				///newPos.setY(newPos.getY() + 0.2f);
-				///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
-
-				// Move down
-				///Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
-				///newPos.setY(newPos.getY() - 0.2f);
-				///CCamera::GetInstance()->m_vec3_CameraPos = newPos;
 			}
 
 			// Camera rotation
@@ -78,8 +68,30 @@ int main()
 			}
 
 			CCamera::GetInstance()->Process();
+		}		
+
+		// Object rotation
+		{
+			// Object one rotation
+			if (g_controllerContext.isButtonDown(0, BUTTON_LEFT))
+			{
+				SphereModel->angle -= 0.01f;
+			}
+			if (g_controllerContext.isButtonDown(0, BUTTON_RIGHT))
+			{
+				SphereModel->angle += 0.01f;
+			}
+
+			// Object two rotation
+			if (g_controllerContext.isButtonDown(0, BUTTON_UP))
+			{
+				CubeModel->angle -= 0.01f;
+			}
+			if (g_controllerContext.isButtonDown(0, BUTTON_DOWN))
+			{
+				CubeModel->angle += 0.01f;
+			}
 		}
-		
 		
 		//printf("%d \n", frameIndex);
 		g_controllerContext.update();		
@@ -87,8 +99,11 @@ int main()
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
 			
-		Model0->Draw();
-		Model1->Draw();			
+		SphereModel->Draw();
+		CubeModel->Draw();			
+		Model2->Draw();
+		Model3->Draw();
+		Model4->Draw();
 
 		Render::GetInstance()->EndRender();
 	}

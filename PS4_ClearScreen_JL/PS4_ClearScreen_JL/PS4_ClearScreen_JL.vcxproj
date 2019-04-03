@@ -74,6 +74,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +97,7 @@
     <ClInclude Include="Render.h" />
     <ClInclude Include="shader_loader.h" />
     <ClInclude Include="std_cbuffer.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
