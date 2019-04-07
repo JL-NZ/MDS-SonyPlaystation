@@ -43,6 +43,9 @@ class CCamera
 			Matrix4 GetView();
 			Matrix4 GetProjection();
 
+			Vector3 GetForwardVector();
+			Vector3 GetRightVector();
+
         protected:
 
         private:
@@ -50,14 +53,17 @@ class CCamera
     // Member variables //
         public:
 			Vector3 m_vec3_CameraPos;
-			
 			Vector3 m_vec3_TargetPos;
-			float m_fTargetPosXAngle; // Degrees
-			float m_fTargetPosYAngle; // Degrees
+
+			float m_fXAngle; // Radians
+			float m_fYAngle; // Radians
 
         protected:
 
         private:
+			Vector3 m_vec3_ForwardVector;
+			Vector3 m_vec3_RightVector;
+
 			Matrix4 mat4_view;
 			Matrix4 mat4_projection;
 

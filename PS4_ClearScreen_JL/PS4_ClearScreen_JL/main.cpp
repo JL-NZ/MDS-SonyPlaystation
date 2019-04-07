@@ -13,6 +13,7 @@
 
 using namespace sce;
 using namespace sce::Gnmx;
+using namespace std;
 
 ControllerContext g_controllerContext;
 SceUserServiceUserId g_userID;
@@ -52,19 +53,39 @@ int main()
 		{
 			// Camera movement
 			{
-				Vector3 newPos = CCamera::GetInstance()->m_vec3_CameraPos;
-				newPos.setX(newPos.getX() + g_controllerContext.LeftStick.x);
-				newPos.setY(newPos.getY() - g_controllerContext.LeftStick.y);
-				CCamera::GetInstance()->m_vec3_CameraPos = newPos;
+				CCamera* Camera = CCamera::GetInstance();
+
+				// Forward Component
+				float fXForward = Camera->GetForwardVector().getX() * -g_controllerContext.LeftStick.y;
+				float fYForward = Camera->GetForwardVector().getY() * -g_controllerContext.LeftStick.y;
+				float fZForward = Camera->GetForwardVector().getZ() * -g_controllerContext.LeftStick.y;
+
+				// Right component
+				float fXRight = Camera->GetRightVector().getX() * -g_controllerContext.LeftStick.x;
+				float fYRight = Camera->GetRightVector().getY() * -g_controllerContext.LeftStick.x;
+				float fZRight = Camera->GetRightVector().getZ() * -g_controllerContext.LeftStick.x;
+
+				// Combined position difference
+				float fXCombined = fXForward + fXRight;
+				float fYCombined = fYForward + fYRight;
+				float fZCombined = fZForward + fZRight;
+
+				Vector3 vec3_Final = Vector3(fXCombined, fYCombined, fZCombined);
+
+				float fCameraSpeed = 0.1f;
+				vec3_Final *= fCameraSpeed;
+
+				// New final position
+				CCamera::GetInstance()->m_vec3_CameraPos += vec3_Final;
 			}
 
 			// Camera rotation
 			{				
 				// Up/Down Rotation
-				CCamera::GetInstance()->m_fTargetPosYAngle -= (g_controllerContext.RightStick.y / 40.0f);
+				CCamera::GetInstance()->m_fYAngle -= (g_controllerContext.RightStick.y / 40.0f);
 
 				// Left/Right Rotation
-				CCamera::GetInstance()->m_fTargetPosXAngle -= (g_controllerContext.RightStick.x / 40.0f);
+				CCamera::GetInstance()->m_fXAngle -= (g_controllerContext.RightStick.x / 40.0f);
 			}
 
 			CCamera::GetInstance()->Process();

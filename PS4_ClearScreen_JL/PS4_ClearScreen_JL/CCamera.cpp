@@ -34,9 +34,10 @@ CCamera::CCamera()
 	m_vec3_CameraPos = Vector3(0.0f, 0.0f, -20.0f);
 	//m_vec3_CameraPos = Vector3(0.0f, 0.0f, 0.0f);
 
-	m_vec3_TargetPos = Vector3(0.0f, 0.0f, 0.0f);
-	m_fTargetPosXAngle = 0;
-	m_fTargetPosYAngle = 0;
+	m_vec3_ForwardVector = Vector3(0.0f, 0.0f, 0.0f);
+	m_vec3_RightVector = Vector3(0.0f, 0.0f, 0.0f);
+	m_fXAngle = 0;
+	m_fYAngle = 0;
 
 	mat4_projection = Matrix4::perspective(3.14f / 4.0f, 1920.0f / 1080.0f, 1.0f, 1000.0f);
 }
@@ -68,20 +69,29 @@ void CCamera::Process()
 	// Look at location updating
 	{
 		// Clamp values		
-		//m_fTargetPosXAngle;
-		m_fTargetPosYAngle = std::fmin(m_fTargetPosYAngle, 1.57);
-		m_fTargetPosYAngle = std::fmax(m_fTargetPosYAngle, -1.57);
+		m_fYAngle = std::fmin(m_fYAngle, 1.57);
+		m_fYAngle = std::fmax(m_fYAngle, -1.57);
 
-		float fXAngleRadians = 0;
-		float fYAngleRadians = 0;		
-
-		// Set target position
-		Vector2 temp = Vector2(sin(m_fTargetPosXAngle), cos(m_fTargetPosXAngle));
-		Vector2 temp2 = Vector2(sin(m_fTargetPosYAngle), cos(m_fTargetPosYAngle));
+		// Set forward vector
 		
-		m_vec3_TargetPos = 
-			m_vec3_CameraPos + 
-			Vector3(temp.getX(), temp2.getX(), temp.getY()) * 10.0f;
+		m_vec3_ForwardVector =
+			Vector3(
+				sin(m_fXAngle), // X
+				sin(m_fYAngle), // Y
+				cos(m_fXAngle) // Z
+			);
+
+		cout << "Forward: " << m_vec3_ForwardVector.getX() << ", " << m_vec3_ForwardVector.getY() << ", " << m_vec3_ForwardVector.getZ() << endl;
+
+		// Set right vector
+
+		m_vec3_RightVector =
+			Vector3(sin(m_fXAngle + 1.5708), sin(m_fYAngle), cos(m_fXAngle + 1.5708)); //1.5708
+
+		cout << "Right: " << m_vec3_RightVector.getX() << ", " << m_vec3_RightVector.getY() << ", " << m_vec3_RightVector.getZ() << endl;
+
+		// Set target position vector
+		m_vec3_TargetPos = m_vec3_CameraPos + m_vec3_ForwardVector;
 	}
 
 	// View
@@ -99,5 +109,15 @@ Matrix4 CCamera::GetView()
 Matrix4 CCamera::GetProjection()
 {
 	return mat4_projection;
+}
+
+Vector3 CCamera::GetForwardVector()
+{
+	return m_vec3_ForwardVector;
+}
+
+Vector3 CCamera::GetRightVector()
+{
+	return m_vec3_RightVector;
 }
 
