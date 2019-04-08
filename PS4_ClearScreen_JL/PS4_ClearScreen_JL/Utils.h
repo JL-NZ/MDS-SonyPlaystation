@@ -5,6 +5,8 @@
 #include "common/allocator.h"
 #include "api_gnm/toolkit/toolkit.h"
 
+#include "Terrain.h"
+
 typedef struct Vertex
 {
 	float x, y, z; // Position
@@ -35,7 +37,7 @@ public:
 	static void setQuadData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
 	static void setCubeData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
 	static void setSphereData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
-
+	static void setTerrainData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
 	
 };
 

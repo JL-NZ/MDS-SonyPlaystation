@@ -14,7 +14,8 @@ enum ModelType
 	kTriangle,
 	kQuad,
 	kCube,
-	kSphere
+	kSphere,
+	kTerrain
 };
 
 //unistruct ShaderConstants
@@ -72,7 +73,7 @@ public:
 	uint32_t *indexData;
 	uint32_t shaderModifier;
 
-	sce::Gnmx::InputOffsetsCache vsInputOffsetsCache; 
+	sce::Gnmx::InputOffsetsCache vsInputOffsetsCache;
 	sce::Gnmx::InputOffsetsCache psInputOffsetsCache;
 
 	// Initialize a Gnm::Texture object

@@ -1,13 +1,14 @@
 #pragma once
-#include "Dependencies\glew\glew.h"
-#include "Dependencies\freeglut\freeglut.h"
-#include "Dependencies\glm\glm.hpp"
+///#include "Dependencies\glew\glew.h"
+///#include "Dependencies\freeglut\freeglut.h"
+///#include "Dependencies\glm\glm.hpp"
 #include <vector>
+#include <fstream>
 
 struct TerrainVertex
 {
-	glm::vec3 v3Pos;
-	glm::vec3 v3Color;
+	Vector3 v3Pos;
+	Vector3 v3Color;
 };
 
 class Terrain
@@ -22,17 +23,17 @@ public:
 	void LoadVegeMap();
 	float GetHeight(float x, float z) const;
 	void Smooth();
-	bool InBounds(UINT _a, UINT _b);	
-	float Average(UINT _a, UINT _b);
+	bool InBounds(int _a, int _b);
+	float Average(int _a, int _b);
 	void Render();
 	void RenderGrass();
 
 private:		
-	GLuint m_vbo;
-	GLuint m_vao;
-	GLuint m_program;	
-	GLuint m_grassProgram;
-	GLuint m_texture;
+	int m_vbo;
+	int m_vao;
+	int m_program;
+	int m_grassProgram;
+	int m_texture;
 	
 	std::vector<TerrainVertex> m_vecVertices;
 	std::vector<int> m_vecIndices;

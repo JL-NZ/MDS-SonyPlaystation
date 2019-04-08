@@ -43,6 +43,8 @@ Model::Model(ModelType modelType)
 	case kSphere:
 		Utils::setSphereData(vertices, indices);
 		break;
+	case kTerrain:
+		Utils::setTerrainData()
 	default:
 		break;
 	}
