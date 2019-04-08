@@ -73,7 +73,6 @@ void CCamera::Process()
 		m_fYAngle = std::fmax(m_fYAngle, -1.57);
 
 		// Set forward vector
-		
 		m_vec3_ForwardVector =
 			Vector3(
 				sin(m_fXAngle), // X
@@ -81,14 +80,9 @@ void CCamera::Process()
 				cos(m_fXAngle) // Z
 			);
 
-		cout << "Forward: " << m_vec3_ForwardVector.getX() << ", " << m_vec3_ForwardVector.getY() << ", " << m_vec3_ForwardVector.getZ() << endl;
-
 		// Set right vector
-
 		m_vec3_RightVector =
 			Vector3(sin(m_fXAngle + 1.5708), sin(m_fYAngle), cos(m_fXAngle + 1.5708)); //1.5708
-
-		cout << "Right: " << m_vec3_RightVector.getX() << ", " << m_vec3_RightVector.getY() << ", " << m_vec3_RightVector.getZ() << endl;
 
 		// Set target position vector
 		m_vec3_TargetPos = m_vec3_CameraPos + m_vec3_ForwardVector;

@@ -1,15 +1,7 @@
 #pragma once
-///#include "Dependencies\glew\glew.h"
-///#include "Dependencies\freeglut\freeglut.h"
-///#include "Dependencies\glm\glm.hpp"
 #include <vector>
 #include <fstream>
-
-struct TerrainVertex
-{
-	Vector3 v3Pos;
-	Vector3 v3Color;
-};
+#include <gnmx.h>
 
 class Terrain
 {
@@ -20,13 +12,13 @@ public:
 	void BuildVertexBuffer();
 	void BuildIndexBuffer();
 	void LoadHeightMap();
-	void LoadVegeMap();
 	float GetHeight(float x, float z) const;
 	void Smooth();
 	bool InBounds(int _a, int _b);
 	float Average(int _a, int _b);
-	void Render();
-	void RenderGrass();
+
+	std::vector<struct Vertex> m_vecVertices;
+	std::vector<uint32_t> m_vecIndices;
 
 private:		
 	int m_vbo;
@@ -35,8 +27,9 @@ private:
 	int m_grassProgram;
 	int m_texture;
 	
-	std::vector<TerrainVertex> m_vecVertices;
-	std::vector<int> m_vecIndices;
+	///std::vector<TerrainVertex> m_vecVertices;
+	///std::vector<int> m_vecIndices;
+
 	std::vector<float> m_vecHeightMap;
 	std::vector<float> m_vecVegeMap;
 	int m_iNumIndices;

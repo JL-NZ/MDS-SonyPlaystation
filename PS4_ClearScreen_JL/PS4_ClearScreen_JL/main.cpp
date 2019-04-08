@@ -10,7 +10,6 @@
 #include "controller.h"
 #include "CCamera.h"
 
-
 using namespace sce;
 using namespace sce::Gnmx;
 using namespace std;
@@ -25,6 +24,7 @@ int main()
 	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* Model3 = new Model(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* Model4 = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	Model* TerrainModel = new Model(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(100.0f, 100.0f, 100.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
 	SphereModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	CubeModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
@@ -125,6 +125,7 @@ int main()
 		Model2->Draw();
 		Model3->Draw();
 		Model4->Draw();
+		TerrainModel->Draw();
 
 		Render::GetInstance()->EndRender();
 	}
