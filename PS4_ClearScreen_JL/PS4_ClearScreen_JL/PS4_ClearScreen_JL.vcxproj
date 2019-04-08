@@ -85,6 +85,8 @@
   <ItemGroup>
     <OrbisWavePsslc Include="CMshader_p.pssl" />
     <OrbisWavePsslc Include="CMshader_vv.pssl" />
+    <OrbisWavePsslc Include="NoTexshader_p.pssl" />
+    <OrbisWavePsslc Include="NoTexshader_vv.pssl" />
     <OrbisWavePsslc Include="shader_p.pssl" />
     <OrbisWavePsslc Include="shader_vv.pssl" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include "Terrain.h"
 #include "Utils.h"
 #include "CCamera.h"
+#include <random>
 
 Terrain::Terrain()
 {
@@ -10,7 +11,7 @@ Terrain::Terrain()
 	m_fHeightOffset = -20.0f;
 	m_fWidth = m_iNumCols;
 	m_fDepth = m_iNumRows;
-	m_strFilePath = "coastMountain513.raw";
+	m_strFilePath = "/app0/coastMountain513.raw";
 }
 
 Terrain::~Terrain()
@@ -27,15 +28,16 @@ void Terrain::Initialize()
 
 void Terrain::BuildVertexBuffer()
 {		
+	std::random_device rd;  //Will be used to obtain a seed for the random number engine
+	std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+	std::uniform_real_distribution<> dis(0.0f, 1.0f);
+
 	float halfWidth = (m_iNumCols - 1) * 0.5f;
-	float halfDepth = (m_iNumRows - 1) * 0.5f;
-	float du = 1.0f / (m_iNumCols - 1);
-	float dv = 1.0f / (m_iNumRows - 1);
+	float halfDepth = (m_iNumRows - 1) * 0.5f;	
 	
 	///std::vector<TerrainVertex> vertices((m_iNumCols * m_iNumRows));
 	std::vector<Vertex> vertices((m_iNumCols * m_iNumRows));
 	
-	int CurrentIndex = 0;
 	for (int i = 0; i < m_iNumRows; ++i)
 	{
 		float z = halfDepth - i;
@@ -43,22 +45,19 @@ void Terrain::BuildVertexBuffer()
 		for (int j = 0; j < m_iNumCols; ++j)
 		{
 			float x = -halfWidth + j;
-			float y = m_vecHeightMap[i * m_iNumCols + j];				
+			float y = m_vecHeightMap[i * m_iNumCols + j];			
+			float rgb = dis(gen);
 			
 			vertices[i * m_iNumCols + j].x = x;
 			vertices[i * m_iNumCols + j].y = y;
 			vertices[i * m_iNumCols + j].z = z;
 
-			// Using different colors to know which parts should have vegetation or not
-			///if (m_vecVegeMap[i * m_iNumCols + j] > 24.0f)
-			///{
-			///	vertices[i * m_iNumCols + j].v3Color = Vector3(0.0f, 0.0f, 0.0f);
-			///}
-			///else
-			///{
-			///	vertices[i * m_iNumCols + j].v3Color = Vector3(0.0f, 1.0f, 0.0f);
-			///}
-			
+			vertices[i * m_iNumCols + j].r = rgb; // generating a random number between 0.0f and 1.0f
+			vertices[i * m_iNumCols + j].g = rgb;
+			vertices[i * m_iNumCols + j].b = rgb;
+
+			vertices[i * m_iNumCols + j].u = 0.0f;// x / m_fWidth;
+			vertices[i * m_iNumCols + j].v = 0.0f;// y / m_fWidth;
 		}
 	}	
 		
@@ -87,7 +86,6 @@ void Terrain::BuildIndexBuffer()
 			CurrentIndex += 6; // next quad
 		}
 	}	
-	int iEBO;
 
 	m_vecIndices = vecIndices;
 }

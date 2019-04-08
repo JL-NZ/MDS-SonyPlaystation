@@ -21,18 +21,10 @@ public:
 	std::vector<uint32_t> m_vecIndices;
 
 private:		
-	int m_vbo;
-	int m_vao;
-	int m_program;
-	int m_grassProgram;
-	int m_texture;
-	
 	///std::vector<TerrainVertex> m_vecVertices;
 	///std::vector<int> m_vecIndices;
 
-	std::vector<float> m_vecHeightMap;
-	std::vector<float> m_vecVegeMap;
-	int m_iNumIndices;
+	std::vector<float> m_vecHeightMap;	
 	
 	int m_iNumCols;
 	int m_iNumRows;
