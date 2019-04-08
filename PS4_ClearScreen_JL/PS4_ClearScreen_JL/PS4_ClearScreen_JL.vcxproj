@@ -65,6 +65,9 @@
       <OptimizationLevel>Level2</OptimizationLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <Link>
+      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="api_gnm\toolkit\shader_loader.cpp" />
