@@ -1,11 +1,32 @@
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) 2005 - 2017 Media Design School
+//
+// File Name	:	Model.h
+// Description	:	header file outlining the Model
+// Author		:	Jasper Lyons & James Monk
+// Mail			:	jjlyonsschool@gmail.com & james.mon7482@mediadesign.school.nz
+//
+
 #pragma once
+
+#ifndef _MODEL_H__
+#define _MODEL_H__
+
+// Library Includes //
 #include <string>
 #include <gnmx.h>
 
+// Local Includes //
 #include "Utils.h"
 #include "std_cbuffer.h"
 #include "CCamera.h"
 
+// Types //
 using namespace sce;
 using namespace sce::Gnmx;
 
@@ -18,12 +39,9 @@ enum ModelType
 	kTerrain
 };
 
-//unistruct ShaderConstants
-//{
-//	Matrix4Unaligned m_WorldViewProj;
-//};
+// Constants //
 
-#pragma once
+// Prototypes //
 class Model
 {
 public:
@@ -98,3 +116,4 @@ public:
 	float angle;
 };
 
+#endif // _MODEL_H__

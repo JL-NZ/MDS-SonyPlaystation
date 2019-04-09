@@ -8,8 +8,8 @@
 //
 // File Name	:	CCamera.h
 // Description	:	header file outlining the CCamera
-// Author		:	Jasper Lyons & James Monk
-// Mail			:	jjlyonsschool@gmail.com & james.mon7482@mediadesign.school.nz
+// Author		:	James Monk
+// Mail			:	james.mon7482@mediadesign.school.nz
 //
 
 #pragma once

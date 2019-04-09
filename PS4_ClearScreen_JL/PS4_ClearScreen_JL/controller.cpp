@@ -4,10 +4,7 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 * All Rights Reserved.
 */
 
-#include "api_gnm/toolkit/toolkit.h"
-#include "common/allocator.h"
-
-#include "controller.h"
+// Library Includes //
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -15,9 +12,21 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 #include <sceerror.h>
 #include <sys/event.h>
 #include <unistd.h>
+#include <math.h>
 
+// Local Includes //
+#include "CCamera.h"
+#include "api_gnm/toolkit/toolkit.h"
+#include "common/allocator.h"
+
+// This Includes //
+#include "controller.h"
+
+// Types //
 using namespace sce;
 
+// Static Variables //
+CCamera* CCamera::p_Self = nullptr;
 const float ControllerContext::m_defaultDeadZone 	= 0.25;
 const float ControllerContext::m_recipMaxByteAsFloat	= 1.0f / 255.0f;
 
@@ -148,7 +157,6 @@ bool ControllerContext::isButtonDown(uint32_t port, uint32_t buttons, ButtonEven
 	}
 	return false;
 }
-
 
 bool ControllerContext::isButtonUp(uint32_t port, uint32_t buttons, ButtonEventPattern pattern) const
 {

@@ -1,13 +1,36 @@
-#include "Render.h"
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) 2005 - 2017 Media Design School
+//
+// File Name	:	Render.cpp
+// Description	:	main implementation for Render
+// Author		:	Jasper Lyons
+// Mail 		:	jjlyonsschool@gmail.com
+//
+
+// Library Includes //
 #include <stdlib.h>
 
-using namespace sce;
-using namespace sce::Gnmx;
+// Local Includes //
 
+// This Includes //
+#include "Render.h"
+
+// Static Variables //
 Render* Render::p_Render = nullptr;
 size_t sceLibcHeapSize = 256 * 1024 * 1024;
 
+// Static Function Prototypes //
 
+// Types //
+using namespace sce;
+using namespace sce::Gnmx;
+
+// Constructor //
 Render::Render()
 {	
 	static const size_t kOnionMemorySize = 16 * 1024 * 1024;
@@ -209,7 +232,7 @@ Render::Render()
 	depthTarget.setAddresses(garlicAllocator.allocate(depthTargetSizeAlign), stencilMemory);
 }
 
-
+// Destructor //
 Render::~Render()
 {
 
@@ -358,7 +381,6 @@ void Render::ToggleBackfaceCulling(bool _bool)
 		gfxc.setPrimitiveSetup(primSetupReg);
 	}
 }
-
 
 Render * Render::GetInstance()
 {

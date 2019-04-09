@@ -1,11 +1,31 @@
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) 2005 - 2017 Media Design School
+//
+// File Name	:	Render.h
+// Description	:	header file outlining the Render
+// Author		:	Jasper Lyons
+// Mail			:	jjlyonsschool@gmail.com
+//
 
+#pragma once
 
+#ifndef _RENDER_H__
+#define _RENDER_H__
+
+// Library Includes //
 #include <gnmx.h>
 #include <video_out.h>
 
+// Local Includes //
 #include "api_gnm/toolkit/toolkit.h"
 #include "common/allocator.h"
 
+// Types //
 using namespace sce;
 using namespace sce::Gnmx;
 
@@ -35,6 +55,8 @@ enum RenderContextState
 	kRenderContextFree = 0,
 	kRenderContextInUse,
 };
+
+// Constants //
 
 #pragma once
 class Render
@@ -99,3 +121,4 @@ private:
 	~Render();
 };
 
+#endif // _RENDER_H__

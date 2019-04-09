@@ -1,12 +1,32 @@
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) 2005 - 2017 Media Design School
+//
+// File Name	:	Utils.h
+// Description	:	header file outlining the Utils
+// Author		:	Jasper Lyons & James Monk
+// Mail			:	jjlyonsschool@gmail.com & james.mon7482@mediadesign.school.nz
+//
 
+#pragma once
+
+#ifndef _UTILS_H__
+#define _UTILS_H__
+
+// Library Includes //
 #include <vector>
 #include <gnmx.h>
 
+// Local Includes //
 #include "common/allocator.h"
 #include "api_gnm/toolkit/toolkit.h"
-
 #include "Terrain.h"
 
+// Types //
 typedef struct Vertex
 {
 	float x, y, z; // Position
@@ -26,7 +46,10 @@ enum VertexElements
 	kVertexElemCount // element means attribute
 };
 
-#pragma once
+// Constants //
+
+// Prototypes //
+
 class Utils
 {
 public:
@@ -41,3 +64,4 @@ public:
 	
 };
 
+#endif // _UTILS_H__

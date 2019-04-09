@@ -1,24 +1,44 @@
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) 2005 - 2017 Media Design School
+//
+// File Name	:	main.cpp
+// Description	:	main implementation for program
+// Author		:	Jasper Lyons & James Monk
+// Mail			:	jjlyonsschool@gmail.com & james.mon7482@mediadesign.school.nz
+//
+
+// Library Includes //
 #include <gnmx.h>
 #include <video_out.h>
 
+// Local Includes //
 #include "common/allocator.h"
 #include "api_gnm/toolkit/toolkit.h"
-
 #include "Render.h"
 #include "Model.h"
 #include "Utils.h"
 #include "controller.h"
 #include "CCamera.h"
 
+// Types //
 using namespace sce;
 using namespace sce::Gnmx;
 using namespace std;
 
+// Constants //
 ControllerContext g_controllerContext;
 SceUserServiceUserId g_userID;
 
+// Prototypes //
+
 int main()
 {
+	// Create models
 	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
 	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
@@ -26,13 +46,14 @@ int main()
 	Model* CubeMap = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	Model* TerrainModel = new Model(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, -100.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
+	// Generate shaders for models
 	SphereModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	CubeModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	Model2->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	Model3->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	TerrainModel->genFetchShaderAndOffsetCache("/app0/NoTexshader_vv.sb", "/app0/NoTexshader_p.sb");
 	CubeMap->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
-		
+	
 	sceUserServiceInitialize(NULL);
 	int ret = sceUserServiceGetInitialUser(&g_userID);
 	if (ret < SCE_OK)

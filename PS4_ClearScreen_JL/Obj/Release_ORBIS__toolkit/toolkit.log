@@ -1,1 +1,12 @@
-﻿  toolkit.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\api_gnm\toolkit\toolkit.a
+﻿  allocators.cpp
+  dataformat_interpreter.cpp
+  dataformat_tests.cpp
+  deallocator.cpp
+  embedded_shader.cpp
+  floating_point.cpp
+  half.cpp
+  region_allocator.cpp
+  shader_loader.cpp
+  stack_allocator.cpp
+  toolkit.cpp
+  toolkit.vcxproj -> D:\Users\james.mon7482\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\api_gnm\toolkit\toolkit.a

@@ -8,17 +8,17 @@
 //
 // File Name	:	CCamera.cpp
 // Description	:	main implementation for CCamera
-// Author		:	Jasper Lyons & James Monk
-// Mail			:	jjlyonsschool@gmail.com & james.mon7482@mediadesign.school.nz
+// Author		:	James Monk
+// Mail			:	james.mon7482@mediadesign.school.nz
 //
 
 // Library Includes //
+#include <math.h>
 
 // Local Includes //
 
 // This Includes //
 #include "CCamera.h"
-#include <math.h>
 
 // Static Variables //
 CCamera* CCamera::p_Self = nullptr;

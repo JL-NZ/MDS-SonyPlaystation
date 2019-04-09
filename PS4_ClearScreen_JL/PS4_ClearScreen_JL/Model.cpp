@@ -1,10 +1,34 @@
-#include "Model.h"
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) 2005 - 2017 Media Design School
+//
+// File Name	:	Model.cpp
+// Description	:	main implementation for Model
+// Author		:	Jasper Lyons & James Monk
+// Mail 		:	jjlyonsschool@gmail.com & james.mon7482@mediadesign.school.nz
+//
 
+// Library Includes //
+
+// Local Includes //
 #include "Utils.h"
 #include "Render.h"
-
 #include "common/shader_loader.h"
 #include "GNFLoader.h"
+
+// This Includes //
+#include "Model.h"
+
+// Static Variables //
+
+// Static Function Prototypes //
+
+// Types //
+using namespace std;
 
 bool readRawTextureData(const char *path, void *address, size_t size)
 {
@@ -20,6 +44,7 @@ bool readRawTextureData(const char *path, void *address, size_t size)
 	return success;
 }
 
+// Constructor //
 Model::Model(ModelType modelType)
 {
 	translation = Vector3(0.0f, 0.0f, 0.0f);
@@ -103,6 +128,7 @@ Model::Model(ModelType modelType)
 	//InitializeGNFTextures("/app0/mytextures.gnf");
 }
 
+// Destructor //
 Model::~Model()
 {
 }
@@ -236,7 +262,6 @@ bool Model::DrawGNFTextures()
 
 	return false;
 }
-
 
 void Model::Draw()
 {
