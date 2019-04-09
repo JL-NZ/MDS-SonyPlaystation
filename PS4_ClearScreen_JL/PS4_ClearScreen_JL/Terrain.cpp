@@ -63,7 +63,6 @@ void Terrain::BuildVertexBuffer()
 	float halfWidth = (m_iNumCols - 1) * 0.5f;
 	float halfDepth = (m_iNumRows - 1) * 0.5f;	
 	
-	///std::vector<TerrainVertex> vertices((m_iNumCols * m_iNumRows));
 	std::vector<Vertex> vertices((m_iNumCols * m_iNumRows));
 	
 	for (int i = 0; i < m_iNumRows; ++i)
@@ -94,7 +93,6 @@ void Terrain::BuildVertexBuffer()
 
 void Terrain::BuildIndexBuffer()
 {		
-	///std::vector<int> vecIndices(((m_iNumRows - 1) * (m_iNumCols - 1) * 2) * 3);
 	std::vector<uint32_t> vecIndices(((m_iNumRows - 1) * (m_iNumCols - 1) * 2) * 3);
 
 	int CurrentIndex = 0;

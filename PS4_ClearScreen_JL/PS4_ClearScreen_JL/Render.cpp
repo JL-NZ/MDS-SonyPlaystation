@@ -289,7 +289,6 @@ void Render::SetPipelineState()
 {
 	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
 
-
 	// Enable z-writes using a less comparison function
 	Gnm::DepthStencilControl dsc;
 	dsc.init();

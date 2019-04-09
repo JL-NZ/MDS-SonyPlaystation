@@ -33,6 +33,8 @@ Utils::~Utils()
 
 void Utils::setTriData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
+	vertices.clear(); indices.clear();
+
 	std::vector<Vertex> Vertices;	
 	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.0f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f));
 	Vertices.push_back(Vertex(0.5f, -0.5f, 0.0f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f));
@@ -43,14 +45,14 @@ void Utils::setTriData(std::vector<Vertex>& vertices, std::vector<uint32_t>& ind
 	Indices.push_back(2);
 	Indices.push_back(1);
 
-	vertices.clear(); indices.clear();
-
 	vertices = Vertices;
 	indices = Indices;
 }
 
 void Utils::setQuadData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
+	vertices.clear(); indices.clear();
+
 	std::vector<Vertex> Vertices;
 	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f));
 	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f));
@@ -63,14 +65,14 @@ void Utils::setQuadData(std::vector<Vertex>& vertices, std::vector<uint32_t>& in
 		0, 2, 3,
 	};
 
-	vertices.clear(); indices.clear();
-
 	vertices = Vertices;
 	indices = Indices;
 }
 
 void Utils::setCubeData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
+	vertices.clear(); indices.clear();
+
 	std::vector<Vertex> Vertices;
 
 	// Front Face
@@ -135,16 +137,15 @@ void Utils::setCubeData(std::vector<Vertex>& vertices, std::vector<uint32_t>& in
 		20, 21, 22,
 		20, 22, 23
 	};
-
-	vertices.clear();
-	indices.clear();
-
+	
 	vertices = Vertices;
 	indices = Indices;
 }
 
 void Utils::setSphereData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
+	vertices.clear(); indices.clear();
+
 	std::vector<Vertex> Vertices;
 	std::vector<uint32_t> Indices;
 
@@ -186,7 +187,6 @@ void Utils::setSphereData(std::vector<Vertex>& vertices, std::vector<uint32_t>& 
 		phi += (2 * M_PI) / (sections - 1);
 	}
 
-
 	offset = 0;
 	for (int i = 0; i < sections; i++)
 	{
@@ -202,15 +202,14 @@ void Utils::setSphereData(std::vector<Vertex>& vertices, std::vector<uint32_t>& 
 		}
 	}
 
-	vertices.clear();
-	indices.clear();
-
 	vertices = Vertices;
 	indices = Indices;
 }
 
 void Utils::setTerrainData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
+	vertices.clear(); indices.clear();
+
 	Terrain* pTerrain = new Terrain();
 	pTerrain->Initialize();
 
@@ -220,13 +219,10 @@ void Utils::setTerrainData(std::vector<Vertex>& vertices, std::vector<uint32_t>&
 		Vertices.push_back(Vertex(pTerrain->m_vecVertices[i]));
 	}
 
-
 	std::vector<uint32_t> Indices = pTerrain->m_vecIndices;
 
 	delete pTerrain;
 	pTerrain = nullptr;
-
-	vertices.clear(); indices.clear();
 
 	vertices = Vertices;
 	indices = Indices;

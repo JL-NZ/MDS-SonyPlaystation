@@ -54,6 +54,7 @@ int main()
 	TerrainModel->genFetchShaderAndOffsetCache("/app0/NoTexshader_vv.sb", "/app0/NoTexshader_p.sb");
 	CubeMap->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
 	
+	// sceUserService init
 	sceUserServiceInitialize(NULL);
 	int ret = sceUserServiceGetInitialUser(&g_userID);
 	if (ret < SCE_OK)
@@ -62,6 +63,7 @@ int main()
 		return ret;
 	}
 	
+	// Controller init
 	ret = g_controllerContext.initialize(g_userID);
 	if (ret < SCE_OK)
 	{
@@ -69,8 +71,12 @@ int main()
 		return ret;
 	}	
 	
+	// Render the program for 10000 frames
 	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
 	{	
+		// Update controller
+		g_controllerContext.update();
+
 		// Camera
 		{
 			// Camera movement
@@ -134,9 +140,9 @@ int main()
 			{
 				CubeModel->angle += 0.01f;
 			}
-		}		
-		g_controllerContext.update();		
+		}
 
+		// Render
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
 			
