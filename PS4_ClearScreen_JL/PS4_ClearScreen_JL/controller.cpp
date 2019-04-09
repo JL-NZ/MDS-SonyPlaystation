@@ -26,7 +26,6 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 using namespace sce;
 
 // Static Variables //
-CCamera* CCamera::p_Self = nullptr;
 const float ControllerContext::m_defaultDeadZone 	= 0.25;
 const float ControllerContext::m_recipMaxByteAsFloat	= 1.0f / 255.0f;
 
