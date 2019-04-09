@@ -86,6 +86,7 @@ public:
 	void StartRender();
 	void SetPipelineState();
 	void EndRender();
+	void ToggleBackfaceCulling(bool _bool);
 	
 // Singleton
 public:

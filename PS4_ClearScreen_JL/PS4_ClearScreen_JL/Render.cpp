@@ -274,12 +274,8 @@ void Render::SetPipelineState()
 	dsc.setDepthEnable(true);
 	gfxc.setDepthStencilControl(dsc);
 
-	 //Cull clock-wise backfaces
-	//Gnm::PrimitiveSetup primSetupReg;
-	//primSetupReg.init();
-	//primSetupReg.setCullFace(Gnm::kPrimitiveSetupCullFaceBack);
-	//primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCw);
-	//gfxc.setPrimitiveSetup(primSetupReg);
+	//Cull clock-wise backfaces
+	ToggleBackfaceCulling(true);
 
 	// Setup an additive blending mode
 	Gnm::BlendControl blendControl;
@@ -339,6 +335,28 @@ void Render::EndRender()
 	// Rotate the render contexts
 	renderContextIndex = (renderContextIndex + 1) % kRenderContextCount;
 	renderContext = renderContexts + renderContextIndex;
+}
+
+void Render::ToggleBackfaceCulling(bool _bool)
+{
+	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
+	Gnm::PrimitiveSetup primSetupReg;
+
+	if (_bool)
+	{		
+		primSetupReg.init();
+		primSetupReg.setCullFace(Gnm::kPrimitiveSetupCullFaceBack);
+		primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCw);
+		gfxc.setPrimitiveSetup(primSetupReg);
+	}
+	else
+	{
+		
+		primSetupReg.init();
+		primSetupReg.setCullFace(Gnm::kPrimitiveSetupCullFaceNone);
+		primSetupReg.setFrontFace(Gnm::kPrimitiveSetupFrontFaceCw);
+		gfxc.setPrimitiveSetup(primSetupReg);
+	}
 }
 
 

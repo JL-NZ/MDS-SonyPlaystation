@@ -243,9 +243,6 @@ void Model::Draw()
 	// Get graphics context from render
 	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
 
-	// Setup the output color mask
-	//gfxc.setRenderTargetMask(0xF);
-
 	// Activate VS and PS stages
 	gfxc.setActiveShaderStages(Gnm::kActiveShaderStagesVsPs);
 	gfxc.setVsShader(vsShader, shaderModifier, fsMem, &vsInputOffsetsCache);

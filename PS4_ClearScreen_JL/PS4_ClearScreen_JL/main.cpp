@@ -113,9 +113,7 @@ int main()
 			{
 				CubeModel->angle += 0.01f;
 			}
-		}
-		
-		//printf("%d \n", frameIndex);
+		}		
 		g_controllerContext.update();		
 
 		Render::GetInstance()->StartRender();
@@ -125,8 +123,11 @@ int main()
 		CubeModel->Draw();			
 		Model2->Draw();
 		Model3->Draw();
-		CubeMap->Draw();
 		TerrainModel->Draw();
+
+		Render::GetInstance()->ToggleBackfaceCulling(false);
+		CubeMap->Draw();
+		Render::GetInstance()->ToggleBackfaceCulling(true);
 
 		Render::GetInstance()->EndRender();
 	}
