@@ -1,1 +1,27 @@
-﻿  PS4_ClearScreen_JL.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf
+﻿  CMshader_p.pssl
+  CMshader_vv.pssl
+  NoTexshader_p.pssl
+  NoTexshader_vv.pssl
+  shader_p.pssl
+  shader_vv.pssl
+  shader_loader.cpp
+  CCamera.cpp
+  controller.cpp
+  GNFLoader.cpp
+  main.cpp
+  Model.cpp
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(30,24): warning : unused variable 'gfxc' [-Wunused-variable]
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(128,8): warning : 'generateVsFetchShader' is deprecated: please ensure instancingData is indexed by VertexInputSemantic::m_semantic and supply numElementsInInstancingData [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnmx/fetchshaderhelper.h(75,8):  note: 'generateVsFetchShader' has been explicitly marked deprecated here
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(204,24): warning : unused variable 'gfxc' [-Wunused-variable]
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(267,15): warning : unused variable 'kAspectRatio' [-Wunused-variable]
+  Render.cpp
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(118,21): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gpu_address.h(315,34):  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(178,14): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gpu_address.h(315,34):  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(180,52): warning : 'init' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnm/depthrendertarget.h(122,14):  note: 'init' has been explicitly marked deprecated here
+  Terrain.cpp
+  Utils.cpp
+  PS4_ClearScreen_JL.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf

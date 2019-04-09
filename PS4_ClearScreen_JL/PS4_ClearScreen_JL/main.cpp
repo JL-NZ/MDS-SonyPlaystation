@@ -122,10 +122,10 @@ int main()
 		SphereModel->Draw();
 		CubeModel->Draw();			
 		Model2->Draw();
-		Model3->Draw();
-		TerrainModel->Draw();
+		Model3->Draw();		
 
 		Render::GetInstance()->ToggleBackfaceCulling(false);
+		TerrainModel->Draw();
 		CubeMap->Draw();
 		Render::GetInstance()->ToggleBackfaceCulling(true);
 
