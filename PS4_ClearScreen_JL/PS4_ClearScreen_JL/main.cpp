@@ -5,6 +5,7 @@
 #include "api_gnm/toolkit/toolkit.h"
 
 #include "Render.h"
+#include "AudioManager.h"
 #include "Model.h"
 #include "Utils.h"
 #include "controller.h"
@@ -32,6 +33,10 @@ int main()
 	Model3->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	TerrainModel->genFetchShaderAndOffsetCache("/app0/NoTexshader_vv.sb", "/app0/NoTexshader_p.sb");
 	CubeMap->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
+
+	AudioManager::GetInstance()->Initialize();
+	SceScreamSoundParams soundParams = AudioManager::GetInstance()->InitializeScreamParams();
+	SceScreamSFXBlock2* soundBank = AudioManager::GetInstance()->LoadAudioBank("/app0/testbank.bnk");
 		
 	sceUserServiceInitialize(NULL);
 	int ret = sceUserServiceGetInitialUser(&g_userID);
@@ -47,7 +52,9 @@ int main()
 		printf("controller initialization failed: 0x%08X\n", ret);
 		return ret;
 	}	
-	
+
+	//AudioManager::GetInstance()->PlaySound(soundBank, "/app0/testbank.bnk", soundParams);
+
 	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
 	{	
 		// Camera
@@ -55,6 +62,7 @@ int main()
 			// Camera movement
 			{
 				CCamera* Camera = CCamera::GetInstance();
+				
 
 				// Forward Component
 				float fXForward = Camera->GetForwardVector().getX() * -g_controllerContext.LeftStick.y;

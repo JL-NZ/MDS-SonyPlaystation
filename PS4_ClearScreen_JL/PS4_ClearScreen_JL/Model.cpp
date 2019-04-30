@@ -26,9 +26,7 @@ Model::Model(ModelType modelType)
 	rotateAxis = Vector3(0.0f, 0.0f, 1.0f);
 	scale = Vector3(0.0f, 0.0f, 0.0f);
 	angle = 0.0f;
-
-	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
-
+	
 	switch (modelType)
 	{
 	case kTriangle:
@@ -201,7 +199,6 @@ bool Model::DrawRawTextures()
 bool Model::InitializeGNFTextures(const char* _filePath)
 {
 	// Get graphics context from render
-	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
  
 	GNFLoader::loadTextureFromGnf(
 		&texture, 
@@ -263,9 +260,7 @@ void Model::Draw()
 		// Angle increase to create constant rotation
 		///angle+= 0.0002f;
 		///if (angle > 360) angle = 0.0f;
-
-		const float kAspectRatio = float(Render::GetInstance()->kDisplayBufferWidth) / float(Render::GetInstance()->kDisplayBufferHeight);
-
+		
 		Matrix4 model = Matrix4::translation(translation) * Matrix4::rotation((angle * (180/M_PI)), rotateAxis) * Matrix4::scale(scale);
 		Matrix4 projection = CCamera::GetInstance()->GetProjection();
 		Matrix4 view = CCamera::GetInstance()->GetView();

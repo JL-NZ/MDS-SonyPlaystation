@@ -55,7 +55,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" "-lSceScream" "-lSceAudioOut_stub_weak" "-lSceNgs2_stub_weak" "-lSceSysmodule_stub_weak" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>-lSceSystemService_stub;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -71,6 +71,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="api_gnm\toolkit\shader_loader.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="GNFLoader.cpp" />
@@ -95,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocator.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="controller.h" />
     <ClInclude Include="GNFLoader.h" />
