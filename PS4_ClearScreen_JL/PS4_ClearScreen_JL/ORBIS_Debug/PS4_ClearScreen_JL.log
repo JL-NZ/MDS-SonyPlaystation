@@ -1,2 +1,16 @@
-﻿  main.cpp
+﻿  Render.cpp
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(128,21): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gpu_address.h(315,34):  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(188,14): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gpu_address.h(315,34):  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(190,52): warning : 'init' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnm/depthrendertarget.h(122,14):  note: 'init' has been explicitly marked deprecated here
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(224,44): warning : 'initAs2d' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnm/texture.h(189,14):  note: 'initAs2d' has been explicitly marked deprecated here
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(377,8): warning : unused variable 'baseY' [-Wunused-variable]
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(375,11): warning : unused variable 'displayWidth' [-Wunused-variable]
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(416,38): warning : variable 'hfont' is uninitialized when used here [-Wuninitialized]
+  D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(378,23):  note: initialize the variable 'hfont' to silence this warning
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(388,29): warning : variable 'lineH' is uninitialized when used here [-Wuninitialized]
+  D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(377,20):  note: initialize the variable 'lineH' to silence this warning
   PS4_ClearScreen_JL.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf

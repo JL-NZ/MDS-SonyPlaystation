@@ -18,6 +18,12 @@ enum ModelType
 	kTerrain
 };
 
+enum TextureType
+{
+	RAW,
+	GNF
+};
+
 //unistruct ShaderConstants
 //{
 //	Matrix4Unaligned m_WorldViewProj;
@@ -58,7 +64,8 @@ public:
 	~Model();
 
 	// Member Functions
-	void Draw();
+	void Draw(TextureType _type);
+	void SetTexture(Gnm::Texture _texture);
 	bool genFetchShaderAndOffsetCache(std::string vertexBinary, std::string fragmentBinary);
 		
 	Gnm::Buffer vertexBuffers[kVertexElemCount];

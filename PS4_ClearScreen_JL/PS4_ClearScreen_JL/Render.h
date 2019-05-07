@@ -3,6 +3,8 @@
 #include <gnmx.h>
 #include <video_out.h>
 
+#include <sce_font.h>
+
 #include "api_gnm/toolkit/toolkit.h"
 #include "common/allocator.h"
 
@@ -59,6 +61,19 @@ public:
 	static const size_t kDcbSizeInBytes = 2 * 1024 * 1024;
 	static const size_t kCcbSizeInBytes = 256 * 1024;
 #endif
+
+	// Text library stuff
+	SceFontRenderer s_renderer;
+	SceFontHandle fontHandle;
+	SceFontRenderSurface surface; // render surface struct
+	void* surfaceBuffer = NULL; // pointer to the start of the render surface
+	// Initialize a Gnm::Texture object
+	Gnm::Texture texture;
+	Gnm::SizeAlign textureSizeAlign;
+	// Initialize the texture sampler
+	Gnm::Sampler sampler;
+	class Model* textQuad;
+
 
 
 	// GNM stuff

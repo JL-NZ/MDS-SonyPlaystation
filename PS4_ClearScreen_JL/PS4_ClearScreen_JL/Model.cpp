@@ -235,7 +235,7 @@ bool Model::DrawGNFTextures()
 }
 
 
-void Model::Draw()
+void Model::Draw(TextureType _type)
 {
 	// Get graphics context from render
 	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
@@ -249,8 +249,17 @@ void Model::Draw()
 	gfxc.setVertexBuffers(Gnm::kShaderStageVs, 0, kVertexElemCount, vertexBuffers);	
 
 	// Draw raw textures
-	//DrawRawTextures();
-	DrawGNFTextures();
+	switch (_type)
+	{
+	case TextureType::RAW:
+	{
+		DrawRawTextures();
+	}
+	case TextureType::GNF:
+	{
+		DrawGNFTextures();
+	}
+	}
 
 	// Define constants
 	ShaderConstants *constants = static_cast<ShaderConstants*>(gfxc.allocateFromCommandBuffer(sizeof(ShaderConstants), Gnm::kEmbeddedDataAlignment4));
@@ -293,5 +302,10 @@ void Model::Draw()
 
 	// Draw Index
 	gfxc.drawIndex(indices.size(), indexData);	
+}
+
+void Model::SetTexture(Gnm::Texture _texture)
+{
+	texture = _texture;
 }
 

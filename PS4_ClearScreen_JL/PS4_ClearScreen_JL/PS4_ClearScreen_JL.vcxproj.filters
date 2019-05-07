@@ -44,6 +44,15 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TextLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="font_memory_malloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="font_memory_mspace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <OrbisWavePsslc Include="shader_vv.pssl">
@@ -62,6 +71,9 @@
       <Filter>shader</Filter>
     </OrbisWavePsslc>
     <OrbisWavePsslc Include="NoTexshader_vv.pssl">
+      <Filter>shader</Filter>
+    </OrbisWavePsslc>
+    <OrbisWavePsslc Include="TextShader_p.pssl">
       <Filter>shader</Filter>
     </OrbisWavePsslc>
   </ItemGroup>
@@ -102,6 +114,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AudioManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextLabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="font_memory_malloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="font_memory_mspace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

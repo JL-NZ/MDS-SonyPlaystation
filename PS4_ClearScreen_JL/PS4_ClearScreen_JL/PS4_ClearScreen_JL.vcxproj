@@ -55,7 +55,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" "-lSceScream" "-lSceAudioOut_stub_weak" "-lSceNgs2_stub_weak" "-lSceSysmodule_stub_weak" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" "-lSceScream" "-lSceAudioOut_stub_weak" "-lSceNgs2_stub_weak" "-lSceSysmodule_stub_weak" "-lSceFont_stub_weak" "-lSceFontFt_stub_weak" "-lSceCes" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>-lSceSystemService_stub;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -74,11 +74,14 @@
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="controller.cpp" />
+    <ClCompile Include="font_memory_malloc.c" />
+    <ClCompile Include="font_memory_mspace.c" />
     <ClCompile Include="GNFLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TextLabel.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -93,18 +96,22 @@
     <OrbisWavePsslc Include="NoTexshader_vv.pssl" />
     <OrbisWavePsslc Include="shader_p.pssl" />
     <OrbisWavePsslc Include="shader_vv.pssl" />
+    <OrbisWavePsslc Include="TextShader_p.pssl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocator.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="controller.h" />
+    <ClInclude Include="font_memory_malloc.h" />
+    <ClInclude Include="font_memory_mspace.h" />
     <ClInclude Include="GNFLoader.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="shader_loader.h" />
     <ClInclude Include="std_cbuffer.h" />
     <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TextLabel.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

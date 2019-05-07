@@ -127,14 +127,14 @@ int main()
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
 			
-		SphereModel->Draw();
-		CubeModel->Draw();			
-		Model2->Draw();
-		Model3->Draw();		
+		SphereModel->Draw(TextureType::GNF);
+		CubeModel->Draw(TextureType::GNF);
+		Model2->Draw(TextureType::GNF);
+		Model3->Draw(TextureType::GNF);
 
 		Render::GetInstance()->ToggleBackfaceCulling(false);
-		TerrainModel->Draw();
-		CubeMap->Draw();
+		TerrainModel->Draw(TextureType::GNF);
+		CubeMap->Draw(TextureType::GNF);
 		Render::GetInstance()->ToggleBackfaceCulling(true);
 
 		Render::GetInstance()->EndRender();
