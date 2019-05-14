@@ -55,7 +55,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" "-lSceScream" "-lSceAudioOut_stub_weak" "-lSceNgs2_stub_weak" "-lSceSysmodule_stub_weak" "-lSceFont_stub_weak" "-lSceFontFt_stub_weak" "-lSceCes" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" "-lSceScream" "-lSceAudioOut_stub_weak" "-lSceNgs2_stub_weak" "-lSceSysmodule_stub_weak" "-lSceFont_stub_weak" "-lSceFontFt_stub_weak" "-lSceCes" "-lScePhysicsEffects" "-lSceJobManager_stub_weak" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>-lSceSystemService_stub;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -79,7 +79,11 @@
     <ClCompile Include="GNFLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="physicseffects\pfx_rigidbody_world.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextLabel.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -105,9 +109,16 @@
     <ClInclude Include="controller.h" />
     <ClInclude Include="font_memory_malloc.h" />
     <ClInclude Include="font_memory_mspace.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GNFLoader.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="physicseffects\pfx_high_level_include.h" />
+    <ClInclude Include="physicseffects\pfx_rigidbody_world.h" />
+    <ClInclude Include="physicseffects\pfx_rigidbody_world_implementation.h" />
+    <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Render.h" />
+    <ClInclude Include="rigidbody.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="shader_loader.h" />
     <ClInclude Include="std_cbuffer.h" />
     <ClInclude Include="Terrain.h" />
