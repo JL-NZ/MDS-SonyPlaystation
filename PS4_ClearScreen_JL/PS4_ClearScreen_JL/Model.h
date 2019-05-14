@@ -61,6 +61,8 @@ public:
 		InitializeGNFTextures(_filePath);
 	};
 
+
+
 	~Model();
 
 	// Member Functions

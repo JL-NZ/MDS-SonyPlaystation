@@ -10,6 +10,7 @@
 #include "Utils.h"
 #include "controller.h"
 #include "CCamera.h"
+#include "TextLabel.h"
 
 using namespace sce;
 using namespace sce::Gnmx;
@@ -20,10 +21,14 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
+	TextLabel* Text = new TextLabel();
+	Text->Initialize();
+	Text->RenderFont();
+
 	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
-	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
-	Model* Model3 = new Model(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
+	Model* Model3 = new Model(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
 	Model* CubeMap = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	Model* TerrainModel = new Model(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, -100.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
@@ -130,7 +135,8 @@ int main()
 		SphereModel->Draw(TextureType::GNF);
 		CubeModel->Draw(TextureType::GNF);
 		Model2->Draw(TextureType::GNF);
-		Model3->Draw(TextureType::GNF);
+		Model3->Draw(TextureType::GNF);		
+		Text->DrawText();
 
 		Render::GetInstance()->ToggleBackfaceCulling(false);
 		TerrainModel->Draw(TextureType::GNF);
