@@ -45,7 +45,7 @@ void TextLabel::Initialize()
 
 	texture.setBaseAddress(textureData);
 	surfaceBuffer = textureData;
-	textQuad = new Model(ModelType::kQuad, "", Vector3(0.0f, 0.0f, 0.0f), Vector3(100.0f, 100.0f, 100.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	textQuad = new Model(ModelType::kQuad);
 	textQuad->SetTexture(texture);
 	textQuad->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/TextShader_p.sb");
 
