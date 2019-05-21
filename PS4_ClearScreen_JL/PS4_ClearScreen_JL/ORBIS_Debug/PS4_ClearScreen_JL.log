@@ -1,2 +1,14 @@
-﻿  pfx_rigidbody_world.cpp
-  PS4_ClearScreen_JL.vcxproj -> E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf
+﻿  LevelScene.cpp
+  main.cpp
+  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp:15:
+  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h:2:
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/Scene.h(23,30): warning : class 'SceScreamSFXBlock2' was previously declared as a struct [-Wmismatched-tags]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\scream/sce_snd_data.h(87,16):  note: previous use is here
+  D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/Scene.h(23,30):  note: did you mean struct here?
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(55,22): warning : unused variable 'soundBank' [-Wunused-variable]
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(54,23): warning : unused variable 'soundParams' [-Wunused-variable]
+  Scene.cpp
+  SceneManager.cpp
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\SceneManager.cpp(48,1): warning : control reaches end of non-void function [-Wreturn-type]
+D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\SceneManager.cpp(54,1): warning : control reaches end of non-void function [-Wreturn-type]
+  PS4_ClearScreen_JL.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS-SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf

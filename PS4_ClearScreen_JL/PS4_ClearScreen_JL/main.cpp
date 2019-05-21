@@ -11,6 +11,8 @@
 #include "controller.h"
 #include "CCamera.h"
 #include "TextLabel.h"
+#include "SceneManager.h"
+#include "LevelScene.h"
 
 using namespace sce;
 using namespace sce::Gnmx;
@@ -21,6 +23,15 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
+	// Working to implement the new scenemanager/scene/levelscene etc stuff here
+	std::shared_ptr<LevelScene> LvlScene = std::make_shared<LevelScene>();
+	LvlScene->Initialize();
+
+	SceneManager* SceneMgr = SceneManager::GetInstance();
+	SceneMgr->m_Scenes.push_back(LvlScene);
+	//...
+
+
 	TextLabel* Text = new TextLabel();
 	Text->Initialize();
 	Text->RenderFont();
@@ -62,6 +73,11 @@ int main()
 
 	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
 	{	
+		// Working to implement scene heirarchy stff here
+		SceneMgr->m_fDeltaTime = 0.0f; // ideally we set delta time here properly
+		SceneMgr->Update(); 
+		SceneMgr->Render();
+
 		// Camera
 		{
 			// Camera movement
@@ -149,6 +165,7 @@ int main()
 	// Cleanup
 	CCamera::GetInstance()->Destroy();
 	Render::GetInstance()->Destroy();
+	SceneManager::GetInstance()->Destroy();
 
 	return 0;
 }

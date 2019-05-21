@@ -77,12 +77,14 @@
     <ClCompile Include="font_memory_malloc.c" />
     <ClCompile Include="font_memory_mspace.c" />
     <ClCompile Include="GNFLoader.cpp" />
+    <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="physicseffects\pfx_rigidbody_world.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextLabel.cpp" />
@@ -111,6 +113,7 @@
     <ClInclude Include="font_memory_mspace.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GNFLoader.h" />
+    <ClInclude Include="LevelScene.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="physicseffects\pfx_high_level_include.h" />
     <ClInclude Include="physicseffects\pfx_rigidbody_world.h" />
@@ -118,6 +121,7 @@
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="rigidbody.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="shader_loader.h" />
     <ClInclude Include="std_cbuffer.h" />
