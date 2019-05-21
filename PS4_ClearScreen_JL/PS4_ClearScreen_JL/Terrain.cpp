@@ -14,6 +14,15 @@ Terrain::Terrain()
 	m_strFilePath = "/app0/coastMountain513.raw";
 }
 
+Terrain::Terrain(std::string _strFilePath):m_strFilePath(_strFilePath) {
+	m_iNumCols = 513;
+	m_iNumRows = 513;
+	m_fHeightScale = 0.35f;
+	m_fHeightOffset = -20.0f;
+	m_fWidth = m_iNumCols;
+	m_fDepth = m_iNumRows;
+}
+
 Terrain::~Terrain()
 {
 }

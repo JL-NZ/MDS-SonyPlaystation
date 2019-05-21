@@ -7,6 +7,7 @@ class Terrain
 {
 public:
 	Terrain();
+	Terrain(std::string _strTerrainFile);
 	~Terrain();
 	void Initialize();
 	void BuildVertexBuffer();

@@ -1,5 +1,6 @@
 #include "PhysicsEngine.h"
 #include <new>
+#include "rigidbody.h"
 
 PhysicsEngine* PhysicsEngine::s_pInstance = nullptr;
 
@@ -56,4 +57,15 @@ inline void PhysicsEngine::CreateDefaultWorld() {
 
 sce::PhysicsEffects::PfxRigidBodyWorld* PhysicsEngine::GetWorld()const {
 	return m_pWorld;
+}
+
+void PhysicsEngine::Update(float _fDeltaTick) {
+	// Update time
+	float fTime = _fDeltaTick + m_fExtraTime;
+	// Determine substeps
+	unsigned int uiSteps = static_cast<unsigned int>(floor(fTime / kPhysicsTimestep));
+	m_fExtraTime = fTime - (uiSteps * kPhysicsTimestep);
+
+	// Simulate Physics
+	m_pWorld->simulateSubStep(uiSteps);
 }

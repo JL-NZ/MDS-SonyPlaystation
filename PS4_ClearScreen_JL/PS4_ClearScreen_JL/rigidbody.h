@@ -17,7 +17,7 @@ enum RigidbodyType {
 };
 
 class Rigidbody {
-	private:
+	protected:
 		RigidbodyType m_eRBType;
 		sce::PhysicsEffects::PfxUInt32 m_uiID;
 		sce::PhysicsEffects::PfxRigidState m_State;
@@ -30,8 +30,26 @@ class Rigidbody {
 		inline void DetermineInertia();
 
 	public:
+		Rigidbody();
 		Rigidbody(RigidbodyType _eType);
-		~Rigidbody();
+		virtual ~Rigidbody();
+
+		// Accessors
+		sce::PhysicsEffects::PfxRigidState& GetState();
+		sce::PhysicsEffects::PfxRigidBody& GetBody();
+		sce::PhysicsEffects::PfxCollidable& GetCollider();
+};
+
+// Forward declaration
+class Terrain;
+
+class TerrainRigidbody : public Rigidbody {
+	private:
+		sce::PhysicsEffects::PfxLargeTriMesh* m_pTerrainCollider;
+
+	public:
+		TerrainRigidbody(const Terrain& _krTerrain);
+		~TerrainRigidbody();
 };
 
 #endif // !__RIGIDBODY_H__

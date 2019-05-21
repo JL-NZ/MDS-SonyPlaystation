@@ -1,5 +1,9 @@
 #include "rigidbody.h"
 #include "PhysicsEngine.h"
+#include "Terrain.h"
+
+// Default constructor is to satisfy inheritance, and should not be used
+Rigidbody::Rigidbody(){}
 
 Rigidbody::Rigidbody(RigidbodyType _eType):m_eRBType(_eType) {
 	// Create new shape
@@ -52,4 +56,27 @@ void Rigidbody::DetermineInertia() {
 
 		default:break;
 	}
+}
+
+// Access Collider
+sce::PhysicsEffects::PfxCollidable& Rigidbody::GetCollider() {
+	return m_Collider;
+}
+
+// Access body
+sce::PhysicsEffects::PfxRigidBody& Rigidbody::GetBody() {
+	return m_Body;
+}
+
+// Access State
+sce::PhysicsEffects::PfxRigidState& Rigidbody::GetState() {
+	return m_State;
+}
+
+/// TerrainRigidbody
+TerrainRigidbody::TerrainRigidbody(const Terrain& _krTerrain) {
+	// Large mesh properties struct
+	sce::PhysicsEffects::PfxCreateLargeTriMeshParam meshParam;
+	meshParam.flag = SCE_PFX_MESH_FLAG_32BIT_INDEX | SCE_PFX_MESH_FLAG_AUTO_ELIMINATION;
+
 }
