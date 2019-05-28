@@ -65,7 +65,9 @@ void PhysicsEngine::Update(float _fDeltaTick) {
 	// Determine substeps
 	unsigned int uiSteps = static_cast<unsigned int>(floor(fTime / kPhysicsTimestep));
 	m_fExtraTime = fTime - (uiSteps * kPhysicsTimestep);
+	if (uiSteps > 0) {
+		// Simulate Physics
+		m_pWorld->simulateSubStep(uiSteps);
+	}
 
-	// Simulate Physics
-	m_pWorld->simulateSubStep(uiSteps);
 }

@@ -1,6 +1,9 @@
 #ifndef __GAMEOBJECT_H__
 #define __GAMEOBJECT_H__
 
+#include <gnmx.h>
+#include "Utils.h"
+
 // Forward declaration
 class Rigidbody;
 class Model;
@@ -21,6 +24,8 @@ class GameObject {
 
 		Rigidbody* GetRigidbody()const;
 		Model* GetModel()const;
+
+		void SetPosition(Vector3 _newPosition);
 };
 
 // This class is used as the base 
@@ -40,6 +45,13 @@ class BallObject : public GameObject {
 	public:
 		BallObject(const char* _kcTextureFile);
 		~BallObject();
+};
+
+class CubeObject : public GameObject {
+	public:
+		CubeObject();
+		CubeObject(Vector3 _vecSize, const char* _kcTextureFile);
+		~CubeObject();
 };
 
 #endif // !__GAMEOBJECT_H__

@@ -80,3 +80,5 @@ TerrainRigidbody::TerrainRigidbody(const Terrain& _krTerrain) {
 	meshParam.flag = SCE_PFX_MESH_FLAG_32BIT_INDEX | SCE_PFX_MESH_FLAG_AUTO_ELIMINATION;
 
 }
+
+TerrainRigidbody::~TerrainRigidbody(){}

@@ -1,2 +1,4 @@
-﻿  pfx_rigidbody_world.cpp
+﻿  main.cpp
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(60,22): warning : unused variable 'soundBank' [-Wunused-variable]
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(59,23): warning : unused variable 'soundParams' [-Wunused-variable]
   PS4_ClearScreen_JL.vcxproj -> E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf

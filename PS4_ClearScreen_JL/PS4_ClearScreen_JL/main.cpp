@@ -1,5 +1,7 @@
 #include <gnmx.h>
 #include <video_out.h>
+#include <time.h>
+#include <chrono>
 
 #include "common/allocator.h"
 #include "api_gnm/toolkit/toolkit.h"
@@ -11,6 +13,9 @@
 #include "controller.h"
 #include "CCamera.h"
 #include "TextLabel.h"
+#include "PhysicsEngine.h"
+//#include "clock.h"
+#include "GameObject.h"
 
 using namespace sce;
 using namespace sce::Gnmx;
@@ -21,9 +26,20 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
+	std::chrono::high_resolution_clock::time_point previousTime = std::chrono::high_resolution_clock::now();;
+	std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();;
+
+	// Physics initialisation
+	PhysicsEngine* pPhysics = PhysicsEngine::GetInstance();
 	TextLabel* Text = new TextLabel();
 	Text->Initialize();
 	Text->RenderFont();
+
+	// Test physics objects
+	CubeObject cube(Vector3(10.0f, 0.5f, 10.0f), "/app0/cat.gnf");
+	cube.SetPosition(Vector3(0, -1, 0));
+	BallObject ball("/app0/cat.gnf");
+	ball.SetPosition(Vector3(0, 5, 0));
 
 	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
@@ -60,14 +76,22 @@ int main()
 
 	//AudioManager::GetInstance()->PlaySound(soundBank, "/app0/testbank.bnk", soundParams);
 
-	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
-	{	
+	while(true)//for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
+		{
+		// Clock
+		previousTime = currentTime;
+		currentTime = std::chrono::high_resolution_clock::now();
+		float fDeltaTick = static_cast<float>( std::chrono::duration_cast<std::chrono::seconds>(currentTime - previousTime).count());
+		printf("time: %f \n", fDeltaTick);
+
+		
+
 		// Camera
 		{
 			// Camera movement
 			{
 				CCamera* Camera = CCamera::GetInstance();
-				
+
 
 				// Forward Component
 				float fXForward = Camera->GetForwardVector().getX() * -g_controllerContext.LeftStick.y;
@@ -94,7 +118,7 @@ int main()
 			}
 
 			// Camera rotation
-			{				
+			{
 				// Up/Down Rotation
 				CCamera::GetInstance()->m_fYAngle -= (g_controllerContext.RightStick.y / 40.0f);
 
@@ -103,7 +127,7 @@ int main()
 			}
 
 			CCamera::GetInstance()->Process();
-		}		
+		}
 
 		// Object rotation
 		{
@@ -126,24 +150,32 @@ int main()
 			{
 				CubeModel->angle += 0.01f;
 			}
-		}		
-		g_controllerContext.update();		
+		}
+		g_controllerContext.update();
 
+		// Physics
+		pPhysics->Update(0.015f);
+
+		// Render loop
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
-			
-		SphereModel->Draw(TextureType::GNF);
-		CubeModel->Draw(TextureType::GNF);
-		Model2->Draw(TextureType::GNF);
-		Model3->Draw(TextureType::GNF);		
-		Text->DrawText();
 
-		Render::GetInstance()->ToggleBackfaceCulling(false);
-		TerrainModel->Draw(TextureType::GNF);
-		CubeMap->Draw(TextureType::GNF);
-		Render::GetInstance()->ToggleBackfaceCulling(true);
+		//cube.Render();
+		ball.Render();
+
+		//SphereModel->Draw(TextureType::GNF);
+		//CubeModel->Draw(TextureType::GNF);
+		//Model2->Draw(TextureType::GNF);
+		//Model3->Draw(TextureType::GNF);
+		//Text->DrawText();
+
+		//Render::GetInstance()->ToggleBackfaceCulling(false);
+		//TerrainModel->Draw(TextureType::GNF);
+		//CubeMap->Draw(TextureType::GNF);
+		//Render::GetInstance()->ToggleBackfaceCulling(true);
 
 		Render::GetInstance()->EndRender();
+		
 	}
 	
 	// Cleanup

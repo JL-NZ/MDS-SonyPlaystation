@@ -35,6 +35,7 @@ inline void GameObject::UpdateModelPosition() {
 	m_pModel->angle = pfxRotation.getW();
 	m_pModel->rotateAxis = Vector3(pfxRotation.getX(), pfxRotation.getY(), pfxRotation.getZ());
 
+	//printf("model y pos: %f \n", m_pRigidbody->GetState().getPosition().getY());
 	sce::PhysicsEffects::PfxVector3 pfxVector = m_pRigidbody->GetState().getPosition();
 	m_pModel->translation = Vector3(pfxVector.getX(), pfxVector.getY(), pfxVector.getZ());
 }
@@ -42,6 +43,15 @@ inline void GameObject::UpdateModelPosition() {
 // Update the game object state
 void GameObject::Update(float _fDeltaTick) {
 	// Do stuff
+}
+
+// Set the game object to be at a certain position
+void GameObject::SetPosition(Vector3 _newPosition) {
+	m_pModel->translation = _newPosition;
+	// Update rigidbody correctly if one exists
+	if (m_pRigidbody) {
+		m_pRigidbody->GetState().setPosition(sce::PhysicsEffects::PfxVector3(_newPosition.getX(), _newPosition.getY(), _newPosition.getZ()));
+	}
 }
 
 /// Terrain Object
@@ -62,6 +72,7 @@ TerrainObject::~TerrainObject(){}
 BallObject::BallObject(const char* _kcTextureFile) {
 	// Load model
 	m_pModel = new Model(ModelType::kSphere, _kcTextureFile, Vector3::zero());
+	m_pModel->scale = Vector3(2, 2, 2);
 	m_pModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 
 	// Create rigidbody
@@ -71,3 +82,22 @@ BallObject::BallObject(const char* _kcTextureFile) {
 }
 
 BallObject::~BallObject(){}
+
+/// Cube object 
+CubeObject::CubeObject(){
+
+}
+
+CubeObject::CubeObject(Vector3 _scale, const char* _kcTextureFile) {
+	// Load model
+	m_pModel = new Model(ModelType::kCube, _kcTextureFile, Vector3::zero());
+	m_pModel->scale = _scale;
+	m_pModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+
+	// Create rigidbody
+	m_pRigidbody = new Rigidbody(RigidbodyType::kRBBox);
+	m_pRigidbody->GetCollider().setHalf(sce::PhysicsEffects::PfxVector3(_scale.getX(), _scale.getY(), _scale.getZ()));
+	m_pRigidbody->GetState().setMotionType(sce::PhysicsEffects::ePfxMotionType::kPfxMotionTypeFixed);
+}
+
+CubeObject::~CubeObject(){}
