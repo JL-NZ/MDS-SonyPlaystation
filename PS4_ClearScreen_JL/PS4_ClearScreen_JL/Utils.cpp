@@ -32,10 +32,10 @@ void Utils::setTriData(std::vector<Vertex>& vertices, std::vector<uint32_t>& ind
 void Utils::setQuadData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices)
 {
 	std::vector<Vertex> Vertices;
-	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f));
-	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f));
 
 	std::vector<uint32_t> Indices
 	{

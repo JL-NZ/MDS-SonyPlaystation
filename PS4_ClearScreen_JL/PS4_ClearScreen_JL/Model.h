@@ -67,6 +67,7 @@ public:
 
 	// Member Functions
 	void Draw(TextureType _type);
+	void DrawSurface();
 	void SetTexture(Gnm::Texture _texture);
 	bool genFetchShaderAndOffsetCache(std::string vertexBinary, std::string fragmentBinary);
 		

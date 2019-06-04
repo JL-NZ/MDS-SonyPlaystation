@@ -29,12 +29,14 @@ int main()
 
 	SceneManager* SceneMgr = SceneManager::GetInstance();
 	SceneMgr->m_Scenes.push_back(LvlScene);
+	SceneMgr->SetCurrentScene(LvlScene);
 	//...
-
 
 	TextLabel* Text = new TextLabel();
 	Text->Initialize();
-	Text->RenderFont();
+	Text->AddText(Vector3(0.5f, 0.5f, 0.0f), "blahblah");
+	Text->AddText(Vector3(0.5f, 0.6f, 0.0f), "blahblah");
+	
 
 	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
@@ -82,8 +84,7 @@ int main()
 		{
 			// Camera movement
 			{
-				CCamera* Camera = CCamera::GetInstance();
-				
+				CCamera* Camera = CCamera::GetInstance();				
 
 				// Forward Component
 				float fXForward = Camera->GetForwardVector().getX() * -g_controllerContext.LeftStick.y;
@@ -151,13 +152,13 @@ int main()
 		SphereModel->Draw(TextureType::GNF);
 		CubeModel->Draw(TextureType::GNF);
 		Model2->Draw(TextureType::GNF);
-		Model3->Draw(TextureType::GNF);		
-		Text->DrawText();
+		Model3->Draw(TextureType::GNF);					
 
 		Render::GetInstance()->ToggleBackfaceCulling(false);
 		TerrainModel->Draw(TextureType::GNF);
 		CubeMap->Draw(TextureType::GNF);
 		Render::GetInstance()->ToggleBackfaceCulling(true);
+		Text->DrawText();
 
 		Render::GetInstance()->EndRender();
 	}

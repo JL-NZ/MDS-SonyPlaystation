@@ -12,6 +12,18 @@
     <Filter Include="shader">
       <UniqueIdentifier>{ac07509a-9d0c-4f65-85c9-a64490de4480}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Levels">
+      <UniqueIdentifier>{010ca823-caac-43ef-968a-bc99805a0fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\LevelScene">
+      <UniqueIdentifier>{aa1eeea3-fc0b-4ca9-b9ac-886e9dbcd612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\MainMenu">
+      <UniqueIdentifier>{f6460863-1e2b-43d8-b87d-64c91c7e8f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\Gameover">
+      <UniqueIdentifier>{107b551a-5b17-4139-b5dd-2e0c86d24994}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,7 +81,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LevelScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Levels\LevelScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Header Files\Levels\MainMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +183,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LevelScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Levels\LevelScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Levels\MainMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

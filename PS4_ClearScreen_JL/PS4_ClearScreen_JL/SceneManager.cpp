@@ -45,10 +45,14 @@ bool SceneManager::SetCurrentScene(std::shared_ptr<Scene> _scene)
 bool SceneManager::Update()
 {
 	m_CurrentScene->Update();
+
+	return true;
 }
 
 bool SceneManager::Render()
 {
 	m_CurrentScene->Render();
 	m_CurrentScene->RenderUI();
+
+	return true;
 }
