@@ -28,6 +28,7 @@
 // Constants //
 
 // Prototypes //
+class Terrain;
 
 class CCamera
 {
@@ -45,6 +46,8 @@ class CCamera
 
 			Vector3 GetForwardVector();
 			Vector3 GetRightVector();
+
+			void KeepAboveTerrain(const Terrain* const _kpTerrain);
 
         protected:
 

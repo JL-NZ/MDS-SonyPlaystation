@@ -135,6 +135,11 @@ float Terrain::GetHeight(float x, float z) const
 	int row = static_cast<int>(floorf(d));
 	int col = static_cast<int>(floorf(c));
 	
+	// Test for outside of bounds
+	if (row < 0 || row >= m_iNumRows - 1 || col < 0 || col >= m_iNumCols) {
+		return 0.0f;
+	}
+
 	// Grab the heights of the cell we are in.
 	// A*--*B
 	//  | /|

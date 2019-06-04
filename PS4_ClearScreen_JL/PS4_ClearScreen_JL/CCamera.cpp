@@ -15,6 +15,7 @@
 // Library Includes //
 
 // Local Includes //
+#include "Terrain.h"
 
 // This Includes //
 #include "CCamera.h"
@@ -34,8 +35,8 @@ CCamera::CCamera()
 	m_vec3_CameraPos = Vector3(0.0f, 0.0f, -20.0f);
 	//m_vec3_CameraPos = Vector3(0.0f, 0.0f, 0.0f);
 
-	m_vec3_ForwardVector = Vector3(0.0f, 0.0f, 0.0f);
-	m_vec3_RightVector = Vector3(0.0f, 0.0f, 0.0f);
+	m_vec3_ForwardVector = Vector3(0.0f, 0.0f, 1.0f);
+	m_vec3_RightVector = Vector3(1.0f, 0.0f, 0.0f);
 	m_fXAngle = 0;
 	m_fYAngle = 0;
 
@@ -90,8 +91,8 @@ void CCamera::Process()
 
 	// View
 	mat4_view = Matrix4::lookAt(
-		Point3(m_vec3_CameraPos.getX(), m_vec3_CameraPos.getY(), m_vec3_CameraPos.getZ()),
-		Point3(m_vec3_TargetPos.getX(), m_vec3_TargetPos.getY(), m_vec3_TargetPos.getZ()),
+		Point3(m_vec3_CameraPos),
+		Point3(m_vec3_TargetPos),
 		Vector3(0.0f, 1.0f, 0.0f));	
 }
 
@@ -115,3 +116,10 @@ Vector3 CCamera::GetRightVector()
 	return m_vec3_RightVector;
 }
 
+// Ensures that the camera does not dip below the level of the terrain where it is currently at
+void CCamera::KeepAboveTerrain(const Terrain* const _kpTerrain) {
+	// Get height of terrain at camera position
+	float fTerrainHeight = _kpTerrain->GetHeight(m_vec3_CameraPos.getX(), m_vec3_CameraPos.getZ());
+	// Make the camera the max of its current height and the terrain
+	m_vec3_CameraPos.setY(std::fmaxf(m_vec3_CameraPos.getY(), fTerrainHeight));
+}
