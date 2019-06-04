@@ -38,6 +38,7 @@ inline void GameObject::UpdateModelPosition() {
 	//printf("model y pos: %f \n", m_pRigidbody->GetState().getPosition().getY());
 	sce::PhysicsEffects::PfxVector3 pfxVector = m_pRigidbody->GetState().getPosition();
 	m_pModel->translation = Vector3(pfxVector.getX(), pfxVector.getY(), pfxVector.getZ());
+	//printf("state y: %f \n", m_pRigidbody->GetState().getPosition().getY());
 }
 
 // Update the game object state
@@ -52,6 +53,8 @@ void GameObject::SetPosition(Vector3 _newPosition) {
 	if (m_pRigidbody) {
 		m_pRigidbody->GetState().setPosition(sce::PhysicsEffects::PfxVector3(_newPosition.getX(), _newPosition.getY(), _newPosition.getZ()));
 	}
+
+	printf("model position: %f     rbState position: %f\n", m_pModel->translation.getY(), m_pRigidbody->GetState().getPosition().getY());
 }
 
 /// Terrain Object

@@ -42,7 +42,8 @@ void PhysicsEngine::Destroy() {
 inline void PhysicsEngine::CreateDefaultWorld() {
 	// Initialise world parameters
 	sce::PhysicsEffects::PfxRigidBodyWorldParam worldParameters;
-	sce::PhysicsEffects::PfxUInt32 poolBytes = sce::PhysicsEffects::PfxRigidBodyWorld::getRigidBodyWorldBytes(worldParameters);
+	worldParameters.simulationFlag |= SCE_PFX_ENABLE_CONTACT_CACHE;
+	poolBytes = sce::PhysicsEffects::PfxRigidBodyWorld::getRigidBodyWorldBytes(worldParameters);
 	void* m_pPoolBuffer = SCE_PFX_UTIL_ALLOC(16, poolBytes);
 	worldParameters.poolBytes = poolBytes;
 	worldParameters.poolBuff = m_pPoolBuffer;
@@ -60,6 +61,9 @@ sce::PhysicsEffects::PfxRigidBodyWorld* PhysicsEngine::GetWorld()const {
 }
 
 void PhysicsEngine::Update(float _fDeltaTick) {
+	// Test
+	m_pWorld->simulate(); return;
+
 	// Update time
 	float fTime = _fDeltaTick + m_fExtraTime;
 	// Determine substeps

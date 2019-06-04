@@ -2,7 +2,7 @@
 #define __PHYSICSENGINE_H__
 
 //const static unsigned int kPhysicsSubSteps = 3;
-const static float kPhysicsTimestep = 0.015f;
+const static float kPhysicsTimestep = 0.016f;
 
 // Local includes
 #include "physicseffects/pfx_high_level_include.h"
@@ -30,6 +30,7 @@ class PhysicsEngine {
 
 		// Member variables
 		sce::PhysicsEffects::PfxRigidBodyWorld* m_pWorld;
+		sce::PhysicsEffects::PfxUInt32 poolBytes;
 		void* m_pWorldBuffer;
 		void* m_pPoolBuffer;
 		float m_fTimer = 0.0f;

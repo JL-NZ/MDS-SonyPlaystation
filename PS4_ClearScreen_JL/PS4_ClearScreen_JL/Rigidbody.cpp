@@ -23,7 +23,7 @@ Rigidbody::Rigidbody(RigidbodyType _eType):m_eRBType(_eType) {
 	m_State.reset();
 	m_State.setPosition(sce::PhysicsEffects::PfxVector3(0.0f));
 	m_State.setMotionType(sce::PhysicsEffects::kPfxMotionTypeActive);
-	m_State.setUseSleep(true);
+	m_State.setUseSleep(1);
 
 	// Register with world
 	m_uiID = PhysicsEngine::GetInstance()->GetWorld()->addRigidBody(m_State, m_Body, m_Collider);
@@ -43,6 +43,13 @@ void Rigidbody::DetermineShape() {
 			break;
 		}
 
+		case kRBBox: {
+			sce::PhysicsEffects::PfxBox box(0.5f, 0.5f, 0.5f);
+			m_Shape.reset();
+			m_Shape.setBox(box);
+			break;
+		}
+
 		default:break;
 	}
 }
@@ -51,6 +58,11 @@ void Rigidbody::DetermineInertia() {
 	switch (m_eRBType) {
 		case kRBSphere: {
 			m_Body.setInertia(sce::PhysicsEffects::pfxCalcInertiaSphere(0.5f, 1.0f));
+			break;
+		}
+
+		case kRBBox: {
+			m_Body.setInertia(sce::PhysicsEffects::pfxCalcInertiaBox(sce::PhysicsEffects::PfxVector3(0.5f), 1.0f));
 			break;
 		}
 

@@ -37,9 +37,9 @@ int main()
 
 	// Test physics objects
 	CubeObject cube(Vector3(10.0f, 0.5f, 10.0f), "/app0/cat.gnf");
-	cube.SetPosition(Vector3(0, -1, 0));
+	cube.SetPosition(Vector3(0.0f, -1.0f, 0.0f));
 	BallObject ball("/app0/cat.gnf");
-	ball.SetPosition(Vector3(0, 5, 0));
+	ball.SetPosition(Vector3(0.0f, 5.0f, 0.0f));
 
 	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
 	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
@@ -82,7 +82,7 @@ int main()
 		previousTime = currentTime;
 		currentTime = std::chrono::high_resolution_clock::now();
 		float fDeltaTick = static_cast<float>( std::chrono::duration_cast<std::chrono::seconds>(currentTime - previousTime).count());
-		printf("time: %f \n", fDeltaTick);
+		//printf("time: %f \n", fDeltaTick);
 
 		
 

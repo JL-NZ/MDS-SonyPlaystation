@@ -1,4 +1,12 @@
-﻿  main.cpp
+﻿  GameObject.cpp
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\GameObject.cpp(57,58): warning : format specifies type 'double' but the argument has type 'const sce::Vectormath::Scalar::floatInVec' [-Wformat]
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\GameObject.cpp(57,88): warning : format specifies type 'double' but the argument has type 'const sce::Vectormath::Simd::floatInVec' [-Wformat]
+  PhysicsEngine.cpp
+  Rigidbody.cpp
+  In file included from E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Rigidbody.cpp:1:
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/rigidbody.h(48,41): warning : private field 'm_pTerrainCollider' is not used [-Wunused-private-field]
+  main.cpp
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(84,9): warning : unused variable 'fDeltaTick' [-Wunused-variable]
 E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(60,22): warning : unused variable 'soundBank' [-Wunused-variable]
 E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(59,23): warning : unused variable 'soundParams' [-Wunused-variable]
   PS4_ClearScreen_JL.vcxproj -> E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf
