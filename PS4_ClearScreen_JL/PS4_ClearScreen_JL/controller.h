@@ -33,6 +33,13 @@ typedef enum Button
 	BUTTON_SQUARE	=	(1<<15)
 } Button;
 
+enum InputState {
+	kInputReleased = 0,
+	kInputFirstPressed,
+	kInputPressed,
+	kInputFirstReleased
+};
+
 typedef enum ButtonEventPattern
 {
 	PATTERN_ANY,
@@ -78,6 +85,8 @@ public:
 	bool isButtonPressed(uint32_t port, uint32_t buttons, ButtonEventPattern pattern=PATTERN_ALL) const;
 	bool isButtonReleased(uint32_t port, uint32_t buttons, ButtonEventPattern pattern=PATTERN_ALL) const;
 
+	InputState GetInputState(Button _uiButton)const;
+
 	const Vector2& getLeftStick(uint32_t port) const;
 	const Vector2& getRightStick(uint32_t port) const;
 
@@ -88,6 +97,7 @@ public:
 
 private:
 	Data m_currentPadData[MAX_PAD_NUM];
+	Data m_previousPadData[MAX_PAD_NUM];
 	Data m_temporaryPadData;
 	Vector2	m_leftStickXY[MAX_PAD_NUM];
 	Vector2	m_rightStickXY[MAX_PAD_NUM];

@@ -1,9 +1,26 @@
-﻿  AudioManager.cpp
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\AudioManager.cpp(48,9): warning : reference to stack memory associated with local variable 'm_soundParams' returned [-Wreturn-stack-address]
+﻿  MainMenu.cpp
+  Model.cpp
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Model.cpp(122,8): warning : 'generateVsFetchShader' is deprecated: please ensure instancingData is indexed by VertexInputSemantic::m_semantic and supply numElementsInInstancingData [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnmx/fetchshaderhelper.h(75,8):  note: 'generateVsFetchShader' has been explicitly marked deprecated here
+  PhysicsEngine.cpp
+  Render.cpp
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(127,21): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gpu_address.h(315,34):  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(187,14): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gpu_address.h(315,34):  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Render.cpp(189,52): warning : 'init' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnm/depthrendertarget.h(122,14):  note: 'init' has been explicitly marked deprecated here
+  Rigidbody.cpp
+  In file included from E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\Rigidbody.cpp:1:
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/rigidbody.h(48,41): warning : private field 'm_pTerrainCollider' is not used [-Wunused-private-field]
+  Scene.cpp
+  SceneManager.cpp
+  Terrain.cpp
+  TextLabel.cpp
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\TextLabel.cpp(32,44): warning : 'initAs2d' is deprecated: API has changed. [-Wdeprecated-declarations]
+  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\gnm/texture.h(189,14):  note: 'initAs2d' has been explicitly marked deprecated here
+  Utils.cpp
   main.cpp
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp:15:
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h:2:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/Scene.h(23,30): warning : class 'SceScreamSFXBlock2' was previously declared as a struct [-Wmismatched-tags]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\scream/sce_snd_data.h(87,16):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/Scene.h(23,30):  note: did you mean struct here?
-  PS4_ClearScreen_JL.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(36,19): error : too few arguments to function call, single argument '_text' was not specified
+  E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(29,2):  note: 'RenderFont' declared here
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(84,9): warning : unused variable 'fDeltaTick' [-Wunused-variable]

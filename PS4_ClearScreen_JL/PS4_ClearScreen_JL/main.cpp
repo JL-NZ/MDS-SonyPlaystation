@@ -33,7 +33,7 @@ int main()
 	PhysicsEngine* pPhysics = PhysicsEngine::GetInstance();
 	TextLabel* Text = new TextLabel();
 	Text->Initialize();
-	Text->RenderFont();
+	Text->RenderFont(Text);
 
 	// Test physics objects
 	CubeObject cube(Vector3(10.0f, 0.5f, 10.0f), "/app0/cat.gnf");

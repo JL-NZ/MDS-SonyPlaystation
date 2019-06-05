@@ -110,17 +110,14 @@
     <ClCompile Include="GNFLoader.cpp">
       <Filter>Header Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="controller.cpp">
-      <Filter>Header Files\Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Header Files\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="controller.cpp">
+      <Filter>Header Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="clock.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Header Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -226,9 +223,6 @@
     </ClInclude>
     <ClInclude Include="controller.h">
       <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="clock.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
