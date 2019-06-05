@@ -160,7 +160,7 @@ int main()
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
 
-		//cube.Render();
+		cube.Render();
 		ball.Render();
 
 		//SphereModel->Draw(TextureType::GNF);
