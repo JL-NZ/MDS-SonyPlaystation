@@ -12,58 +12,109 @@
     <Filter Include="shader">
       <UniqueIdentifier>{ac07509a-9d0c-4f65-85c9-a64490de4480}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Levels">
+      <UniqueIdentifier>{010ca823-caac-43ef-968a-bc99805a0fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\LevelScene">
+      <UniqueIdentifier>{aa1eeea3-fc0b-4ca9-b9ac-886e9dbcd612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\MainMenu">
+      <UniqueIdentifier>{f6460863-1e2b-43d8-b87d-64c91c7e8f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\Gameover">
+      <UniqueIdentifier>{107b551a-5b17-4139-b5dd-2e0c86d24994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{8b01eabd-afa1-49b5-9f0d-d2695a2efb80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Camera">
+      <UniqueIdentifier>{d7cf3e63-0255-4f59-979b-89051fccd627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Audio">
+      <UniqueIdentifier>{3677c5af-e72b-4b40-a05e-de70b62e0968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Rendering">
+      <UniqueIdentifier>{4988fc98-a4ef-435b-8ca1-11fcb461ddf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{d09f3a55-bb8f-47dd-bd20-95d628cceca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Text">
+      <UniqueIdentifier>{e3b8b7fc-479d-4742-8432-78ce945aaf2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{48d9efcf-3ac5-4edd-bbf2-810faeeb73d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{18fcdb7a-fbe7-4385-b7d0-9e7b107e1433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{ee7d34cf-581f-4c5f-8bbe-5514f7e8173f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LevelScene.cpp">
+      <Filter>Header Files\Levels\LevelScene</Filter>
     </ClCompile>
-    <ClCompile Include="Render.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Header Files\Levels\MainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GNFLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="api_gnm\toolkit\shader_loader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextLabel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="font_memory_malloc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="font_memory_mspace.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsEngine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Header Files\Levels\Gameover</Filter>
     </ClCompile>
     <ClCompile Include="physicseffects\pfx_rigidbody_world.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PhysicsEngine.cpp">
+      <Filter>Header Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Header Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Header Files\Audio</Filter>
     </ClCompile>
     <ClCompile Include="Rigidbody.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Header Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="TextLabel.cpp">
+      <Filter>Header Files\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Header Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Header Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="font_memory_malloc.c">
+      <Filter>Header Files\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="font_memory_mspace.c">
+      <Filter>Header Files\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="api_gnm\toolkit\shader_loader.cpp">
+      <Filter>Header Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GNFLoader.cpp">
+      <Filter>Header Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Header Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Header Files\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
@@ -101,68 +152,80 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GNFLoader.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="LevelScene.h">
+      <Filter>Header Files\Levels\LevelScene</Filter>
     </ClInclude>
-    <ClInclude Include="shader_loader.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Levels\MainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="std_cbuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="allocator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Render.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Terrain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextLabel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="font_memory_malloc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="font_memory_mspace.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameOver.h">
+      <Filter>Header Files\Levels\Gameover</Filter>
     </ClInclude>
     <ClInclude Include="physicseffects\pfx_high_level_include.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physicseffects\pfx_rigidbody_world.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physicseffects\pfx_rigidbody_world_implementation.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsEngine.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Header Files\Audio</Filter>
     </ClInclude>
     <ClInclude Include="rigidbody.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="TextLabel.h">
+      <Filter>Header Files\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="font_memory_mspace.h">
+      <Filter>Header Files\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="font_memory_malloc.h">
+      <Filter>Header Files\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_loader.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GNFLoader.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="std_cbuffer.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="allocator.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.h">
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="clock.h">
       <Filter>Header Files</Filter>

@@ -24,7 +24,7 @@ Model::Model(ModelType modelType)
 {
 	translation = Vector3(0.0f, 0.0f, 0.0f);
 	rotateAxis = Vector3(0.0f, 0.0f, 1.0f);
-	scale = Vector3(0.0f, 0.0f, 0.0f);
+	scale = Vector3(1.0f, 1.0f, 1.0f);
 	angle = 0.0f;
 	
 	switch (modelType)
@@ -95,10 +95,6 @@ Model::Model(ModelType modelType)
 	// Assign index data
 	memset(indexData, 0, sizeof(uint32_t));
 	memcpy(indexData, &indices[0], sizeof(uint32_t) * indices.size());	
-
-	//Init raw textures
-	//InitializeRawTextures();
-	//InitializeGNFTextures("/app0/mytextures.gnf");
 }
 
 Model::~Model()
@@ -205,7 +201,7 @@ bool Model::InitializeGNFTextures(const char* _filePath)
 		_filePath,
 		0, 
 		&Render::GetInstance()->toolkitAllocators
-	);
+	);	
 
 	sampler.init(); 
 	sampler.setMipFilterMode(Gnm::kMipFilterModeNone); 
@@ -302,6 +298,56 @@ void Model::Draw(TextureType _type)
 
 	// Draw Index
 	gfxc.drawIndex(indices.size(), indexData);	
+}
+
+void Model::DrawSurface()
+{
+	// Get graphics context from render
+	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
+
+	// Activate VS and PS stages
+	gfxc.setActiveShaderStages(Gnm::kActiveShaderStagesVsPs);
+	gfxc.setVsShader(vsShader, shaderModifier, fsMem, &vsInputOffsetsCache);
+	gfxc.setPsShader(psShader, &psInputOffsetsCache);
+
+	// Set Vertex buffers / attributes
+	gfxc.setVertexBuffers(Gnm::kShaderStageVs, 0, kVertexElemCount, vertexBuffers);
+
+	DrawGNFTextures();
+	
+
+	// Define constants
+	ShaderConstants *constants = static_cast<ShaderConstants*>(gfxc.allocateFromCommandBuffer(sizeof(ShaderConstants), Gnm::kEmbeddedDataAlignment4));
+
+	if (constants)
+	{
+		constants->m_WorldViewProj = ToMatrix4Unaligned(Matrix4::scale(Vector3(2)));
+
+		// Init constant buffer
+		Gnm::Buffer constBuffer;
+		constBuffer.initAsConstantBuffer(constants, sizeof(ShaderConstants));
+
+		// Set constant buffer to the VS stage
+		gfxc.setConstantBuffers(
+			Gnm::kShaderStageVs, // stage
+			0, // start slot, first slot to bind to
+			1, // num of slots to bind
+			&constBuffer// buffer to bind
+		);
+	}
+	else
+	{
+		printf("Cannot allocate vertex shader constants\n");
+	}
+
+	// Set Primitive Type
+	gfxc.setPrimitiveType(Gnm::kPrimitiveTypeTriList);
+
+	// Set Index Siz
+	gfxc.setIndexSize(Gnm::kIndexSize32);
+
+	// Draw Index
+	gfxc.drawIndex(indices.size(), indexData);
 }
 
 void Model::SetTexture(Gnm::Texture _texture)

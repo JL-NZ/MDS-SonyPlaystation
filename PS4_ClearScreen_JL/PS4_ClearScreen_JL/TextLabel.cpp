@@ -26,6 +26,8 @@ TextLabel::~TextLabel()
 
 void TextLabel::Initialize()
 {
+	texture = Gnm::Texture();
+
 	// Get graphics context from render
 	Gnm::SizeAlign textureSizeAlign = texture.initAs2d(
 		1920, // width
@@ -41,13 +43,13 @@ void TextLabel::Initialize()
 	{
 		printf("Cannot allocate the texture data \n");
 		//return SCE_KERNEL_ERROR_ENOMEM;
-	}
-
+	}	
+	
 	texture.setBaseAddress(textureData);
 	surfaceBuffer = textureData;
-	textQuad = new Model(ModelType::kQuad);
+	textQuad = new Model(ModelType::kQuad);	
 	textQuad->SetTexture(texture);
-	textQuad->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/TextShader_p.sb");
+	textQuad->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/TextShader_p.sb");		
 
 	// Initialize text library stuff
 	sceSysmoduleLoadModule(SCE_SYSMODULE_FONT);
@@ -85,13 +87,12 @@ void TextLabel::Initialize()
 	sceFontOpenFontSet(
 		s_fontLib,
 		SCE_FONT_SET_SST_STD_JAPANESE_JP_W1G, // font type
-		SCE_FONT_OPEN_ON_MEMORY, // load from memory
+		SCE_FONT_OPEN_FILE_STREAM, // load from memory
 		(SceFontOpenDetail*)0,
 		&fontHandle
 	);
 
-	// Set font scale and obtain layout information
-	SceFontHorizontalLayout HorizLayout;
+	// Set font scale and obtain layout information	
 	sceFontSetScalePixel(fontHandle, 32.f, 32.f); // set h & v scale
 	sceFontGetHorizontalLayout(fontHandle, &HorizLayout);
 
@@ -116,31 +117,17 @@ void TextLabel::Initialize()
 		surfaceHeightPixel // surface height in pixels
 	);
 
-	// clear the buffer
-	memset(surfaceBuffer, 0, 1 * surfaceWidthPixel * surfaceHeightPixel);
+	baseY = HorizLayout.baseLineY;
+	lineH = HorizLayout.lineHeight;
 }
 
-void TextLabel::RenderFont()
+void TextLabel::RenderFont(std::shared_ptr<Text> _text)
 {
 	// Render text
-	float x = 0.0f;
-	float y = 0.0f;
-
-	float    displayScaleRatio = 1.0f;
-	uint32_t displayWidth = 1920;
-	uint32_t displayHeight = 1080;
-	float baseY, lineH;
-	SceFontHandle   hfont;
-
-	const uint8_t* utf8addr;
-	float x0 = 100.f * displayScaleRatio;
-
-	SceFontRenderSurface renderSurface;
-
-	utf8addr = reinterpret_cast<const uint8_t*>("Simple Step Sample Program\n"
-		"Simple Step JAPANESE\n");
-	x = x0;
-	y = displayHeight * 0.5f - lineH;
+	const uint8_t* utf8addr = reinterpret_cast<const uint8_t*>(_text->String.c_str());
+	
+	float x = (_text->Position.getX() * Render::GetInstance()->kDisplayBufferWidth) * displayScaleRatio;
+	float y = (_text->Position.getY() * Render::GetInstance()->kDisplayBufferHeight) - lineH;
 
 	while (1) {
 		uint32_t len;
@@ -151,39 +138,64 @@ void TextLabel::RenderFont()
 		if (ret != SCE_OK) {
 			break;
 		}
+
 		if (ucode == 0x00000000) break;
 		utf8addr += len;
 
-		//E C0 control code processing
-		if (ucode <= 0x0000001f) {
-			if (ucode == 0x0000000a) {
+		// C0 control code processing
+		if (ucode <= 0x0000001f)
+		{
+			if (ucode == 0x0000000a)
+			{
 				y += lineH;
-				x = x0;
+				x = (_text->Position.getX() * Render::GetInstance()->kDisplayBufferWidth) * displayScaleRatio;
 			}
 			continue;
 		}
 
 		//E Render an Unicode character to the surface coordinate (x,y)
-		if (y < displayHeight) {
+		if (y < Render::GetInstance()->kDisplayBufferHeight) {
 			SceFontGlyphMetrics  metrics;
 			SceFontRenderResult  result;
 
-			ret = sceFontRenderCharGlyphImage(hfont, ucode, &renderSurface, x, y, &metrics, &result);
+			ret = sceFontRenderCharGlyphImage(fontHandle, ucode, &surface, x, y, &metrics, &result);
 			if (ret != SCE_FONT_OK) {
 				//E Error processing
-				sceFontRenderCharGlyphImage(hfont, '_', &renderSurface, x, y, &metrics, &result);
+				sceFontRenderCharGlyphImage(fontHandle, '_', &surface, x, y, &metrics, &result);
 			}
 			//E Update the rendering position according to the information of character spacing
 			x += metrics.Horizontal.advance;
 		}
 	}
+	
+}
+
+std::shared_ptr<Text> TextLabel::AddText(Vector3 _pos, std::string _text)
+{
+	std::shared_ptr<Text> TextPointer = std::make_shared<Text>(_pos, _text);
+	if (TextPointer != nullptr)
+	{
+		textVector.push_back(TextPointer);
+		return TextPointer;
+	}
+	return nullptr;
 }
 
 void TextLabel::DrawText()
 {
-	textQuad->Draw(TextureType::RAW);
+	this->ClearFont();
+	for (int i = 0; i < textVector.size(); i++)
+	{
+		this->RenderFont(textVector[i]);
+	}	
+	textQuad->DrawSurface();
 }
 
 void TextLabel::ClearFont()
 {
+	int surfaceWidthPixel = Render::GetInstance()->kDisplayBufferWidth;
+	int surfaceHeightPixel = Render::GetInstance()->kDisplayBufferHeight;
+
+	// clear the buffer
+	memset(surfaceBuffer, 0, surfaceWidthPixel * surfaceHeightPixel);
 }

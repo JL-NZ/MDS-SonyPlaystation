@@ -1,7 +1,5 @@
 #include <gnmx.h>
 #include <video_out.h>
-#include <time.h>
-#include <chrono>
 
 #include "common/allocator.h"
 #include "api_gnm/toolkit/toolkit.h"
@@ -13,9 +11,8 @@
 #include "controller.h"
 #include "CCamera.h"
 #include "TextLabel.h"
-#include "PhysicsEngine.h"
-//#include "clock.h"
-#include "GameObject.h"
+#include "SceneManager.h"
+#include "LevelScene.h"
 
 using namespace sce;
 using namespace sce::Gnmx;
@@ -26,27 +23,27 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
-	std::chrono::high_resolution_clock::time_point previousTime = std::chrono::high_resolution_clock::now();;
-	std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();;
+	// Working to implement the new scenemanager/scene/levelscene etc stuff here
+	std::shared_ptr<LevelScene> LvlScene = std::make_shared<LevelScene>();
+	LvlScene->Initialize();
 
-	// Physics initialisation
-	PhysicsEngine* pPhysics = PhysicsEngine::GetInstance();
-	TextLabel* Text = new TextLabel();
-	Text->Initialize();
-	Text->RenderFont();
+	SceneManager* SceneMgr = SceneManager::GetInstance();
+	SceneMgr->m_Scenes.push_back(LvlScene);
+	SceneMgr->SetCurrentScene(LvlScene);
+	//...
 
-	// Test physics objects
-	CubeObject cube(Vector3(10.0f, 0.5f, 10.0f), "/app0/cat.gnf");
-	cube.SetPosition(Vector3(0.0f, -1.0f, 0.0f));
-	BallObject ball("/app0/cat.gnf");
-	ball.SetPosition(Vector3(0.0f, 5.0f, 0.0f));
+	std::shared_ptr<TextLabel> TextManager = std::make_shared<TextLabel>();
+	TextManager->Initialize();
+	std::shared_ptr<Text> TimerText = TextManager->AddText(Vector3(0.5f, 0.5f, 0.0f), "Timer");
+	std::shared_ptr<Text> ScoreText = TextManager->AddText(Vector3(0.5f, 0.6f, 0.0f), "Score");
+	
 
-	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
-	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
-	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
-	Model* Model3 = new Model(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
-	Model* CubeMap = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
-	Model* TerrainModel = new Model(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, -100.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	std::shared_ptr<Model> SphereModel = std::make_shared<Model>(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	std::shared_ptr<Model> CubeModel = std::make_shared<Model>(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
+	std::shared_ptr<Model> Model2 = std::make_shared<Model>(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
+	std::shared_ptr<Model> Model3 = std::make_shared<Model>(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
+	std::shared_ptr<Model> CubeMap = std::make_shared<Model>(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	std::shared_ptr<Model> TerrainModel = std::make_shared<Model>(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, -100.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
 	SphereModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	CubeModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
@@ -74,24 +71,20 @@ int main()
 		return ret;
 	}	
 
-	//AudioManager::GetInstance()->PlaySound(soundBank, "/app0/testbank.bnk", soundParams);
+	AudioManager::GetInstance()->PlaySound(soundBank, "owowowow.wav", soundParams);
 
-	while(true)//for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
-		{
-		// Clock
-		previousTime = currentTime;
-		currentTime = std::chrono::high_resolution_clock::now();
-		float fDeltaTick = static_cast<float>( std::chrono::duration_cast<std::chrono::seconds>(currentTime - previousTime).count());
-		//printf("time: %f \n", fDeltaTick);
-
-		
+	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
+	{	
+		// Working to implement scene heirarchy stff here
+		SceneMgr->m_fDeltaTime = 0.0f; // ideally we set delta time here properly
+		SceneMgr->Update(); 
+		SceneMgr->Render();
 
 		// Camera
 		{
 			// Camera movement
 			{
-				CCamera* Camera = CCamera::GetInstance();
-
+				CCamera* Camera = CCamera::GetInstance();				
 
 				// Forward Component
 				float fXForward = Camera->GetForwardVector().getX() * -g_controllerContext.LeftStick.y;
@@ -118,7 +111,7 @@ int main()
 			}
 
 			// Camera rotation
-			{
+			{				
 				// Up/Down Rotation
 				CCamera::GetInstance()->m_fYAngle -= (g_controllerContext.RightStick.y / 40.0f);
 
@@ -127,13 +120,13 @@ int main()
 			}
 
 			CCamera::GetInstance()->Process();
-		}
+		}		
 
 		// Object rotation
 		{
 			// Object one rotation
 			if (g_controllerContext.isButtonDown(0, BUTTON_LEFT))
-			{
+			{				
 				SphereModel->angle -= 0.01f;
 			}
 			if (g_controllerContext.isButtonDown(0, BUTTON_RIGHT))
@@ -150,37 +143,30 @@ int main()
 			{
 				CubeModel->angle += 0.01f;
 			}
-		}
-		g_controllerContext.update();
+		}		
+		g_controllerContext.update();		
 
-		// Physics
-		pPhysics->Update(0.015f);
-
-		// Render loop
 		Render::GetInstance()->StartRender();
 		Render::GetInstance()->SetPipelineState();
+			
+		SphereModel->Draw(TextureType::GNF);
+		CubeModel->Draw(TextureType::GNF);
+		Model2->Draw(TextureType::GNF);
+		Model3->Draw(TextureType::GNF);					
 
-		//cube.Render();
-		ball.Render();
-
-		//SphereModel->Draw(TextureType::GNF);
-		//CubeModel->Draw(TextureType::GNF);
-		//Model2->Draw(TextureType::GNF);
-		//Model3->Draw(TextureType::GNF);
-		//Text->DrawText();
-
-		//Render::GetInstance()->ToggleBackfaceCulling(false);
-		//TerrainModel->Draw(TextureType::GNF);
-		//CubeMap->Draw(TextureType::GNF);
-		//Render::GetInstance()->ToggleBackfaceCulling(true);
+		Render::GetInstance()->ToggleBackfaceCulling(false);
+		TerrainModel->Draw(TextureType::GNF);
+		CubeMap->Draw(TextureType::GNF);
+		Render::GetInstance()->ToggleBackfaceCulling(true);
+		TextManager->DrawText();
 
 		Render::GetInstance()->EndRender();
-		
 	}
 	
 	// Cleanup
 	CCamera::GetInstance()->Destroy();
 	Render::GetInstance()->Destroy();
+	SceneManager::GetInstance()->Destroy();
 
 	return 0;
 }
