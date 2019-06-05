@@ -170,13 +170,15 @@ void TextLabel::RenderFont(std::shared_ptr<Text> _text)
 	
 }
 
-void TextLabel::AddText(Vector3 _pos, std::string _text)
+std::shared_ptr<Text> TextLabel::AddText(Vector3 _pos, std::string _text)
 {
 	std::shared_ptr<Text> TextPointer = std::make_shared<Text>(_pos, _text);
 	if (TextPointer != nullptr)
 	{
 		textVector.push_back(TextPointer);
+		return TextPointer;
 	}
+	return nullptr;
 }
 
 void TextLabel::DrawText()

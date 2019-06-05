@@ -27,7 +27,7 @@ public:
 
 	void Initialize();
 	void RenderFont(std::shared_ptr<Text> _text);
-	void AddText(Vector3 _pos, std::string _text);
+	std::shared_ptr<Text> AddText(Vector3 _pos, std::string _text);
 	void DrawText();
 	void ClearFont();
 

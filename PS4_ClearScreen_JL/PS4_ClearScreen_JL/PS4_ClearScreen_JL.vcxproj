@@ -76,6 +76,7 @@
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="font_memory_malloc.c" />
     <ClCompile Include="font_memory_mspace.c" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GNFLoader.cpp" />
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="font_memory_malloc.h" />
     <ClInclude Include="font_memory_mspace.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="GNFLoader.h" />
     <ClInclude Include="LevelScene.h" />
     <ClInclude Include="MainMenu.h" />

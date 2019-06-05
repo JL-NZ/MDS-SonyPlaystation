@@ -32,18 +32,18 @@ int main()
 	SceneMgr->SetCurrentScene(LvlScene);
 	//...
 
-	TextLabel* Text = new TextLabel();
-	Text->Initialize();
-	Text->AddText(Vector3(0.5f, 0.5f, 0.0f), "blahblah");
-	Text->AddText(Vector3(0.5f, 0.6f, 0.0f), "blahblah");
+	std::shared_ptr<TextLabel> TextManager = std::make_shared<TextLabel>();
+	TextManager->Initialize();
+	std::shared_ptr<Text> TimerText = TextManager->AddText(Vector3(0.5f, 0.5f, 0.0f), "Timer");
+	std::shared_ptr<Text> ScoreText = TextManager->AddText(Vector3(0.5f, 0.6f, 0.0f), "Score");
 	
 
-	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
-	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
-	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
-	Model* Model3 = new Model(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
-	Model* CubeMap = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
-	Model* TerrainModel = new Model(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, -100.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	std::shared_ptr<Model> SphereModel = std::make_shared<Model>(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
+	std::shared_ptr<Model> CubeModel = std::make_shared<Model>(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
+	std::shared_ptr<Model> Model2 = std::make_shared<Model>(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
+	std::shared_ptr<Model> Model3 = std::make_shared<Model>(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
+	std::shared_ptr<Model> CubeMap = std::make_shared<Model>(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	std::shared_ptr<Model> TerrainModel = std::make_shared<Model>(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, -100.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
 	
 	SphereModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 	CubeModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
@@ -71,7 +71,7 @@ int main()
 		return ret;
 	}	
 
-	//AudioManager::GetInstance()->PlaySound(soundBank, "/app0/testbank.bnk", soundParams);
+	AudioManager::GetInstance()->PlaySound(soundBank, "owowowow.wav", soundParams);
 
 	for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
 	{	
@@ -126,7 +126,7 @@ int main()
 		{
 			// Object one rotation
 			if (g_controllerContext.isButtonDown(0, BUTTON_LEFT))
-			{
+			{				
 				SphereModel->angle -= 0.01f;
 			}
 			if (g_controllerContext.isButtonDown(0, BUTTON_RIGHT))
@@ -158,7 +158,7 @@ int main()
 		TerrainModel->Draw(TextureType::GNF);
 		CubeMap->Draw(TextureType::GNF);
 		Render::GetInstance()->ToggleBackfaceCulling(true);
-		Text->DrawText();
+		TextManager->DrawText();
 
 		Render::GetInstance()->EndRender();
 	}

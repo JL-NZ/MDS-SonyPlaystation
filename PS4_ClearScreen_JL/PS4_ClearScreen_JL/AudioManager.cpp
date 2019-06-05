@@ -74,7 +74,7 @@ bool AudioManager::PlaySound(SceScreamSFXBlock2 * _screamBank, std::string _file
 
 	sceScreamPlaySoundByNameEx(
 		_screamBank, // bank name 
-		"owowowow.wav", // filename 
+		_filepath.c_str(), // filename 
 		&_soundParams //parameters
 	);
 	
