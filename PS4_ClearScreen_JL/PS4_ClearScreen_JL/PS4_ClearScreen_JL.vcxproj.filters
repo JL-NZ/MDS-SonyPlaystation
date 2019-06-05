@@ -113,9 +113,12 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Header Files\Utilities</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="controller.cpp">
       <Filter>Header Files\Input</Filter>
     </ClCompile>
+=======
+>>>>>>> master
     <ClCompile Include="GameObject.cpp">
       <Filter>Header Files\GameObjects</Filter>
     </ClCompile>
