@@ -31,9 +31,11 @@ int main()
 
 	// Physics initialisation
 	PhysicsEngine* pPhysics = PhysicsEngine::GetInstance();
-	TextLabel* Text = new TextLabel();
-	Text->Initialize();
-	Text->RenderFont();
+	TextLabel* TextManager = new TextLabel();
+	TextManager->Initialize();
+	TextManager->AddText(Vector3(0.5f, 0.5f, 0.0f), "Score");
+	TextManager->AddText(Vector3(0.5f, 0.6f, 0.0f), "Timer");
+	
 
 	// Test physics objects
 	CubeObject cube(Vector3(10.0f, 0.5f, 10.0f), "/app0/cat.gnf");
@@ -166,13 +168,13 @@ int main()
 		//SphereModel->Draw(TextureType::GNF);
 		//CubeModel->Draw(TextureType::GNF);
 		//Model2->Draw(TextureType::GNF);
-		//Model3->Draw(TextureType::GNF);
-		//Text->DrawText();
+		//Model3->Draw(TextureType::GNF);		
 
 		//Render::GetInstance()->ToggleBackfaceCulling(false);
 		//TerrainModel->Draw(TextureType::GNF);
 		//CubeMap->Draw(TextureType::GNF);
 		//Render::GetInstance()->ToggleBackfaceCulling(true);
+		TextManager->DrawText();
 
 		Render::GetInstance()->EndRender();
 		

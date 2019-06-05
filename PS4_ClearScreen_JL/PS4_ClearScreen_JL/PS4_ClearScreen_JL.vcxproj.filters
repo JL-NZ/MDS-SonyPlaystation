@@ -117,10 +117,7 @@
       <Filter>Header Files\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clock.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -226,9 +223,6 @@
     </ClInclude>
     <ClInclude Include="controller.h">
       <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="clock.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

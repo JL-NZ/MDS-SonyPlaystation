@@ -1,9 +1,4 @@
-﻿  AudioManager.cpp
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\AudioManager.cpp(48,9): warning : reference to stack memory associated with local variable 'm_soundParams' returned [-Wreturn-stack-address]
-  main.cpp
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp:15:
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h:2:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/Scene.h(23,30): warning : class 'SceScreamSFXBlock2' was previously declared as a struct [-Wmismatched-tags]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\scream/sce_snd_data.h(87,16):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/Scene.h(23,30):  note: did you mean struct here?
+﻿  GameObject.cpp
+D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\GameObject.cpp(57,58): warning : format specifies type 'double' but the argument has type 'const sce::Vectormath::Scalar::floatInVec' [-Wformat]
+D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\GameObject.cpp(57,88): warning : format specifies type 'double' but the argument has type 'const sce::Vectormath::Simd::floatInVec' [-Wformat]
   PS4_ClearScreen_JL.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf
