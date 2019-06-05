@@ -72,17 +72,20 @@ void Rigidbody::DetermineInertia() {
 
 // Access Collider
 sce::PhysicsEffects::PfxCollidable& Rigidbody::GetCollider() {
-	return m_Collider;
+	//return m_Collider;
+	return PhysicsEngine::GetInstance()->GetWorld()->getCollidable(m_uiID);
 }
 
 // Access body
 sce::PhysicsEffects::PfxRigidBody& Rigidbody::GetBody() {
-	return m_Body;
+	//return m_Body;
+	return PhysicsEngine::GetInstance()->GetWorld()->getRigidBody(m_uiID);
 }
 
 // Access State
 sce::PhysicsEffects::PfxRigidState& Rigidbody::GetState() {
-	return m_State;
+	//return m_State;
+	return PhysicsEngine::GetInstance()->GetWorld()->getRigidState(m_uiID);
 }
 
 /// TerrainRigidbody

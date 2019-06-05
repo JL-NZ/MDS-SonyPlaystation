@@ -75,7 +75,7 @@ TerrainObject::~TerrainObject(){}
 BallObject::BallObject(const char* _kcTextureFile) {
 	// Load model
 	m_pModel = new Model(ModelType::kSphere, _kcTextureFile, Vector3::zero());
-	m_pModel->scale = Vector3(2, 2, 2);
+	m_pModel->scale = Vector3(1);
 	m_pModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 
 	// Create rigidbody
