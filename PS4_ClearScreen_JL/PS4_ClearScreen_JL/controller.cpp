@@ -20,10 +20,13 @@ using namespace sce;
 
 const float ControllerContext::m_defaultDeadZone 	= 0.25;
 const float ControllerContext::m_recipMaxByteAsFloat	= 1.0f / 255.0f;
+ControllerContext* ControllerContext::s_pControllerInstance = nullptr;
 
 ControllerContext::ControllerContext(void)
 {
-
+	if (!s_pControllerInstance) {
+		s_pControllerInstance = this;
+	}
 }
 
 ControllerContext::~ControllerContext(void)
@@ -281,8 +284,8 @@ int ControllerContext::ClosePort()
 
 // Obtains an input state based on button combinations between frames
 InputState ControllerContext::GetInputState(Button _uiButton)const {
-	uint32_t uiCurrentButtonState = m_currentPadData->buttons & _uiButton;
-	uint32_t uiPreviousButtonState = m_previousPadData->buttons & _uiButton;
+	uint32_t uiCurrentButtonState = m_currentPadData[0].buttons & _uiButton;
+	uint32_t uiPreviousButtonState = m_previousPadData[0].buttons & _uiButton;
 
 	// Check for button down
 	if (uiCurrentButtonState != 0) {
@@ -303,4 +306,8 @@ InputState ControllerContext::GetInputState(Button _uiButton)const {
 			return kInputReleased;
 		}
 	}
+}
+
+ControllerContext* ControllerContext::GetInstance() {
+	return s_pControllerInstance;
 }

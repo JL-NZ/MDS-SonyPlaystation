@@ -74,6 +74,8 @@ public:
 	ControllerContext(void);
 	~ControllerContext(void);
 
+	static ControllerContext* GetInstance();
+
 	int initialize(SceUserServiceUserId userId);	
 	void update(); 
 	void updatePadData();
@@ -96,6 +98,7 @@ public:
 	AnalogStick RightStick;
 
 private:
+	static ControllerContext* s_pControllerInstance;
 	Data m_currentPadData[MAX_PAD_NUM];
 	Data m_previousPadData[MAX_PAD_NUM];
 	Data m_temporaryPadData;

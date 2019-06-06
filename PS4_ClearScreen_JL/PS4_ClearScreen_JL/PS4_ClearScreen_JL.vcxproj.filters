@@ -1,231 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cxx;cc;s;asm</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp</Extensions>
-    </Filter>
-    <Filter Include="shader">
-      <UniqueIdentifier>{ac07509a-9d0c-4f65-85c9-a64490de4480}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels">
-      <UniqueIdentifier>{010ca823-caac-43ef-968a-bc99805a0fbc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\LevelScene">
-      <UniqueIdentifier>{aa1eeea3-fc0b-4ca9-b9ac-886e9dbcd612}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\MainMenu">
-      <UniqueIdentifier>{f6460863-1e2b-43d8-b87d-64c91c7e8f0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\Gameover">
-      <UniqueIdentifier>{107b551a-5b17-4139-b5dd-2e0c86d24994}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Physics">
-      <UniqueIdentifier>{8b01eabd-afa1-49b5-9f0d-d2695a2efb80}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Camera">
-      <UniqueIdentifier>{d7cf3e63-0255-4f59-979b-89051fccd627}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Audio">
-      <UniqueIdentifier>{3677c5af-e72b-4b40-a05e-de70b62e0968}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Rendering">
-      <UniqueIdentifier>{4988fc98-a4ef-435b-8ca1-11fcb461ddf6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GameObjects">
-      <UniqueIdentifier>{d09f3a55-bb8f-47dd-bd20-95d628cceca8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Text">
-      <UniqueIdentifier>{e3b8b7fc-479d-4742-8432-78ce945aaf2f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\System">
-      <UniqueIdentifier>{48d9efcf-3ac5-4edd-bbf2-810faeeb73d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utilities">
-      <UniqueIdentifier>{18fcdb7a-fbe7-4385-b7d0-9e7b107e1433}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Input">
-      <UniqueIdentifier>{ee7d34cf-581f-4c5f-8bbe-5514f7e8173f}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="api_gnm\toolkit\shader_loader.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="controller.cpp" />
+    <ClCompile Include="font_memory_malloc.c" />
+    <ClCompile Include="font_memory_mspace.c" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="GNFLoader.cpp" />
+    <ClCompile Include="LevelScene.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="physicseffects\pfx_rigidbody_world.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TextLabel.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="camera.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelScene.cpp">
-      <Filter>Header Files\Levels\LevelScene</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Header Files\Levels\MainMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOver.cpp">
-      <Filter>Header Files\Levels\Gameover</Filter>
-    </ClCompile>
-    <ClCompile Include="physicseffects\pfx_rigidbody_world.cpp">
-      <Filter>Header Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsEngine.cpp">
-      <Filter>Header Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="CCamera.cpp">
-      <Filter>Header Files\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>Header Files\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Rigidbody.cpp">
-      <Filter>Header Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Render.cpp">
-      <Filter>Header Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="TextLabel.cpp">
-      <Filter>Header Files\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Header Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Header Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="font_memory_malloc.c">
-      <Filter>Header Files\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="font_memory_mspace.c">
-      <Filter>Header Files\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="api_gnm\toolkit\shader_loader.cpp">
-      <Filter>Header Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="GNFLoader.cpp">
-      <Filter>Header Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Header Files\Utilities</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="controller.cpp">
-      <Filter>Header Files\Input</Filter>
-    </ClCompile>
-=======
->>>>>>> master
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClCompile>
+    <ClInclude Include="allocator.h" />
+    <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="controller.h" />
+    <ClInclude Include="font_memory_malloc.h" />
+    <ClInclude Include="font_memory_mspace.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="GNFLoader.h" />
+    <ClInclude Include="LevelScene.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="physicseffects\pfx_high_level_include.h" />
+    <ClInclude Include="physicseffects\pfx_rigidbody_world.h" />
+    <ClInclude Include="physicseffects\pfx_rigidbody_world_implementation.h" />
+    <ClInclude Include="PhysicsEngine.h" />
+    <ClInclude Include="Render.h" />
+    <ClInclude Include="rigidbody.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="shader_loader.h" />
+    <ClInclude Include="std_cbuffer.h" />
+    <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TextLabel.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="camera.h" />
   </ItemGroup>
   <ItemGroup>
-    <OrbisWavePsslc Include="shader_vv.pssl">
-      <Filter>shader</Filter>
-    </OrbisWavePsslc>
-    <OrbisWavePsslc Include="shader_p.pssl">
-      <Filter>shader</Filter>
-    </OrbisWavePsslc>
-    <OrbisWavePsslc Include="CMshader_p.pssl">
-      <Filter>shader</Filter>
-    </OrbisWavePsslc>
-    <OrbisWavePsslc Include="CMshader_vv.pssl">
-      <Filter>shader</Filter>
-    </OrbisWavePsslc>
-    <OrbisWavePsslc Include="NoTexshader_p.pssl">
-      <Filter>shader</Filter>
-    </OrbisWavePsslc>
-    <OrbisWavePsslc Include="NoTexshader_vv.pssl">
-      <Filter>shader</Filter>
-    </OrbisWavePsslc>
-    <OrbisWavePsslc Include="TextShader_p.pssl">
-      <Filter>shader</Filter>
-    </OrbisWavePsslc>
+    <OrbisWavePsslc Include="CMshader_p.pssl" />
+    <OrbisWavePsslc Include="CMshader_vv.pssl" />
+    <OrbisWavePsslc Include="NoTexshader_p.pssl" />
+    <OrbisWavePsslc Include="NoTexshader_vv.pssl" />
+    <OrbisWavePsslc Include="shader_p.pssl" />
+    <OrbisWavePsslc Include="shader_vv.pssl" />
+    <OrbisWavePsslc Include="TextShader_p.pssl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="vsoutput.hs">
-      <Filter>shader</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="LevelScene.h">
-      <Filter>Header Files\Levels\LevelScene</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files\Levels\MainMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>Header Files\Levels\Gameover</Filter>
-    </ClInclude>
-    <ClInclude Include="physicseffects\pfx_high_level_include.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="physicseffects\pfx_rigidbody_world.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="physicseffects\pfx_rigidbody_world_implementation.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsEngine.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="CCamera.h">
-      <Filter>Header Files\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="rigidbody.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Render.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Terrain.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="TextLabel.h">
-      <Filter>Header Files\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="font_memory_mspace.h">
-      <Filter>Header Files\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="font_memory_malloc.h">
-      <Filter>Header Files\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="shader_loader.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="GNFLoader.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="std_cbuffer.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="allocator.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="controller.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
+    <None Include="vsoutput.hs" />
   </ItemGroup>
 </Project>

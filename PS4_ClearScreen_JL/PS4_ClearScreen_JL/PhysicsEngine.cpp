@@ -61,9 +61,6 @@ sce::PhysicsEffects::PfxRigidBodyWorld* PhysicsEngine::GetWorld()const {
 }
 
 void PhysicsEngine::Update(float _fDeltaTick) {
-	// Test
-	m_pWorld->simulate(); return;
-
 	// Update time
 	float fTime = _fDeltaTick + m_fExtraTime;
 	// Determine substeps

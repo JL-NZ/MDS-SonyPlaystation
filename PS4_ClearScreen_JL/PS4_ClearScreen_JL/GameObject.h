@@ -41,6 +41,7 @@ class TerrainObject : public GameObject{
 
 class BallObject : public GameObject {
 	private:
+		float m_fMoveSpeed = 2.0f;
 
 	public:
 		BallObject(const char* _kcTextureFile);
