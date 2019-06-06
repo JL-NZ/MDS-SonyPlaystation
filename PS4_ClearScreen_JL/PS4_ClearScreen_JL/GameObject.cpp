@@ -2,6 +2,8 @@
 #include "rigidbody.h"
 #include "Model.h"
 #include "PhysicsEngine.h"
+#include "controller.h"
+#include "camera.h"
 
 GameObject::GameObject(){}
 
@@ -35,10 +37,8 @@ inline void GameObject::UpdateModelPosition() {
 	m_pModel->angle = pfxRotation.getW();
 	m_pModel->rotateAxis = Vector3(pfxRotation.getX(), pfxRotation.getY(), pfxRotation.getZ());
 
-	//printf("model y pos: %f \n", m_pRigidbody->GetState().getPosition().getY());
 	sce::PhysicsEffects::PfxVector3 pfxVector = m_pRigidbody->GetState().getPosition();
 	m_pModel->translation = Vector3(pfxVector.getX(), pfxVector.getY(), pfxVector.getZ());
-	//printf("state y: %f \n", m_pRigidbody->GetState().getPosition().getY());
 }
 
 // Update the game object state
@@ -53,8 +53,6 @@ void GameObject::SetPosition(Vector3 _newPosition) {
 	if (m_pRigidbody) {
 		m_pRigidbody->GetState().setPosition(sce::PhysicsEffects::PfxVector3(_newPosition.getX(), _newPosition.getY(), _newPosition.getZ()));
 	}
-
-	printf("model position: %f     rbState position: %f\n", m_pModel->translation.getY(), m_pRigidbody->GetState().getPosition().getY());
 }
 
 /// Terrain Object
@@ -75,7 +73,7 @@ TerrainObject::~TerrainObject(){}
 BallObject::BallObject(const char* _kcTextureFile) {
 	// Load model
 	m_pModel = new Model(ModelType::kSphere, _kcTextureFile, Vector3::zero());
-	m_pModel->scale = Vector3(1);
+	m_pModel->scale = Vector3(0.5f);
 	m_pModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
 
 	// Create rigidbody
@@ -86,6 +84,18 @@ BallObject::BallObject(const char* _kcTextureFile) {
 
 BallObject::~BallObject(){}
 
+void BallObject::Update(float _fDeltaTick) {
+	// Get L stick input
+	//Vector2 lStick = ControllerContext::GetInstance()->getLeftStick(0);
+	AnalogStick lStick = ControllerContext::GetInstance()->LeftStick;
+
+	// Check that there is input from the player
+	if (lStick.x != 0.0f && lStick.y != 0.0f) {
+		// Give them new movement
+		Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Camera::GetMain()->m_CameraRight * -lStick.x + Camera::GetMain()->m_CameraFront * -lStick.y) * m_fMoveSpeed;
+		GetRigidbody()->GetState().setLinearVelocity(sce::PhysicsEffects::PfxVector3(direction.getX(), -9.81f, direction.getZ()));// *_fDeltaTick * m_fSpeed
+	}
+}
 /// Cube object 
 CubeObject::CubeObject(){
 
@@ -99,8 +109,12 @@ CubeObject::CubeObject(Vector3 _scale, const char* _kcTextureFile) {
 
 	// Create rigidbody
 	m_pRigidbody = new Rigidbody(RigidbodyType::kRBBox);
-	m_pRigidbody->GetCollider().setHalf(sce::PhysicsEffects::PfxVector3(_scale.getX(), _scale.getY(), _scale.getZ()));
+	sce::PhysicsEffects::PfxBox box(sce::PhysicsEffects::PfxVector3(_scale.getX(), _scale.getY(), _scale.getZ()));
+	m_pRigidbody->GetCollider().getShape(0).reset();
+	m_pRigidbody->GetCollider().getShape(0).setBox(box);
+	m_pRigidbody->GetCollider().finish();
 	m_pRigidbody->GetState().setMotionType(sce::PhysicsEffects::ePfxMotionType::kPfxMotionTypeFixed);
+	
 }
 
 CubeObject::~CubeObject(){}

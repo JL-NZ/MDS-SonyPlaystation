@@ -33,6 +33,13 @@ typedef enum Button
 	BUTTON_SQUARE	=	(1<<15)
 } Button;
 
+enum InputState {
+	kInputReleased = 0,
+	kInputFirstPressed,
+	kInputPressed,
+	kInputFirstReleased
+};
+
 typedef enum ButtonEventPattern
 {
 	PATTERN_ANY,
@@ -67,6 +74,8 @@ public:
 	ControllerContext(void);
 	~ControllerContext(void);
 
+	static ControllerContext* GetInstance();
+
 	int initialize(SceUserServiceUserId userId);	
 	void update(); 
 	void updatePadData();
@@ -78,6 +87,8 @@ public:
 	bool isButtonPressed(uint32_t port, uint32_t buttons, ButtonEventPattern pattern=PATTERN_ALL) const;
 	bool isButtonReleased(uint32_t port, uint32_t buttons, ButtonEventPattern pattern=PATTERN_ALL) const;
 
+	InputState GetInputState(Button _uiButton)const;
+
 	const Vector2& getLeftStick(uint32_t port) const;
 	const Vector2& getRightStick(uint32_t port) const;
 
@@ -87,7 +98,9 @@ public:
 	AnalogStick RightStick;
 
 private:
+	static ControllerContext* s_pControllerInstance;
 	Data m_currentPadData[MAX_PAD_NUM];
+	Data m_previousPadData[MAX_PAD_NUM];
 	Data m_temporaryPadData;
 	Vector2	m_leftStickXY[MAX_PAD_NUM];
 	Vector2	m_rightStickXY[MAX_PAD_NUM];

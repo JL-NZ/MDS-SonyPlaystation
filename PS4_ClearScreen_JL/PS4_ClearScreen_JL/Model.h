@@ -4,7 +4,6 @@
 
 #include "Utils.h"
 #include "std_cbuffer.h"
-#include "CCamera.h"
 
 using namespace sce;
 using namespace sce::Gnmx;

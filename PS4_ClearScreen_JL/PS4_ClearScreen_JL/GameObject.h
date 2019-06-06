@@ -20,7 +20,7 @@ class GameObject {
 		virtual ~GameObject();
 
 		void Render();
-		void Update(float _fDeltaTick);
+		virtual void Update(float _fDeltaTick);
 
 		Rigidbody* GetRigidbody()const;
 		Model* GetModel()const;
@@ -41,10 +41,13 @@ class TerrainObject : public GameObject{
 
 class BallObject : public GameObject {
 	private:
+		float m_fMoveSpeed = 2.0f;
 
 	public:
 		BallObject(const char* _kcTextureFile);
 		~BallObject();
+
+		void Update(float _fDeltaTick);
 };
 
 class CubeObject : public GameObject {

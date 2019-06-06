@@ -27,6 +27,8 @@ enum VertexElements
 };
 
 #pragma once
+static const float PI = atan2f(0, -1);
+static const float TORADIANS = atan2f(0, -1) / 180.0f;
 class Utils
 {
 public:
@@ -39,5 +41,6 @@ public:
 	static void setSphereData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
 	static void setTerrainData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
 	
+
 };
 

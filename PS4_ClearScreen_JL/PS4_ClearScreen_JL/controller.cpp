@@ -20,10 +20,13 @@ using namespace sce;
 
 const float ControllerContext::m_defaultDeadZone 	= 0.25;
 const float ControllerContext::m_recipMaxByteAsFloat	= 1.0f / 255.0f;
+ControllerContext* ControllerContext::s_pControllerInstance = nullptr;
 
 ControllerContext::ControllerContext(void)
 {
-
+	if (!s_pControllerInstance) {
+		s_pControllerInstance = this;
+	}
 }
 
 ControllerContext::~ControllerContext(void)
@@ -79,9 +82,9 @@ int ControllerContext::initialize(SceUserServiceUserId userId)
 
 void ControllerContext::update()
 {
-	Data previousPadData[MAX_PAD_NUM];
 
-	memcpy(previousPadData, m_currentPadData, sizeof(previousPadData));
+
+	memcpy(m_previousPadData, m_currentPadData, sizeof(m_previousPadData));
 
 	memset(m_currentPadData, 0x0, sizeof(Data)*MAX_PAD_NUM);
 	updatePadData();
@@ -91,8 +94,8 @@ void ControllerContext::update()
 
 	for(int i = 0; i < MAX_PAD_NUM; i++){
 		// ascertain button pressed / released events from the current & previous state
-		m_pressedButtonData[i] = (m_currentPadData[i].buttons & ~previousPadData[i].buttons);		///< pressed button event data
-		m_releasedButtonData[i] = (~m_currentPadData[i].buttons & previousPadData[i].buttons);		///< released button event data
+		m_pressedButtonData[i] = (m_currentPadData[i].buttons & ~m_previousPadData[i].buttons);		///< pressed button event data
+		m_releasedButtonData[i] = (~m_currentPadData[i].buttons & m_previousPadData[i].buttons);		///< released button event data
 
 		// Get the analogue stick values
 		// Remap ranges from 0-255 to -1 > +1
@@ -277,4 +280,34 @@ int ControllerContext::ClosePort()
 	}
 
 	return 0;
+}
+
+// Obtains an input state based on button combinations between frames
+InputState ControllerContext::GetInputState(Button _uiButton)const {
+	uint32_t uiCurrentButtonState = m_currentPadData[0].buttons & _uiButton;
+	uint32_t uiPreviousButtonState = m_previousPadData[0].buttons & _uiButton;
+
+	// Check for button down
+	if (uiCurrentButtonState != 0) {
+		// Compare to previous
+		if (uiPreviousButtonState != 0) {
+			return kInputPressed;
+		}
+		else {
+			return kInputFirstPressed;
+		}
+	}
+	else {
+		// Compare previous frame
+		if (uiPreviousButtonState != 0) {
+			return kInputFirstReleased;
+		}
+		else {
+			return kInputReleased;
+		}
+	}
+}
+
+ControllerContext* ControllerContext::GetInstance() {
+	return s_pControllerInstance;
 }
