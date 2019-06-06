@@ -15,9 +15,6 @@
     <Filter Include="Header Files\Levels">
       <UniqueIdentifier>{010ca823-caac-43ef-968a-bc99805a0fbc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Levels\LevelScene">
-      <UniqueIdentifier>{aa1eeea3-fc0b-4ca9-b9ac-886e9dbcd612}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Levels\MainMenu">
       <UniqueIdentifier>{f6460863-1e2b-43d8-b87d-64c91c7e8f0c}</UniqueIdentifier>
     </Filter>
@@ -51,13 +48,22 @@
     <Filter Include="Header Files\Input">
       <UniqueIdentifier>{ee7d34cf-581f-4c5f-8bbe-5514f7e8173f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Levels\LevelScenes">
+      <UniqueIdentifier>{aa1eeea3-fc0b-4ca9-b9ac-886e9dbcd612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\LevelScenes\LevelOne">
+      <UniqueIdentifier>{9d6b3874-7c09-4646-aaf2-54c804e4c828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\LevelScenes\LevelTwo">
+      <UniqueIdentifier>{b057f5d9-53a1-4b8e-a213-add40cc9d392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\LevelScenes\LevelThree">
+      <UniqueIdentifier>{e961b38f-c697-446f-bfcc-c058cab88084}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelScene.cpp">
-      <Filter>Header Files\Levels\LevelScene</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Header Files\Levels\MainMenu</Filter>
@@ -119,6 +125,18 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Header Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="LevelScene.cpp">
+      <Filter>Header Files\Levels\LevelScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelOne.cpp">
+      <Filter>Header Files\Levels\LevelScenes\LevelOne</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelTwo.cpp">
+      <Filter>Header Files\Levels\LevelScenes\LevelTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelThree.cpp">
+      <Filter>Header Files\Levels\LevelScenes\LevelThree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <OrbisWavePsslc Include="shader_vv.pssl">
@@ -149,9 +167,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LevelScene.h">
-      <Filter>Header Files\Levels\LevelScene</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files\Levels\MainMenu</Filter>
     </ClInclude>
@@ -223,6 +238,18 @@
     </ClInclude>
     <ClInclude Include="controller.h">
       <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelScene.h">
+      <Filter>Header Files\Levels\LevelScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelOne.h">
+      <Filter>Header Files\Levels\LevelScenes\LevelOne</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelTwo.h">
+      <Filter>Header Files\Levels\LevelScenes\LevelTwo</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelThree.h">
+      <Filter>Header Files\Levels\LevelScenes\LevelThree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

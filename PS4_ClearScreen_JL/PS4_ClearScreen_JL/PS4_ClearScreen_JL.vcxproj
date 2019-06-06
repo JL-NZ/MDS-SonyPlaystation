@@ -79,7 +79,10 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GNFLoader.cpp" />
+    <ClCompile Include="LevelOne.cpp" />
     <ClCompile Include="LevelScene.cpp" />
+    <ClCompile Include="LevelThree.cpp" />
+    <ClCompile Include="LevelTwo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -117,7 +120,10 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GNFLoader.h" />
+    <ClInclude Include="LevelOne.h" />
     <ClInclude Include="LevelScene.h" />
+    <ClInclude Include="LevelThree.h" />
+    <ClInclude Include="LevelTwo.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="physicseffects\pfx_high_level_include.h" />

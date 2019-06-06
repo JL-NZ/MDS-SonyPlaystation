@@ -41,25 +41,13 @@ int main()
 	CubeObject cube(Vector3(10.0f, 0.5f, 10.0f), "/app0/cat.gnf");
 	cube.SetPosition(Vector3(0.0f, -1.0f, 0.0f));
 	BallObject ball("/app0/cat.gnf");
-	ball.SetPosition(Vector3(0.0f, 5.0f, 0.0f));
-
-	Model* SphereModel = new Model(ModelType::kSphere, "/app0/mytextures.gnf", Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f), 0.0f);
-	Model* CubeModel = new Model(ModelType::kCube, "/app0/cat.gnf", Vector3(-5.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(1.0f, 0.0f, 0.0f), 0.0f);
-	Model* Model2 = new Model(ModelType::kTriangle, "/app0/normalmap.gnf", Vector3(-10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
-	Model* Model3 = new Model(ModelType::kQuad, "/app0/kanna.gnf", Vector3(10.0f, 0.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), 180.0f);
-	Model* CubeMap = new Model(ModelType::kCube, "/app0/cubemap3.gnf", Vector3(0.0f, 0.0f, 0.0f), Vector3(1000.0f, 1000.0f, 1000.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
-	Model* TerrainModel = new Model(ModelType::kTerrain, "/app0/cat.gnf", Vector3(0.0f, -100.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f), 0.0f);
-	
-	SphereModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
-	CubeModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
-	Model2->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
-	Model3->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
-	TerrainModel->genFetchShaderAndOffsetCache("/app0/NoTexshader_vv.sb", "/app0/NoTexshader_p.sb");
-	CubeMap->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
+	ball.SetPosition(Vector3(0.0f, 5.0f, 0.0f));		
 
 	AudioManager::GetInstance()->Initialize();
-	SceScreamSoundParams soundParams = AudioManager::GetInstance()->InitializeScreamParams();
-	SceScreamSFXBlock2* soundBank = AudioManager::GetInstance()->LoadAudioBank("/app0/testbank.bnk");
+	SceScreamSoundParams BGMsoundParams = AudioManager::GetInstance()->InitializeScreamParams();
+	BGMsoundParams.gain = 0.25f;	
+	SceScreamSoundParams soundParams = AudioManager::GetInstance()->InitializeScreamParams();	
+	SceScreamSFXBlock2* soundBank = AudioManager::GetInstance()->LoadAudioBank("/app0/SoundBank.bnk");
 		
 	sceUserServiceInitialize(NULL);
 	int ret = sceUserServiceGetInitialUser(&g_userID);
@@ -76,17 +64,15 @@ int main()
 		return ret;
 	}	
 
-	//AudioManager::GetInstance()->PlaySound(soundBank, "/app0/testbank.bnk", soundParams);
+	AudioManager::GetInstance()->PlaySound(soundBank, "bgm.wav", BGMsoundParams);	
 
-	while(true)//for (uint32_t frameIndex = 0; frameIndex < 10000; ++frameIndex)
+	while(true)
 		{
 		// Clock
 		previousTime = currentTime;
 		currentTime = std::chrono::high_resolution_clock::now();
 		float fDeltaTick = static_cast<float>( std::chrono::duration_cast<std::chrono::seconds>(currentTime - previousTime).count());
-		//printf("time: %f \n", fDeltaTick);
-
-		
+		//printf("time: %f \n", fDeltaTick);		
 
 		// Camera
 		{
@@ -136,21 +122,24 @@ int main()
 			// Object one rotation
 			if (g_controllerContext.isButtonDown(0, BUTTON_LEFT))
 			{
-				SphereModel->angle -= 0.01f;
+				AudioManager::GetInstance()->PlaySound(soundBank, "pop.wav", soundParams);
+				
 			}
 			if (g_controllerContext.isButtonDown(0, BUTTON_RIGHT))
 			{
-				SphereModel->angle += 0.01f;
+				AudioManager::GetInstance()->PlaySound(soundBank, "roll.wav", soundParams);
+				
 			}
 
 			// Object two rotation
 			if (g_controllerContext.isButtonDown(0, BUTTON_UP))
 			{
-				CubeModel->angle -= 0.01f;
+				AudioManager::GetInstance()->PlaySound(soundBank, "cheer.wav", soundParams);
+				
 			}
 			if (g_controllerContext.isButtonDown(0, BUTTON_DOWN))
 			{
-				CubeModel->angle += 0.01f;
+				
 			}
 		}
 		g_controllerContext.update();
@@ -183,6 +172,8 @@ int main()
 	// Cleanup
 	CCamera::GetInstance()->Destroy();
 	Render::GetInstance()->Destroy();
+	sceScreamStopSoundSystem();
+	sceSysmoduleUnloadModule(SCE_SYSMODULE_NGS2);
 
 	return 0;
 }
