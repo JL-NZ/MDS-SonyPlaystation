@@ -22,6 +22,9 @@ class PhysicsEngine {
 
 		sce::PhysicsEffects::PfxRigidBodyWorld* GetWorld()const;
 		void DeregisterRigidbody(sce::PhysicsEffects::PfxUInt32 _uiBodyIndex);
+		const sce::PhysicsEffects::PfxQueryContactInfo* GetCollisionInfoFirstContact(int _indexA);
+		const sce::PhysicsEffects::PfxQueryContactInfo* GetCollisionInfoNextContact(const sce::PhysicsEffects::PfxQueryContactInfo* _previousContact, int _indexA);
+		const sce::PhysicsEffects::PfxQueryContactInfo* GetCollisionInfo(int _indexA, int _indexB);
 
 	private:
 		// Singleton enforcement
@@ -38,7 +41,7 @@ class PhysicsEngine {
 
 		// Internal helper function
 		inline void CreateDefaultWorld();
-
+		
 
 };
 

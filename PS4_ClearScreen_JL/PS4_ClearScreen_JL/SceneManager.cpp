@@ -44,7 +44,14 @@ bool SceneManager::SetCurrentScene(std::shared_ptr<Scene> _scene)
 
 bool SceneManager::Update()
 {
-	m_CurrentScene->Update();
+	// Clock
+	previousTime = currentTime;
+	currentTime = (std::chrono::high_resolution_clock::now());
+	deltaTime = currentTime - previousTime;
+	timeElapsed += deltaTime;
+	m_fDeltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::milliseconds>(deltaTime).count());
+
+	m_CurrentScene->Update(m_fDeltaTime);
 
 	return true;
 }

@@ -1,6 +1,6 @@
 #include "Terrain.h"
 #include "Utils.h"
-#include "CCamera.h"
+#include "Camera.h"
 #include <random>
 
 Terrain::Terrain()

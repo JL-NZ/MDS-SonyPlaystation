@@ -268,8 +268,8 @@ void Model::Draw(TextureType _type)
 		///if (angle > 360) angle = 0.0f;
 		
 		Matrix4 model = Matrix4::translation(translation) * Matrix4::rotation((angle * (180/M_PI)), rotateAxis) * Matrix4::scale(scale);
-		Matrix4 projection = Camera::GetMain()->GetProjection();
-		Matrix4 view = Camera::GetMain()->GetView();
+		Matrix4 projection = Camera::GetInstance()->GetProjection();
+		Matrix4 view = Camera::GetInstance()->GetView();
 
 		// Define WVP
 		constants->m_WorldViewProj = ToMatrix4Unaligned(projection * view * model);

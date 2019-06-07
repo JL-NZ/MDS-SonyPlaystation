@@ -69,6 +69,13 @@ void Camera::LocalTranslation(Vector3 _displacement) {
 	UpdatePosition(translation);
 }
 
+void Camera::Initialize(float _fFOV, float _fRatio, float _fNear, float _fFar)
+{
+	m_fFOV = _fFOV;
+	m_projection = Matrix4::perspective(TORADIANS * _fFOV, _fRatio, _fNear, _fFar);
+	m_view = Matrix4::lookAt(Point3(m_Position), Point3(0.0f, 0.0f, 0.0f), m_CameraUp);
+}
+
 void Camera::RotateBy(Vector3 _Rotation) {
 	// Define a vector in relation to the angle
 	m_fPitch -= _Rotation.getX();
@@ -97,7 +104,11 @@ inline void Camera::UpdateViewMatrix() {
 	m_view = Matrix4::lookAt(Point3(m_Position), Point3(m_Position + m_CameraFront), m_CameraUp);
 }
 
-Camera* Camera::GetMain() {
+Camera* Camera::GetInstance() {
+	if (!s_pMain) {
+		s_pMain = new Camera();
+	}
+
 	return s_pMain;
 }
 

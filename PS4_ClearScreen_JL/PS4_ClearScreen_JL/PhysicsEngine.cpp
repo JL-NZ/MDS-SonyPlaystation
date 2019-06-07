@@ -7,7 +7,7 @@ PhysicsEngine* PhysicsEngine::s_pInstance = nullptr;
 PhysicsEngine::PhysicsEngine() {
 	// Create default world
 	CreateDefaultWorld();
-
+	
 }
 
 PhysicsEngine::~PhysicsEngine() {
@@ -58,6 +58,46 @@ inline void PhysicsEngine::CreateDefaultWorld() {
 
 sce::PhysicsEffects::PfxRigidBodyWorld* PhysicsEngine::GetWorld()const {
 	return m_pWorld;
+}
+
+const sce::PhysicsEffects::PfxQueryContactInfo*  PhysicsEngine::GetCollisionInfoFirstContact(int _indexA)
+{
+	const sce::PhysicsEffects::PfxQueryContactInfo* contactInfo = m_pWorld->queryFirstContact(_indexA);
+	if (contactInfo)
+	{
+		return contactInfo;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+const sce::PhysicsEffects::PfxQueryContactInfo * PhysicsEngine::GetCollisionInfoNextContact(const sce::PhysicsEffects::PfxQueryContactInfo* _previousContact, int _indexA)
+{
+	const sce::PhysicsEffects::PfxQueryContactInfo* contactInfo = m_pWorld->queryNextContact(_previousContact, _indexA);
+	if (contactInfo)
+	{
+		return contactInfo;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+/*Returns contact info if there was applicable collision data, else returns nullptr.*/
+const sce::PhysicsEffects::PfxQueryContactInfo * PhysicsEngine::GetCollisionInfo(int _indexA, int _indexB)
+{
+	const sce::PhysicsEffects::PfxQueryContactInfo* contactInfo = m_pWorld->queryContact(_indexA, _indexB);
+	if (contactInfo)
+	{
+		return contactInfo;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 void PhysicsEngine::Update(float _fDeltaTick) {

@@ -37,6 +37,7 @@ class Rigidbody {
 		// Accessors
 		sce::PhysicsEffects::PfxRigidState& GetState();
 		sce::PhysicsEffects::PfxRigidBody& GetBody();
+		sce::PhysicsEffects::PfxUInt32& GetID();
 		sce::PhysicsEffects::PfxCollidable& GetCollider();
 };
 

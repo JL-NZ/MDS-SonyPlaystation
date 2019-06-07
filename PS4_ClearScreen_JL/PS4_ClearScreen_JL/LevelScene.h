@@ -1,5 +1,8 @@
 #pragma once
 #include "Scene.h"
+#include "AudioManager.h"
+#include <memory>
+
 class LevelScene : public Scene
 {
 public:
@@ -9,15 +12,30 @@ public:
 	virtual ~LevelScene();
 
 	//// Public Variables
+	std::shared_ptr<class BallObject> ball;
 
 	//// Public Funtions
-	virtual bool Initialize() = 0; // Should be called once, after constructor (returns false if there's an issue)
-	virtual bool Update() = 0; // called every frame (returns false if there's an issue)
-	virtual bool Render() = 0; // called every frame, after Update (returns false if there's an issue)
-	virtual bool RenderUI() = 0; // called every frame, after Render (returns false if there's an issue)	
+	virtual bool Initialize(); // Should be called once, after constructor (returns false if there's an issue)
+	virtual bool Update(float _deltaTick); // called every frame (returns false if there's an issue)
+	virtual bool Render(); // called every frame, after Update (returns false if there's an issue)
+	virtual bool RenderUI(); // called every frame, after Render (returns false if there's an issue)
+	virtual bool Cleanup(); // called every frame, after everything else (returns false if there's an issue)
+
+protected:
+	//// Protected Variables
+	SceScreamSoundParams m_BGMsoundParams;
+	SceScreamSoundParams m_soundParams;
+	SceScreamSFXBlock2* m_soundBank = nullptr;
+
+	//// Protected Functions
 
 private:
-	//// Private Variables
+	//// Private Variables	
+	class PhysicsEngine* m_pPhysics = nullptr;
+	std::shared_ptr<class Text> ScoreValueText = nullptr;
+	std::shared_ptr<class Text> TimerValueText = nullptr;
+	std::shared_ptr<class TextLabel> TextManager = nullptr;
+
 
 	//// Private Functions
 

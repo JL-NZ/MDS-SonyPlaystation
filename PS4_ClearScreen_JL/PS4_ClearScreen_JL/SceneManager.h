@@ -9,6 +9,8 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <time.h>
+#include <chrono>
 
 class SceneManager {
 	// Singleton
@@ -26,6 +28,10 @@ public:
 	//// Public Variables
 	std::vector<std::shared_ptr<class Scene>> m_Scenes;	// Container for scenes
 	float m_fDeltaTime = 0.0f;	// Should be updated every frame with the current delta time
+	std::chrono::high_resolution_clock::time_point previousTime = (std::chrono::high_resolution_clock::now());
+	std::chrono::high_resolution_clock::time_point currentTime = (std::chrono::high_resolution_clock::now());
+	std::chrono::high_resolution_clock::duration deltaTime;
+	std::chrono::high_resolution_clock::duration timeElapsed;
 
 	//// Public Functions
 	std::shared_ptr<class Scene> GetCurrentScene() const; // Returns a ptr to the current scene

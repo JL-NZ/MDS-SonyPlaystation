@@ -77,9 +77,6 @@
     <ClCompile Include="PhysicsEngine.cpp">
       <Filter>Header Files\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="CCamera.cpp">
-      <Filter>Header Files\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Header Files\Audio</Filter>
     </ClCompile>
@@ -137,6 +134,9 @@
     <ClCompile Include="LevelThree.cpp">
       <Filter>Header Files\Levels\LevelScenes\LevelThree</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Header Files\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <OrbisWavePsslc Include="shader_vv.pssl">
@@ -184,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="PhysicsEngine.h">
       <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="CCamera.h">
-      <Filter>Header Files\Camera</Filter>
     </ClInclude>
     <ClInclude Include="AudioManager.h">
       <Filter>Header Files\Audio</Filter>
@@ -250,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="LevelThree.h">
       <Filter>Header Files\Levels\LevelScenes\LevelThree</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

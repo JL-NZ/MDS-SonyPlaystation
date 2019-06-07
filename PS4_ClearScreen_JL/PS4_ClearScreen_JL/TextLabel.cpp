@@ -92,17 +92,12 @@ void TextLabel::Initialize()
 		&fontHandle
 	);
 
-	// Set font scale and obtain layout information	
-	sceFontSetScalePixel(fontHandle, 32.f, 32.f); // set h & v scale
-	sceFontGetHorizontalLayout(fontHandle, &HorizLayout);
+	
 
 	// Bind renderer to font
 	sceFontBindRenderer(fontHandle, s_renderer);
 
 	// Prepare rendering environment
-	/*Set font scale to be applied while rendering*/
-	sceFontSetupRenderScalePixel(fontHandle, 100.0f, 100.0f);
-
 	int surfaceBufferWidthByte = Render::GetInstance()->kDisplayBufferWidth;
 	int surfaceWidthPixel = Render::GetInstance()->kDisplayBufferWidth;
 	int surfaceHeightPixel = Render::GetInstance()->kDisplayBufferHeight;
@@ -117,12 +112,25 @@ void TextLabel::Initialize()
 		surfaceHeightPixel // surface height in pixels
 	);
 
-	baseY = HorizLayout.baseLineY;
-	lineH = HorizLayout.lineHeight;
+	
 }
 
 void TextLabel::RenderFont(std::shared_ptr<Text> _text)
 {
+	float xScale = _text->Size.getX();
+	float yScale = _text->Size.getY();
+
+	/*Set font scale to be applied while rendering*/
+	sceFontSetupRenderScalePixel(fontHandle, xScale, yScale);
+
+	// Set font scale and obtain layout information	
+	sceFontSetScalePixel(fontHandle, xScale / 5, yScale / 5); // set h & v scale
+	sceFontGetHorizontalLayout(fontHandle, &HorizLayout);
+
+	// Update baseY and lineH
+	baseY = HorizLayout.baseLineY;
+	lineH = HorizLayout.lineHeight;
+
 	// Render text
 	const uint8_t* utf8addr = reinterpret_cast<const uint8_t*>(_text->String.c_str());
 	
@@ -170,9 +178,9 @@ void TextLabel::RenderFont(std::shared_ptr<Text> _text)
 	
 }
 
-std::shared_ptr<Text> TextLabel::AddText(Vector3 _pos, std::string _text)
+std::shared_ptr<Text> TextLabel::AddText(Vector2 _pos, Vector2 _size, std::string _text)
 {
-	std::shared_ptr<Text> TextPointer = std::make_shared<Text>(_pos, _text);
+	std::shared_ptr<Text> TextPointer = std::make_shared<Text>(_pos, _size, _text);
 	if (TextPointer != nullptr)
 	{
 		textVector.push_back(TextPointer);

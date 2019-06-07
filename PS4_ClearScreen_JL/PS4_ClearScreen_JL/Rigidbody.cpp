@@ -82,6 +82,12 @@ sce::PhysicsEffects::PfxRigidBody& Rigidbody::GetBody() {
 	return PhysicsEngine::GetInstance()->GetWorld()->getRigidBody(m_uiID);
 }
 
+// Acess uiID
+sce::PhysicsEffects::PfxUInt32 & Rigidbody::GetID()
+{
+	return m_uiID;
+}
+
 // Access State
 sce::PhysicsEffects::PfxRigidState& Rigidbody::GetState() {
 	//return m_State;

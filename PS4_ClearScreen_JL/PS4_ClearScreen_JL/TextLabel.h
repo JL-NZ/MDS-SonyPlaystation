@@ -9,11 +9,13 @@
 
 struct Text
 {
-	Vector3 Position;
+	Vector2 Position;
+	Vector2 Size;
 	std::string String;
 
-	Text(Vector3 _pos, std::string _text)
+	Text(Vector2 _pos, Vector2 _size, std::string _text)
 	{
+		Size = _size;
 		Position = _pos;
 		String = _text;
 	}
@@ -27,7 +29,7 @@ public:
 
 	void Initialize();
 	void RenderFont(std::shared_ptr<Text> _text);
-	std::shared_ptr<Text> AddText(Vector3 _pos, std::string _text);
+	std::shared_ptr<Text> AddText(Vector2 _pos, Vector2 _size, std::string _text);
 	void DrawText();
 	void ClearFont();
 

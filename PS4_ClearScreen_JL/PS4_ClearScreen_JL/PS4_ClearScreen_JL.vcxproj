@@ -73,7 +73,6 @@
     <ClCompile Include="api_gnm\toolkit\shader_loader.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="camera.cpp" />
-    <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="font_memory_malloc.c" />
     <ClCompile Include="font_memory_mspace.c" />
@@ -115,7 +114,6 @@
     <ClInclude Include="allocator.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="camera.h" />
-    <ClInclude Include="CCamera.h" />
     <ClInclude Include="controller.h" />
     <ClInclude Include="font_memory_malloc.h" />
     <ClInclude Include="font_memory_mspace.h" />

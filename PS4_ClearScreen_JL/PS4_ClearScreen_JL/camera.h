@@ -37,13 +37,14 @@ class Camera {
 		Vector3 m_CameraUp = Vector3(0.0f, 1.0f, 0.0f);
 		Vector3 m_CameraRight = Vector3(1.0f, 0.0f, 0.0f);
 
-		static Camera* GetMain();
+		static Camera* GetInstance();
 
 		// Accessors | Mutators
 		void SetPosition(Vector3 _position);
 		Vector3 GetPosition()const;
 		void UpdatePosition(Vector3 _displacement);
 		void LocalTranslation(Vector3 _displacement);
+		void Initialize(float _fFOV, float _fRatio, float _fNear, float _fFar);
 
 		void PointAt(Vector3 _point);
 		void RotateBy(Vector3 _Rotation);
