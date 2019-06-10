@@ -24,25 +24,45 @@ LevelScene::~LevelScene()
 
 bool LevelScene::Initialize()
 {
-	Camera::GetInstance()->Initialize(90.0f, // FOV
-		static_cast<float>(Render::GetInstance()->kDisplayBufferWidth) / static_cast<float>(Render::GetInstance()->kDisplayBufferHeight), // Ratio
-		0.1f, // Near 
-		5000.0f // Far
-	);
-
 	// Initialize physics
 	m_pPhysics = PhysicsEngine::GetInstance();	
 
 	// Text initialisation
 	TextManager = std::make_shared<TextLabel>();
 	TextManager->Initialize();
-	std::shared_ptr<Text> ScoreText = TextManager->AddText(Vector2(0.0f, 0.0f), Vector2(50.0f), "Score:");
-	std::shared_ptr<Text> TimerText = TextManager->AddText(Vector2(0.0f, 0.1f), Vector2(50.0f), "Timer:");
-	ScoreValueText = TextManager->AddText(ScoreText->Position + Vector2(0.09f, 0.0f), Vector2(50.0f), "0");
-	TimerValueText = TextManager->AddText(TimerText->Position + Vector2(0.09f, 0.0f), Vector2(50.0f), "0.0");
+
+	std::shared_ptr<Text> ScoreText = TextManager->AddText(
+		Vector2(0.0f, 0.0f),// position
+		Vector2(50.0f), // scale
+		"Score:"
+	);
+	std::shared_ptr<Text> TimerText = TextManager->AddText(
+		Vector2(0.0f, 0.1f), // position
+		Vector2(50.0f), // scale
+		"Timer:"
+	);
+
+	LevelCompleteText = TextManager->AddText(
+		Vector2(0.30f, 0.40f), // position
+		Vector2(50.0f), // scale
+		"             Level Complete \n\n\n\n\n Press X to go to the next level. \n\n\n\n\n Press Circle to go to the menu"
+	);
+	ScoreValueText = TextManager->AddText(
+		ScoreText->Position + Vector2(0.09f, 0.0f), // position
+		Vector2(50.0f), // scale
+		"0"
+	);
+	TimerValueText = TextManager->AddText(
+		TimerText->Position + Vector2(0.09f, 0.0f), // position
+		Vector2(50.0f), // scale
+		"0.0"
+	);
+
+	LevelCompleteText->Visible = false;
 
 	m_TextVector.push_back(ScoreText);
 	m_TextVector.push_back(TimerText);
+	m_TextVector.push_back(LevelCompleteText);
 	m_TextVector.push_back(ScoreValueText);
 	m_TextVector.push_back(TimerValueText);
 
@@ -67,6 +87,9 @@ bool LevelScene::Initialize()
 	// Play background music
 	AudioManager::GetInstance()->PlaySound(m_soundBank, "bgm.wav", m_BGMsoundParams);
 
+	// Reset timer
+	SceneManager::GetInstance()->timeElapsed = std::chrono::microseconds::zero();
+
 	m_bInitialized = true;
 	
 	return true;
@@ -74,52 +97,64 @@ bool LevelScene::Initialize()
 
 bool LevelScene::Update(float _deltaTick)
 {
-	// Check and process collisions
-	for (int i = 0; i < m_ObjectVector.size(); i++)
+	// Check the number of collectables present in the scene
+	bool iVectorEmpty = m_CollectableVector.empty();
+	if (iVectorEmpty)
 	{
-		for (int k = 0; k < m_ObjectVector.size(); k++)
+		m_bLevelComplete = true;
+		LevelCompleteText->Visible = true;
+	}
+
+	if (m_bLevelComplete == false)
+	{
+		// Check and process collisions
+		for (int i = 0; i < m_ObjectVector.size(); i++)
 		{
-			// Ignore self collision
-			if (k == i) continue;
-
-			std::shared_ptr<GameObject> objectI = m_ObjectVector[i];
-			std::shared_ptr<GameObject> objectK = m_ObjectVector[k];
-
-			const sce::PhysicsEffects::PfxQueryContactInfo * contactInfo = m_pPhysics->GetCollisionInfo(
-				objectI->GetRigidbody()->GetID(),
-				objectK->GetRigidbody()->GetID()
-			);
-
-			// if there was contact
-			if (contactInfo)
+			for (int k = 0; k < m_ObjectVector.size(); k++)
 			{
-				// Get user data
-				void* userDataI = m_pPhysics->GetWorld()->getRigidState(contactInfo->rigidbodyIdA).getUserData();
-				void* userDataK = m_pPhysics->GetWorld()->getRigidState(contactInfo->rigidbodyIdB).getUserData();
+				// Ignore self collision
+				if (k == i) continue;
 
-				objectI->ProcessCollision(objectK, userDataI);
-				objectK->ProcessCollision(objectI, userDataK);
+				std::shared_ptr<GameObject> objectI = m_ObjectVector[i];
+				std::shared_ptr<GameObject> objectK = m_ObjectVector[k];
+
+				const sce::PhysicsEffects::PfxQueryContactInfo * contactInfo = m_pPhysics->GetCollisionInfo(
+					objectI->GetRigidbody()->GetID(),
+					objectK->GetRigidbody()->GetID()
+				);
+
+				// if there was contact
+				if (contactInfo)
+				{
+					// Get user data
+					void* userDataI = m_pPhysics->GetWorld()->getRigidState(contactInfo->rigidbodyIdA).getUserData();
+					void* userDataK = m_pPhysics->GetWorld()->getRigidState(contactInfo->rigidbodyIdB).getUserData();
+
+					objectI->ProcessCollision(objectK, userDataI);
+					objectK->ProcessCollision(objectI, userDataK);
+				}
 			}
 		}
-	}
 
-	// Update physics objects
-	for (int i = 0; i < m_ObjectVector.size(); i++)
-	{
-		if (m_ObjectVector[i])
+		// Update physics objects
+		for (int i = 0; i < m_ObjectVector.size(); i++)
 		{
-			m_ObjectVector[i]->Update(_deltaTick);
+			if (m_ObjectVector[i])
+			{
+				m_ObjectVector[i]->Update(_deltaTick);
+			}
 		}
-	}
 
-	// Move Camera
-	sce::PhysicsEffects::PfxVector3 ballPosition = ball->GetRigidbody()->GetState().getPosition();
-	Camera::GetInstance()->SetPosition(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()) + Vector3(0.0f, 10.0f, -10.0f));
-	Camera::GetInstance()->PointAt(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()));
+		// Move Camera
+		sce::PhysicsEffects::PfxVector3 ballPosition = ball->GetRigidbody()->GetState().getPosition();
+		Camera::GetInstance()->SetPosition(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()) + Vector3(0.0f, 10.0f, -10.0f));
+		Camera::GetInstance()->PointAt(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()));
 
-	// Update text stuff
-	TimerValueText->String = std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(SceneManager::GetInstance()->timeElapsed).count() / 1000);
-	ScoreValueText->String = std::to_string(ball->GetScore());
+		// Update text stuff
+		TimerValueText->String = std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(SceneManager::GetInstance()->timeElapsed).count() / 1000);
+		ScoreValueText->String = std::to_string(ball->GetScore());
+
+	}	
 
 	return true;
 }
@@ -157,6 +192,14 @@ bool LevelScene::Cleanup()
 			m_ObjectVector[i]->FinishDestruction();
 			m_pPhysics->GetWorld()->removeRigidBody(m_ObjectVector[i]->GetRigidbody()->GetID());
 			m_ObjectVector.erase(m_ObjectVector.begin() + i);
+		}
+	}
+	
+	for (int i = 0; i < m_CollectableVector.size(); i++)
+	{
+		if (m_CollectableVector[i]->GetDestroyFlag())
+		{
+			m_CollectableVector.erase(m_CollectableVector.begin() + i);
 		}
 	}
 

@@ -14,7 +14,8 @@ PhysicsEngine::~PhysicsEngine() {
 	m_pWorld->finalize();
 
 	// Delete rigidbodies
-	m_pWorld->~PfxRigidBodyWorld();
+	m_pWorld->~PfxRigidBodyWorld();	
+
 	SCE_PFX_UTIL_FREE(m_pWorldBuffer);
 	SCE_PFX_UTIL_FREE(m_pPoolBuffer);
 

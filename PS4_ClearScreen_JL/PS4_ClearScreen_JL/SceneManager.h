@@ -32,19 +32,22 @@ public:
 	std::chrono::high_resolution_clock::time_point currentTime = (std::chrono::high_resolution_clock::now());
 	std::chrono::high_resolution_clock::duration deltaTime;
 	std::chrono::high_resolution_clock::duration timeElapsed;
+	bool m_bExitGame = false;
 
 	//// Public Functions
 	std::shared_ptr<class Scene> GetCurrentScene() const; // Returns a ptr to the current scene
-	bool SetCurrentScene(std::shared_ptr<class Scene> _scene); // Sets the current scene, scene must not be nullptr and must be already initialized
+	
 	bool Update(); // Updates the current scene
 	bool Render(); // Renders the current scene
+	bool Cleanup(); // Cleans up destroyed entities
+	bool OpenLevel(std::string _levelName); // opens a level of the specified name if it exists, sets it as the current scene
 
 private:
 	//// Private Variables
 	std::shared_ptr<class Scene> m_CurrentScene = nullptr;
 
 	//// Private Functions
-
+	bool SetCurrentScene(std::shared_ptr<class Scene> _scene); // Sets the current scene, scene must not be nullptr and must be already initialized
 
 };
 

@@ -12,6 +12,7 @@ struct Text
 	Vector2 Position;
 	Vector2 Size;
 	std::string String;
+	bool Visible = true; // visible by default
 
 	Text(Vector2 _pos, Vector2 _size, std::string _text)
 	{

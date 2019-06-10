@@ -1,6 +1,7 @@
 #pragma once
 
 // Local Includes
+#include "controller.h"
 
 // Library Includes
 #include <string>
@@ -18,15 +19,14 @@ public:
 	//// Public Variables
 	std::string m_Name = ""; 
 	bool m_bInitialized = false;
-	std::vector<std::shared_ptr<class GameObject>> m_ObjectVector;
-	std::vector<std::shared_ptr<class Text>> m_TextVector;
-	std::vector<std::shared_ptr<class SceScreamSFXBlock2>> m_SoundBanks;
+	std::shared_ptr<ControllerContext> m_controllerContext = nullptr;
 
 	//// Public Functions
 	virtual bool Initialize() = 0; // Should be called once, after constructor (returns false if there's an issue)
 	virtual bool Update(float _deltaTick) = 0; // called every frame (returns false if there's an issue)
 	virtual bool Render() = 0; // called every frame, after Update (returns false if there's an issue)
-	virtual bool RenderUI() = 0; // called every frame, after Render (returns false if there's an issue)	 
+	virtual bool RenderUI() = 0; // called every frame, after Render (returns false if there's an issue)
+	virtual bool Cleanup() = 0; // called every frame, after everything else (returns false if there's an issue)
 
 private:
 	//// Private Variables

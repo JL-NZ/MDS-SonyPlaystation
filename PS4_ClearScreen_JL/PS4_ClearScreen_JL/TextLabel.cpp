@@ -194,7 +194,10 @@ void TextLabel::DrawText()
 	this->ClearFont();
 	for (int i = 0; i < textVector.size(); i++)
 	{
-		this->RenderFont(textVector[i]);
+		if (textVector[i]->Visible)
+		{
+			this->RenderFont(textVector[i]);
+		}
 	}	
 	textQuad->DrawSurface();
 }

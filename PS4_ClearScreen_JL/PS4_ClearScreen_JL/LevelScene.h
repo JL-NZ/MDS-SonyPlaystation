@@ -26,15 +26,22 @@ protected:
 	SceScreamSoundParams m_BGMsoundParams;
 	SceScreamSoundParams m_soundParams;
 	SceScreamSFXBlock2* m_soundBank = nullptr;
+	std::vector<std::shared_ptr<class GameObject>> m_ObjectVector;
+	std::vector<std::shared_ptr<class CollectableObject>> m_CollectableVector;
+	std::vector<std::shared_ptr<class Text>> m_TextVector;
+	std::vector<std::shared_ptr<class SceScreamSFXBlock2>> m_SoundBanks;
+	class PhysicsEngine* m_pPhysics = nullptr;
+	std::shared_ptr<class Text> ScoreValueText = nullptr;
+	std::shared_ptr<class Text> TimerValueText = nullptr;
+	std::shared_ptr<Text> LevelCompleteText = nullptr;
+	std::shared_ptr<class TextLabel> TextManager = nullptr;
+	bool m_bLevelComplete = false;
 
 	//// Protected Functions
 
 private:
 	//// Private Variables	
-	class PhysicsEngine* m_pPhysics = nullptr;
-	std::shared_ptr<class Text> ScoreValueText = nullptr;
-	std::shared_ptr<class Text> TimerValueText = nullptr;
-	std::shared_ptr<class TextLabel> TextManager = nullptr;
+	
 
 
 	//// Private Functions

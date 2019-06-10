@@ -63,3 +63,26 @@ bool SceneManager::Render()
 
 	return true;
 }
+
+bool SceneManager::Cleanup()
+{
+	if (m_CurrentScene)
+	{
+		m_CurrentScene->Cleanup();
+	}
+	return false;
+}
+
+bool SceneManager::OpenLevel(std::string _levelName)
+{
+	for (int i = 0; i < m_Scenes.size(); i++)
+	{
+		if (m_Scenes[i]->m_Name == _levelName)
+		{
+			m_Scenes[i]->Initialize();
+			SetCurrentScene(m_Scenes[i]);
+		}
+	}
+
+	return false;
+}

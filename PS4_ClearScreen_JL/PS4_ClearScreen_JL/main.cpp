@@ -10,12 +10,13 @@
 #include "AudioManager.h"
 #include "Model.h"
 #include "Utils.h"
-#include "controller.h"
 #include "TextLabel.h"
 #include "PhysicsEngine.h"
 #include "rigidbody.h"
 #include "GameObject.h"
 #include "camera.h"
+#include "MainMenu.h"
+#include "GameOver.h"
 #include "LevelOne.h"
 #include "LevelTwo.h"
 #include "LevelThree.h"
@@ -25,19 +26,48 @@ using namespace sce;
 using namespace sce::Gnmx;
 using namespace std;
 
-ControllerContext g_controllerContext;
+std::shared_ptr<ControllerContext> g_controllerContext;
 SceUserServiceUserId g_userID;
 
 int main()
 {
+	// Initialize camera
+	Camera::GetInstance()->Initialize(90.0f, // FOV
+		static_cast<float>(Render::GetInstance()->kDisplayBufferWidth) / static_cast<float>(Render::GetInstance()->kDisplayBufferHeight), // Ratio
+		0.1f, // Near 
+		5000.0f // Far
+	);
+
+	// Initialize input
+	g_controllerContext = std::make_shared<ControllerContext>();
+
 	// Initialize sound stuff
 	AudioManager::GetInstance()->Initialize();
 
+	// Initialize scenes
+	std::shared_ptr<MainMenu> MainMenuScene = std::make_shared<MainMenu>();
+	MainMenuScene->m_Name = "Main Menu Scene";
+	MainMenuScene->m_controllerContext = g_controllerContext;
+	std::shared_ptr<GameOver> GameOverScene = std::make_shared<GameOver>();
+	GameOverScene->m_Name = "Game Over Scene";
+	GameOverScene->m_controllerContext = g_controllerContext;
 	std::shared_ptr<LevelOne> LevelOneScene = std::make_shared<LevelOne>();
-	LevelOneScene->Initialize();
-	LevelOneScene->m_Name = "Level One Scene";
+	LevelOneScene->m_Name = "Level One Scene";	
+	LevelOneScene->m_controllerContext = g_controllerContext;
+	std::shared_ptr<LevelTwo> LevelTwoScene = std::make_shared<LevelTwo>();
+	LevelTwoScene->m_Name = "Level Two Scene";
+	LevelTwoScene->m_controllerContext = g_controllerContext;
+	std::shared_ptr<LevelThree> LevelThreeScene = std::make_shared<LevelThree>();
+	LevelThreeScene->m_Name = "Level Three Scene";
+	LevelThreeScene->m_controllerContext = g_controllerContext;
+	
+	SceneManager::GetInstance()->m_Scenes.push_back(MainMenuScene);
+	SceneManager::GetInstance()->m_Scenes.push_back(GameOverScene);
 	SceneManager::GetInstance()->m_Scenes.push_back(LevelOneScene);
-	SceneManager::GetInstance()->SetCurrentScene(LevelOneScene);
+	SceneManager::GetInstance()->m_Scenes.push_back(LevelTwoScene);
+	SceneManager::GetInstance()->m_Scenes.push_back(LevelThreeScene);
+
+	SceneManager::GetInstance()->OpenLevel("Main Menu Scene");
 
 	// Physics initialisation
 	PhysicsEngine* pPhysics = PhysicsEngine::GetInstance();		
@@ -50,7 +80,7 @@ int main()
 		return ret;
 	}
 	
-	ret = g_controllerContext.initialize(g_userID);
+	ret = g_controllerContext->initialize(g_userID);
 	if (ret < SCE_OK)
 	{
 		printf("controller initialization failed: 0x%08X\n", ret);
@@ -59,13 +89,13 @@ int main()
 
 	float fAngle = 0.0f;
 
-	while(true)
+	while(!SceneManager::GetInstance()->m_bExitGame)
 	{
 		/// Update loop
 		SceneManager::GetInstance()->Update();
 
 		// Update input stuff
-		g_controllerContext.update();		
+		g_controllerContext->update();		
 
 		// Update physics world
 		pPhysics->Update(0.016);		
@@ -81,6 +111,9 @@ int main()
 		SceneManager::GetInstance()->Render();		
 
 		Render::GetInstance()->EndRender();		
+
+		// Tick Cleanup
+		SceneManager::GetInstance()->Cleanup();
 	}
 	
 	// Cleanup
