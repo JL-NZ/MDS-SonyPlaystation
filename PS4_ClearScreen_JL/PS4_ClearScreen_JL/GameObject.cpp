@@ -104,7 +104,7 @@ BallObject::BallObject(Vector3 _scale, const char* _kcTextureFile) {
 	// Load model
 	m_pModel = new Model(ModelType::kSphere, _kcTextureFile, Vector3::zero());
 	m_pModel->scale = Vector3(0.5f);
-	m_pModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	m_pModel->genFetchShaderAndOffsetCache("/app0/toon_vv.sb", "/app0/toon_p.sb");
 	
 	// Create collision shape
 	sce::PhysicsEffects::PfxSphere sphere;
@@ -193,7 +193,7 @@ CubeObject::CubeObject(Vector3 _scale, const char* _kcTextureFile) {
 
 	// Create rigidbody
 	m_pRigidbody = new Rigidbody(RigidbodyType::kRBBox);
-	sce::PhysicsEffects::PfxBox box(sce::PhysicsEffects::PfxVector3(_scale.getX(), _scale.getY(), _scale.getZ()));
+	sce::PhysicsEffects::PfxBox box(sce::PhysicsEffects::PfxVector3(_scale.getX()/2.0f, _scale.getY()/2.0f, _scale.getZ()/2.0f));
 	m_pRigidbody->GetCollider().getShape(0).reset();
 	m_pRigidbody->GetCollider().getShape(0).setBox(box);
 	m_pRigidbody->GetCollider().finish();

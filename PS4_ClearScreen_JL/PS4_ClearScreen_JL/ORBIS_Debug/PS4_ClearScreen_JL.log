@@ -1,9 +1,3 @@
-﻿  LevelScene.cpp
-  In file included from E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\LevelScene.cpp:1:
-E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(31,30): warning : class 'SceScreamSFXBlock2' was previously declared as a struct [-Wmismatched-tags]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\scream/sce_snd_data.h(87,16):  note: previous use is here
-  E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(31,30):  note: did you mean struct here?
-  In file included from E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\LevelScene.cpp:2:
-E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,1): warning : 'Text' defined as a struct here but previously declared as a class [-Wmismatched-tags]
-  E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(30,30):  note: did you mean struct here?
+﻿  GameObject.cpp
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\GameObject.cpp(173,11): warning : enumeration values 'eCUBE' and 'eBALL' not handled in switch [-Wswitch]
   PS4_ClearScreen_JL.vcxproj -> E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf
