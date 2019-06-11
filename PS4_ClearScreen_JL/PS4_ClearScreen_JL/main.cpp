@@ -85,10 +85,8 @@ int main()
 	{
 		printf("controller initialization failed: 0x%08X\n", ret);
 		return ret;
-	}		
-
-	float fAngle = 0.0f;
-
+	}
+	
 	while(!SceneManager::GetInstance()->m_bExitGame)
 	{
 		/// Update loop
@@ -102,7 +100,7 @@ int main()
 
 		/// Render loop
 		Render::GetInstance()->StartRender();
-		Render::GetInstance()->SetPipelineState();
+		Render::GetInstance()->SetPipelineState();		
 
 		SceneManager::GetInstance()->Render();		
 
