@@ -110,7 +110,7 @@ bool LevelScene::Update(float _deltaTick)
 	bool iVectorEmpty = m_CollectableVector.empty();
 	if (iVectorEmpty || m_fLevelTime <= 0.0f)
 	{
-		if (bCheerSoundPlayed == false)
+		if (bCheerSoundPlayed == false && iVectorEmpty)
 		{
 			m_soundParams.gain = 0.2f;
 			AudioManager::GetInstance()->PlaySound(m_soundBank, "cheer.wav", m_soundParams);

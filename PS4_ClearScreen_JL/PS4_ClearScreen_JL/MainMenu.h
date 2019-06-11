@@ -21,7 +21,7 @@ public:
 
 private:
 	//// Private Variables
-	std::vector<std::shared_ptr<class Text>> m_TextVector;
+	std::vector<std::shared_ptr<struct Text>> m_TextVector;
 	std::shared_ptr<class TextLabel> TextManager = nullptr;
 
 	//// Private Functions
