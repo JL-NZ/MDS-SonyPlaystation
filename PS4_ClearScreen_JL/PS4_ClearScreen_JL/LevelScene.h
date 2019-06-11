@@ -1,6 +1,5 @@
 #pragma once
 #include "Scene.h"
-#include "AudioManager.h"
 #include <memory>
 
 class CubeObject;
@@ -22,12 +21,10 @@ public:
 	virtual bool Render(); // called every frame, after Update (returns false if there's an issue)
 	virtual bool RenderUI(); // called every frame, after Render (returns false if there's an issue)
 	virtual bool Cleanup(); // called every frame, after everything else (returns false if there's an issue)
+	virtual bool ClosingLevel(); // called before a level transition occurs
 
 protected:
-	//// Protected Variables
-	SceScreamSoundParams m_BGMsoundParams;
-	SceScreamSoundParams m_soundParams;
-	SceScreamSFXBlock2* m_soundBank = nullptr;
+	//// Protected Variables	
 	std::vector<std::shared_ptr<class GameObject>> m_ObjectVector;
 	std::vector<std::shared_ptr<class CollectableObject>> m_CollectableVector;
 	std::vector<std::shared_ptr<class Text>> m_TextVector;
@@ -53,7 +50,7 @@ protected:
 
 private:
 	//// Private Variables	
-	
+	bool bCheerSoundPlayed = false;
 
 
 	//// Private Functions

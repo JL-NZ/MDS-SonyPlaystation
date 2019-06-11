@@ -42,10 +42,7 @@ int main()
 	);
 
 	// Initialize input
-	g_controllerContext = std::make_shared<ControllerContext>();
-
-	// Initialize sound stuff
-	AudioManager::GetInstance()->Initialize();
+	g_controllerContext = std::make_shared<ControllerContext>();	
 
 	// Initialize scenes
 	std::shared_ptr<MainMenu> MainMenuScene = std::make_shared<MainMenu>();

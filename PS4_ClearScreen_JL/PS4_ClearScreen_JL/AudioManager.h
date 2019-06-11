@@ -14,6 +14,7 @@ public:
 	static void* example_malloc(int32_t bytes, int32_t use);
 	static void example_free(void *memory);
 	bool PlaySound(SceScreamSFXBlock2 *_screamBank, std::string _filepath, SceScreamSoundParams& _soundParams);
+	bool Uninitialize();
 
 	// Singleton
 public:

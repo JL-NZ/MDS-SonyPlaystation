@@ -6,6 +6,7 @@
 #include "rigidbody.h"
 #include "SceneManager.h"
 #include "Render.h"
+#include "AudioManager.h"
 #include "camera.h"
 
 
@@ -20,6 +21,7 @@ GameOver::~GameOver()
 
 bool GameOver::Initialize()
 {	
+
 	// Text initialisation
 	TextManager = std::make_shared<TextLabel>();
 	TextManager->Initialize();
@@ -69,4 +71,9 @@ bool GameOver::RenderUI()
 bool GameOver::Cleanup()
 {
 	return true;
+}
+
+bool GameOver::ClosingLevel()
+{
+	return false;
 }

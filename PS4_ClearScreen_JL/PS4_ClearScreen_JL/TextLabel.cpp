@@ -90,9 +90,7 @@ void TextLabel::Initialize()
 		SCE_FONT_OPEN_FILE_STREAM, // load from memory
 		(SceFontOpenDetail*)0,
 		&fontHandle
-	);
-
-	
+	);	
 
 	// Bind renderer to font
 	sceFontBindRenderer(fontHandle, s_renderer);
