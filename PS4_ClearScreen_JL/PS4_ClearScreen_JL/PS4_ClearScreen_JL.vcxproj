@@ -83,6 +83,7 @@
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="LevelThree.cpp" />
     <ClCompile Include="LevelTwo.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -124,6 +125,7 @@
     <ClInclude Include="LevelScene.h" />
     <ClInclude Include="LevelThree.h" />
     <ClInclude Include="LevelTwo.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="physicseffects\pfx_high_level_include.h" />

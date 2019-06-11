@@ -3,6 +3,8 @@
 #include "AudioManager.h"
 #include <memory>
 
+class CubeObject;
+
 class LevelScene : public Scene
 {
 public:
@@ -35,9 +37,19 @@ protected:
 	std::shared_ptr<class Text> TimerValueText = nullptr;
 	std::shared_ptr<Text> LevelCompleteText = nullptr;
 	std::shared_ptr<class TextLabel> TextManager = nullptr;
+	std::shared_ptr<class Light> m_pLight = nullptr;
 	bool m_bLevelComplete = false;
+	std::shared_ptr<CubeObject> cube = nullptr;
+	unsigned int m_uiCollectableCount = 0;
+	unsigned int m_uiCollectableMax = 12;
+	float m_fCollectableTimer = 0.0f;
+	float m_fCollectableSpawnInterval = 3.0f;
+	float m_fLevelTime;
 
 	//// Protected Functions
+	Vector3 GetRandomPosition();
+	void AddCollectable();
+	void Reset();
 
 private:
 	//// Private Variables	

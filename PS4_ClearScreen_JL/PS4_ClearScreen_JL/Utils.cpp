@@ -212,3 +212,6 @@ void Utils::setTerrainData(std::vector<Vertex>& vertices, std::vector<uint32_t>&
 	indices = Indices;
 }
 
+float Utils::GetRandomFloat() {
+	return static_cast<float>(rand() / static_cast<float>(RAND_MAX));
+}

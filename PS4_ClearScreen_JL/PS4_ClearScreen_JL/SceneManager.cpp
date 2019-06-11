@@ -49,7 +49,7 @@ bool SceneManager::Update()
 	currentTime = (std::chrono::high_resolution_clock::now());
 	deltaTime = currentTime - previousTime;
 	timeElapsed += deltaTime;
-	m_fDeltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::milliseconds>(deltaTime).count());
+	m_fDeltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::milliseconds>(deltaTime).count())/1000.0f;
 
 	m_CurrentScene->Update(m_fDeltaTime);
 

@@ -4,6 +4,8 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 * All Rights Reserved.
 */
 
+#pragma once
+
 #include <user_service.h>
 #include <pad.h>
 #include "api_gnm/toolkit/toolkit.h"

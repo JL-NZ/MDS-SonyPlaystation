@@ -21,22 +21,13 @@ bool LevelOne::Initialize()
 {	
 	LevelScene::Initialize();
 
-	std::shared_ptr<CollectableObject> collectable0 = std::make_shared<CollectableObject>(Vector3(1.5f), "/app0/kanna.gnf");
-	std::shared_ptr<CollectableObject> collectable1 = std::make_shared<CollectableObject>(Vector3(1.5f), "/app0/kanna.gnf");
-	std::shared_ptr<CollectableObject> collectable2 = std::make_shared<CollectableObject>(Vector3(1.5f), "/app0/kanna.gnf");
+	// Create initial collectables
+	for (unsigned int i = 0; i < 3; ++i) {
+		AddCollectable();
+	}
 
-	// Push objects to vector	
-	m_ObjectVector.push_back(collectable0);
-	m_ObjectVector.push_back(collectable1);
-	m_ObjectVector.push_back(collectable2);
-	m_CollectableVector.push_back(collectable0);
-	m_CollectableVector.push_back(collectable1);
-	m_CollectableVector.push_back(collectable2);
-
-	// Set physics object positions	
-	collectable0->SetPosition(Vector3(-5.0f, 2.0f, 0.0f));
-	collectable1->SetPosition(Vector3(5.0f, 2.0f, 0.0f));
-	collectable2->SetPosition(Vector3(-5.0f, 2.0f, 5.0f));
+	// Set level time
+	m_fLevelTime = 30.0f;
 
 	return true;
 }

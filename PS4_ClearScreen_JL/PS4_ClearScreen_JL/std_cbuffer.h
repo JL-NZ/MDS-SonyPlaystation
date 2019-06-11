@@ -13,6 +13,14 @@ PlayStation(R)4 Programmer Tool Runtime Library Release 05.008.001
 unistruct ShaderConstants
 {
 	Matrix4Unaligned m_WorldViewProj;
+
+};
+
+struct ToonShaderConstants{
+	Matrix4Unaligned m_WorldViewProj;
+	Matrix4Unaligned m_Model;
+	Matrix4Unaligned m_NormalMatrix;
+	Vector3Unaligned m_LightPos;
 };
 
 #endif

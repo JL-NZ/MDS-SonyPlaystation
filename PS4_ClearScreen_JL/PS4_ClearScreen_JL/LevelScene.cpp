@@ -7,6 +7,8 @@
 #include "SceneManager.h"
 #include "Render.h"
 #include "camera.h"
+#include "Light.h"
+#include "Model.h"
 
 #include <time.h>
 #include <chrono>
@@ -24,6 +26,9 @@ LevelScene::~LevelScene()
 
 bool LevelScene::Initialize()
 {
+	// Enforce reset
+	Reset();
+
 	// Initialize physics
 	m_pPhysics = PhysicsEngine::GetInstance();	
 
@@ -66,8 +71,8 @@ bool LevelScene::Initialize()
 	m_TextVector.push_back(ScoreValueText);
 	m_TextVector.push_back(TimerValueText);
 
-	// Create physics objects
-	std::shared_ptr<CubeObject> cube = std::make_shared<CubeObject>(Vector3(100.0f, 0.5f, 100.0f), "/app0/normalmap.gnf");
+	// Create physics objects //std::shared_ptr<CubeObject> 
+	cube = std::make_shared<CubeObject>(Vector3(100.0f, 0.5f, 100.0f), "/app0/normalmap.gnf");
 	ball = std::make_shared<BallObject>(Vector3(1), "/app0/cat.gnf");
 
 	// Push objects to vector
@@ -84,6 +89,9 @@ bool LevelScene::Initialize()
 	m_soundBank = AudioManager::GetInstance()->LoadAudioBank("/app0/SoundBank.bnk");
 	m_BGMsoundParams.gain = 0.25f;
 
+	// Create Light object
+	m_pLight = std::make_shared<Light>();
+
 	// Play background music
 	AudioManager::GetInstance()->PlaySound(m_soundBank, "bgm.wav", m_BGMsoundParams);
 
@@ -99,7 +107,7 @@ bool LevelScene::Update(float _deltaTick)
 {
 	// Check the number of collectables present in the scene
 	bool iVectorEmpty = m_CollectableVector.empty();
-	if (iVectorEmpty)
+	if (iVectorEmpty || m_fLevelTime <= 0.0f)
 	{
 		m_bLevelComplete = true;
 		LevelCompleteText->Visible = true;
@@ -151,7 +159,8 @@ bool LevelScene::Update(float _deltaTick)
 		Camera::GetInstance()->PointAt(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()));
 
 		// Update text stuff
-		TimerValueText->String = std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(SceneManager::GetInstance()->timeElapsed).count() / 1000);
+		m_fLevelTime -= _deltaTick;
+		TimerValueText->String = std::to_string(m_fLevelTime);//std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(SceneManager::GetInstance()->timeElapsed).count() / 1000);
 		ScoreValueText->String = std::to_string(ball->GetScore());
 
 	}	
@@ -204,4 +213,44 @@ bool LevelScene::Cleanup()
 	}
 
 	return true;
+}
+
+// Obtains a random position to be used for spawning a collectable
+Vector3 LevelScene::GetRandomPosition() {
+	Vector3 scale = cube->GetModel()->scale;
+	Vector3 position = Vector3(2.0f);
+	position.setX((2.0f * Utils::GetRandomFloat() - 1.0f) * scale.getX()/2.0f);
+	position.setZ((2.0f * Utils::GetRandomFloat() - 1.0f) * scale.getZ()/2.0f);
+	return position;
+}
+
+// Create a new collectable
+void LevelScene::AddCollectable() {
+	std::shared_ptr<CollectableObject> collectable0 = std::make_shared<CollectableObject>(Vector3(1.5f), "/app0/kanna.gnf");
+	m_ObjectVector.push_back(collectable0);
+	m_CollectableVector.push_back(collectable0);
+	collectable0->SetPosition(GetRandomPosition());
+	++m_uiCollectableCount;
+}
+
+// Cleans the level
+void LevelScene::Reset() {
+	// Clear physics objects
+	if (!m_ObjectVector.empty()) {
+		// Remove rigidbodies
+		for (auto& object : m_ObjectVector) {
+			m_pPhysics->GetWorld()->removeRigidBody(object->GetRigidbody()->GetID());
+		}
+		// Clear vector
+		m_ObjectVector.clear();
+	}
+
+	// Clear collectables
+	m_uiCollectableCount = 0;
+	if (!m_CollectableVector.empty()) {
+		m_CollectableVector.clear();
+	}
+
+	// Clear level text
+	m_TextVector.clear();
 }

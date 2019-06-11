@@ -31,6 +31,9 @@ SceUserServiceUserId g_userID;
 
 int main()
 {
+	// Seed PRNG
+	srand(static_cast<unsigned int>(time(nullptr)));
+
 	// Initialize camera
 	Camera::GetInstance()->Initialize(90.0f, // FOV
 		static_cast<float>(Render::GetInstance()->kDisplayBufferWidth) / static_cast<float>(Render::GetInstance()->kDisplayBufferHeight), // Ratio
@@ -99,10 +102,7 @@ int main()
 
 		// Update physics world
 		pPhysics->Update(0.016);		
-
-		// Quik math
-		sce::Vectormath::Scalar::Aos::Quat quat;
-		//quat = quat.rotation(Vector3(0.0f, TORADIANS * fAngle,  0.0f), 0);				
+		
 
 		/// Render loop
 		Render::GetInstance()->StartRender();

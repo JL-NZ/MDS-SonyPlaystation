@@ -14,4 +14,13 @@ struct VS_OUTPUT
 	float2 UV			: TEXCOORD1;
 };
 
+struct VS_TOON_OUTPUT{
+	float4 Position		: S_POSITION;
+	float3 Color		: TEXCOORD0;
+	float2 UV			: TEXCOORD1;
+	float3 FragPos;//		: POSITION1;
+	float3 FragNormal;//	: POSITION2;
+
+};
+
 #endif

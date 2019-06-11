@@ -3,6 +3,7 @@
 #include "Utils.h"
 #include "Render.h"
 #include "camera.h"
+#include "Light.h"
 
 #include "common/shader_loader.h"
 #include "GNFLoader.h"
@@ -299,6 +300,71 @@ void Model::Draw(TextureType _type)
 
 	// Draw Index
 	gfxc.drawIndex(indices.size(), indexData);	
+}
+
+void Model::DrawToon() {
+	// Get graphics context from render
+	Gnmx::GnmxGfxContext &gfxc = Render::GetInstance()->renderContext->gfxContext;
+	Light* pMain = Light::GetMain();
+
+	// Activate VS and PS stages
+	gfxc.setActiveShaderStages(Gnm::kActiveShaderStagesVsPs);
+	gfxc.setVsShader(vsShader, shaderModifier, fsMem, &vsInputOffsetsCache);
+	gfxc.setPsShader(psShader, &psInputOffsetsCache);
+
+	// Set Vertex buffers / attributes
+	gfxc.setVertexBuffers(Gnm::kShaderStageVs, 0, kVertexElemCount, vertexBuffers);
+
+	// Ready Textures
+	DrawGNFTextures();
+	
+	// Define constants
+	ToonShaderConstants *constants = static_cast<ToonShaderConstants*>(gfxc.allocateFromCommandBuffer(sizeof(ToonShaderConstants), Gnm::kEmbeddedDataAlignment4));
+
+	if (constants)
+	{
+		// Angle increase to create constant rotation
+		///angle+= 0.0002f;
+		///if (angle > 360) angle = 0.0f;
+
+		Matrix4 model = Matrix4::translation(translation) * Matrix4::rotation((angle * (180 / M_PI)), rotateAxis) * Matrix4::scale(scale);
+		Matrix4 projection = Camera::GetInstance()->GetProjection();
+		Matrix4 view = Camera::GetInstance()->GetView();
+
+		// Define WVP
+		constants->m_WorldViewProj = ToMatrix4Unaligned(projection * view * model);
+		constants->m_LightPos = pMain->m_Position;
+
+		// Init constant buffer
+		Gnm::Buffer constBuffer;
+		constBuffer.initAsConstantBuffer(constants, sizeof(ToonShaderConstants));
+
+		// Set constant buffer to the VS stage
+		gfxc.setConstantBuffers(
+			Gnm::kShaderStageVs, // stage
+			0, // start slot, first slot to bind to
+			1, // num of slots to bind
+			&constBuffer// buffer to bind
+		);
+		// As above, but for PS stage
+		gfxc.setConstantBuffers(Gnm::kShaderStagePs,
+			0,
+			1,
+			&constBuffer);
+	}
+	else
+	{
+		printf("Cannot allocate vertex shader constants\n");
+	}
+
+	// Set Primitive Type
+	gfxc.setPrimitiveType(Gnm::kPrimitiveTypeTriList);
+
+	// Set Index Siz
+	gfxc.setIndexSize(Gnm::kIndexSize32);
+
+	// Draw Index
+	gfxc.drawIndex(indices.size(), indexData);
 }
 
 void Model::DrawSurface()

@@ -1,37 +1,9 @@
-﻿  GameOver.cpp
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\GameOver.cpp:2:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,1): warning : 'Text' defined as a struct here but previously declared as a class [-Wmismatched-tags]
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/GameOver.h(23,30):  note: did you mean struct here?
-  LevelScene.cpp
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\LevelScene.cpp:1:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(32,30): warning : class 'SceScreamSFXBlock2' was previously declared as a struct [-Wmismatched-tags]
+﻿  LevelScene.cpp
+  In file included from E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\LevelScene.cpp:1:
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(34,30): warning : class 'SceScreamSFXBlock2' was previously declared as a struct [-Wmismatched-tags]
   C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\scream/sce_snd_data.h(87,16):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(32,30):  note: did you mean struct here?
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\LevelScene.cpp:2:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,1): warning : 'Text' defined as a struct here but previously declared as a class [-Wmismatched-tags]
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(31,30):  note: did you mean struct here?
-  main.cpp
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp:18:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/MainMenu.h(23,30): warning : class 'Text' was previously declared as a struct [-Wmismatched-tags]
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,8):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/MainMenu.h(23,30):  note: did you mean struct here?
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp:19:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/GameOver.h(23,30): warning : class 'Text' was previously declared as a struct [-Wmismatched-tags]
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,8):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/GameOver.h(23,30):  note: did you mean struct here?
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp:20:
-  In file included from D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelOne.h:2:
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(31,30): warning : class 'Text' was previously declared as a struct [-Wmismatched-tags]
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,8):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(31,30):  note: did you mean struct here?
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(32,30): warning : class 'SceScreamSFXBlock2' was previously declared as a struct [-Wmismatched-tags]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\5.000\target\include_common\scream/sce_snd_data.h(87,16):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(32,30):  note: did you mean struct here?
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(34,18): warning : class 'Text' was previously declared as a struct [-Wmismatched-tags]
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,8):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(34,18):  note: did you mean struct here?
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(35,18): warning : class 'Text' was previously declared as a struct [-Wmismatched-tags]
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,8):  note: previous use is here
-  D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(35,18):  note: did you mean struct here?
-D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\PS4_ClearScreen_JL\main.cpp(90,8): warning : unused variable 'fAngle' [-Wunused-variable]
-  PS4_ClearScreen_JL.vcxproj -> D:\Users\Jasper.Lyo7552\Documents\MDS_SonyPlaystation\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf
+  E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(34,30):  note: did you mean struct here?
+  In file included from E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL\LevelScene.cpp:2:
+E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/TextLabel.h(10,1): warning : 'Text' defined as a struct here but previously declared as a class [-Wmismatched-tags]
+  E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\PS4_ClearScreen_JL/LevelScene.h(33,30):  note: did you mean struct here?
+  PS4_ClearScreen_JL.vcxproj -> E:\_MDS\PlayStation\Summative2\PS4_ClearScreen_JL\ORBIS_Debug\PS4_ClearScreen_JL.elf

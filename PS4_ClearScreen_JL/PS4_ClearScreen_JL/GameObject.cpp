@@ -121,14 +121,13 @@ BallObject::~BallObject(){}
 
 void BallObject::Update(float _fDeltaTick) {
 	// Get L stick input
-	//Vector2 lStick = ControllerContext::GetInstance()->getLeftStick(0);
 	AnalogStick lStick = ControllerContext::GetInstance()->LeftStick;
 
 	// Check that there is input from the player
 	if (lStick.x != 0.0f && lStick.y != 0.0f) {
 		// Give them new movement
 		Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Camera::GetInstance()->m_CameraRight * -lStick.x + Camera::GetInstance()->m_CameraFront * -lStick.y) * m_fMoveSpeed;
-		GetRigidbody()->GetState().setLinearVelocity(sce::PhysicsEffects::PfxVector3(direction.getX(), -9.81f, direction.getZ()));// *_fDeltaTick * m_fSpeed
+		GetRigidbody()->GetState().setLinearVelocity(sce::PhysicsEffects::PfxVector3(direction.getX(), -9.81f, direction.getZ())*_fDeltaTick * m_fMoveSpeed) ;
 	}
 }
 

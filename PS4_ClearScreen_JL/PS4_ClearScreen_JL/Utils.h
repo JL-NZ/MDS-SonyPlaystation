@@ -41,6 +41,7 @@ public:
 	static void setSphereData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
 	static void setTerrainData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indices);
 	
+	static float GetRandomFloat();
 
 };
 
