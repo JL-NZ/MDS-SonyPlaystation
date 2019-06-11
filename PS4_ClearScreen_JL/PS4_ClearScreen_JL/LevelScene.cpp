@@ -92,7 +92,7 @@ bool LevelScene::Initialize()
 
 	// Create Light object
 	m_pLight = std::make_shared<Light>();
-	m_pLight->m_Position = Vector3(5.0f, 2.0f, -5.0f);
+	m_pLight->m_Position = Vector3(5.0f, 25.0f, -5.0f);
 
 	// Play background music
 	AudioManager::GetInstance()->PlaySound(m_soundBank, "bgm.wav", m_BGMsoundParams);

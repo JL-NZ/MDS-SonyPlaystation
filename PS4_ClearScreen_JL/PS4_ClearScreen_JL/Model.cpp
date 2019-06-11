@@ -334,6 +334,9 @@ void Model::DrawToon() {
 		// Define WVP
 		constants->m_WorldViewProj = ToMatrix4Unaligned(projection * view * model);
 		constants->m_LightPos = pMain->m_Position;
+		Matrix4 normal = sce::Vectormath::Scalar::Aos::transpose(sce::Vectormath::Scalar::Aos::inverse(model));
+		constants->m_NormalMatrix = normal;
+		constants->m_Model = model;
 
 		// Init constant buffer
 		Gnm::Buffer constBuffer;

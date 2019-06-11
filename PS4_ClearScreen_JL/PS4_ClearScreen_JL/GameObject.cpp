@@ -25,7 +25,8 @@ void GameObject::Render() {
 		UpdateModelPosition();
 	}
 	if (m_pModel) {
-		m_pModel->Draw(TextureType::GNF);
+		//m_pModel->Draw(TextureType::GNF);
+		m_pModel->DrawToon();
 	}
 }
 
