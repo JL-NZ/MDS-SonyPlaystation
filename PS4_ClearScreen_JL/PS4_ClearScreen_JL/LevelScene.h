@@ -27,12 +27,13 @@ protected:
 	//// Protected Variables	
 	std::vector<std::shared_ptr<class GameObject>> m_ObjectVector;
 	std::vector<std::shared_ptr<class CollectableObject>> m_CollectableVector;
-	std::vector<std::shared_ptr<class Text>> m_TextVector;
-	std::vector<std::shared_ptr<class SceScreamSFXBlock2>> m_SoundBanks;
+	std::vector<std::shared_ptr<struct Text>> m_TextVector;
+	std::vector<std::shared_ptr<struct SceScreamSFXBlock2>> m_SoundBanks;
 	class PhysicsEngine* m_pPhysics = nullptr;
-	std::shared_ptr<class Text> ScoreValueText = nullptr;
-	std::shared_ptr<class Text> TimerValueText = nullptr;
-	std::shared_ptr<Text> LevelCompleteText = nullptr;
+	std::shared_ptr<struct Text> ScoreValueText = nullptr;
+	std::shared_ptr<struct Text> TimerValueText = nullptr;
+	std::shared_ptr<struct Text> LevelCompleteText = nullptr;
+
 	std::shared_ptr<class TextLabel> TextManager = nullptr;
 	std::shared_ptr<class Light> m_pLight = nullptr;
 	bool m_bLevelComplete = false;
