@@ -79,7 +79,11 @@ bool SceneManager::OpenLevel(std::string _levelName)
 	{
 		if (m_Scenes[i]->m_Name == _levelName)
 		{
-			m_Scenes[i]->Initialize();
+			if (m_CurrentScene)
+			{
+				m_CurrentScene->ClosingLevel();
+			}
+			m_Scenes[i]->Initialize();			
 			SetCurrentScene(m_Scenes[i]);
 		}
 	}

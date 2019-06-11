@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "Render.h"
 #include "camera.h"
+#include "AudioManager.h"
 
 
 MainMenu::MainMenu()
@@ -20,6 +21,7 @@ MainMenu::~MainMenu()
 
 bool MainMenu::Initialize()
 {
+
 	// Text initialisation
 	TextManager = std::make_shared<TextLabel>();
 	TextManager->Initialize();
@@ -67,6 +69,11 @@ bool MainMenu::RenderUI()
 }
 
 bool MainMenu::Cleanup()
+{
+	return false;
+}
+
+bool MainMenu::ClosingLevel()
 {
 	return false;
 }

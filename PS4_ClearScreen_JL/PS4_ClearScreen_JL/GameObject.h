@@ -60,7 +60,8 @@ class TerrainObject : public GameObject{
 class BallObject : public GameObject {
 	private:
 		float m_fMoveSpeed = 500.0f;
-		int m_iScore = 0.0f;
+		int m_iScore = 0;
+
 
 	public:
 		BallObject(Vector3 _scale, const char* _kcTextureFile);
@@ -69,6 +70,10 @@ class BallObject : public GameObject {
 		void Update(float _fDeltaTick);
 		void ProcessCollision(std::shared_ptr<GameObject> _otherObject, void* _userData);
 		const int GetScore() { return m_iScore; }
+
+		float m_fSoundCD = 0.0f;
+		bool m_bGrounded = false;
+		bool m_bMoving = false;
 };
 
 class CubeObject : public GameObject {

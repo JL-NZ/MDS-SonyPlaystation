@@ -20,7 +20,7 @@ LevelScene::LevelScene()
 }
 
 LevelScene::~LevelScene()
-{
+{	
 	printf("LevelScene::~LevelScene \n");
 }
 
@@ -84,6 +84,7 @@ bool LevelScene::Initialize()
 	ball->SetPosition(Vector3(0.0f, 5.0f, 0.0f));
 
 	// Sound initialization
+	AudioManager::GetInstance()->Initialize();
 	m_BGMsoundParams = AudioManager::GetInstance()->InitializeScreamParams();
 	m_soundParams = AudioManager::GetInstance()->InitializeScreamParams();
 	m_soundBank = AudioManager::GetInstance()->LoadAudioBank("/app0/SoundBank.bnk");
@@ -110,6 +111,12 @@ bool LevelScene::Update(float _deltaTick)
 	bool iVectorEmpty = m_CollectableVector.empty();
 	if (iVectorEmpty || m_fLevelTime <= 0.0f)
 	{
+		if (bCheerSoundPlayed == false)
+		{
+			m_soundParams.gain = 0.2f;
+			AudioManager::GetInstance()->PlaySound(m_soundBank, "cheer.wav", m_soundParams);
+			bCheerSoundPlayed = true;
+		}
 		m_bLevelComplete = true;
 		LevelCompleteText->Visible = true;
 	}
@@ -164,6 +171,13 @@ bool LevelScene::Update(float _deltaTick)
 		TimerValueText->String = std::to_string(m_fLevelTime);//std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(SceneManager::GetInstance()->timeElapsed).count() / 1000);
 		ScoreValueText->String = std::to_string(ball->GetScore());
 
+		// Play sounds
+		if (ball->m_bGrounded && ball->m_bMoving && ball->m_fSoundCD <= 0.0f)
+		{
+			m_soundParams.gain = 1.5f;
+			AudioManager::GetInstance()->PlaySound(m_soundBank, "roll.wav", m_soundParams);
+			ball->m_fSoundCD = 0.75f;
+		}
 	}	
 
 	return true;
@@ -216,6 +230,12 @@ bool LevelScene::Cleanup()
 	return true;
 }
 
+bool LevelScene::ClosingLevel()
+{
+	AudioManager::GetInstance()->Uninitialize();
+	return true;
+}
+
 // Obtains a random position to be used for spawning a collectable
 Vector3 LevelScene::GetRandomPosition() {
 	Vector3 scale = cube->GetModel()->scale;
@@ -251,6 +271,8 @@ void LevelScene::Reset() {
 	if (!m_CollectableVector.empty()) {
 		m_CollectableVector.clear();
 	}
+
+	bCheerSoundPlayed = false;
 
 	// Clear level text
 	m_TextVector.clear();

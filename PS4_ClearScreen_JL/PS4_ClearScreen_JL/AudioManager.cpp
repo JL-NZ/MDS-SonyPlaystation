@@ -76,8 +76,16 @@ bool AudioManager::PlaySound(SceScreamSFXBlock2 * _screamBank, std::string _file
 		_screamBank, // bank name 
 		_filepath.c_str(), // filename 
 		&_soundParams //parameters
-	);
-	
+	);	
+
+	return true;
+}
+
+bool AudioManager::Uninitialize()
+{
+	sceScreamStopSoundSystem();
+	sceSysmoduleUnloadModule(SCE_SYSMODULE_NGS2);
+
 	return true;
 }
 

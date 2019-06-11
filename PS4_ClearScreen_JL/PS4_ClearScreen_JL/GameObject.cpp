@@ -4,6 +4,7 @@
 #include "PhysicsEngine.h"
 #include "controller.h"
 #include "camera.h"
+#include "AudioManager.h"
 
 GameObject::GameObject(){}
 
@@ -120,6 +121,9 @@ BallObject::BallObject(Vector3 _scale, const char* _kcTextureFile) {
 BallObject::~BallObject(){}
 
 void BallObject::Update(float _fDeltaTick) {
+	// Tick cooldowns
+	m_fSoundCD -= _fDeltaTick;
+
 	// Get L stick input
 	AnalogStick lStick = ControllerContext::GetInstance()->LeftStick;
 
@@ -130,6 +134,32 @@ void BallObject::Update(float _fDeltaTick) {
 		Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Vector3(lStick.x, 0, lStick.y)) * m_fMoveSpeed * _fDeltaTick;
 		GetRigidbody()->GetState().setLinearVelocity(sce::PhysicsEffects::PfxVector3(direction.getX(), -9.81f, direction.getZ())) ;
 	}
+
+	Vector3 velocity = Vector3(
+		m_pRigidbody->GetState().getLinearVelocity().getX(), 
+		m_pRigidbody->GetState().getLinearVelocity().getY(),
+		m_pRigidbody->GetState().getLinearVelocity().getZ()
+	);
+
+	// Check if the ball is grounded/has no downward velocity
+	if (velocity.getY() <= 0.5f)
+	{
+		m_bGrounded = true;
+	}
+	else
+	{
+		m_bGrounded = false;
+	}
+
+	// Check if the ball is moving
+	if (velocity.getX() != 0.0f && velocity.getY() != 0.0f && velocity.getZ() != 0.0f)
+	{
+		m_bMoving = true;
+	}
+	else
+	{
+		m_bMoving = false;
+	}	
 }
 
 void BallObject::ProcessCollision(std::shared_ptr<GameObject> _otherObject, void* _userData)
