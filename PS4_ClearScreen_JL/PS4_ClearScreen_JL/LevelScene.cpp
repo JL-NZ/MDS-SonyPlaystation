@@ -71,6 +71,17 @@ bool LevelScene::Initialize()
 	m_TextVector.push_back(ScoreValueText);
 	m_TextVector.push_back(TimerValueText);
 
+	// set up skybox
+	CubeMap = std::make_shared<Model>(
+		ModelType::kCube,
+		"/app0/cubemap3.gnf", 
+		Vector3(0.0f, 0.0f, 0.0f),
+		Vector3(1000.0f, 1000.0f, 1000.0f),
+		Vector3(0.0f, 0.0f, 1.0f), 0.0f
+	);
+	CubeMap->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
+
+
 	// Create physics objects //std::shared_ptr<CubeObject> 
 	cube = std::make_shared<CubeObject>(Vector3(100.0f, 0.5f, 100.0f), "/app0/normalmap.gnf");
 	ball = std::make_shared<BallObject>(Vector3(1), "/app0/cat.gnf");
@@ -194,7 +205,9 @@ bool LevelScene::Render()
 		}
 	}
 
-	
+	Render::GetInstance()->ToggleBackfaceCulling(false);
+	CubeMap->Draw(TextureType::GNF);
+	Render::GetInstance()->ToggleBackfaceCulling(true);
 	return true;
 }
 

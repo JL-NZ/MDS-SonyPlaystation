@@ -66,7 +66,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>"-lScePosix_stub_weak" "-lSceUserService_stub_weak" "-lSceSystemService_stub" "-lSceGnmDriver_stub_weak" "-lScePm4Dump" "-lSceGnf" "-lSceShaderBinary" "-lSceGpuAddress" "-lSceGnmx_debug" "-lSceGnm_debug" "-lScePad_stub_weak" "-lSceVideoOut_stub_weak" "-lSceScream" "-lSceAudioOut_stub_weak" "-lSceNgs2_stub_weak" "-lSceSysmodule_stub_weak" "-lSceFont_stub_weak" "-lSceFontFt_stub_weak" "-lSceCes" "-lScePhysicsEffects" "-lSceJobManager_stub_weak" %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

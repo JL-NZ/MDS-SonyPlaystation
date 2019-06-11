@@ -29,7 +29,7 @@ bool MainMenu::Initialize()
 	std::shared_ptr<Text> ScoreText = TextManager->AddText(
 		Vector2(0.30f, 0.35f),// position
 		Vector2(50.0f), // scale
-		"              Main Menu \n\n\n\n\n\n\n    Jasper & Kerry's Physics Game \n\n\n\n\n\n\n            Press X to start \n\n\n\n\n\n\n         Press Circle to exit."
+		"Main Menu \n\n\n\n\n\n\nJasper & Kerry's Physics Game \n\n\n\n\n\n\nUse Left stick to move, collect the balls \n\n\n\n\n\n\nPress X to start \n\n\n\n\n\n\nPress Circle to exit."
 	);
 
 	m_TextVector.push_back(ScoreText);	

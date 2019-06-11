@@ -33,7 +33,7 @@ protected:
 	std::shared_ptr<struct Text> ScoreValueText = nullptr;
 	std::shared_ptr<struct Text> TimerValueText = nullptr;
 	std::shared_ptr<struct Text> LevelCompleteText = nullptr;
-
+	std::shared_ptr<class Model> CubeMap;
 	std::shared_ptr<class TextLabel> TextManager = nullptr;
 	std::shared_ptr<class Light> m_pLight = nullptr;
 	bool m_bLevelComplete = false;
