@@ -16,7 +16,7 @@ class Terrain;
 
 class Camera {
 	private:
-		Vector3 m_Position = Vector3(-1.0f, 0.0f, 2.0f);
+		Vector3 m_Position = Vector3(-1.0f, 5.0f, 2.0f);
 
 		Matrix4 m_projection;
 		Matrix4 m_view;

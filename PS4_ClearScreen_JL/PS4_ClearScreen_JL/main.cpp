@@ -101,8 +101,7 @@ int main()
 		g_controllerContext->update();		
 
 		// Update physics world
-		pPhysics->Update(0.016);		
-		
+		pPhysics->Update(0.016);			
 
 		/// Render loop
 		Render::GetInstance()->StartRender();

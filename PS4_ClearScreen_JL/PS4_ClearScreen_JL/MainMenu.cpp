@@ -47,7 +47,7 @@ bool MainMenu::Update(float _deltaTick)
 	else if (m_controllerContext->isButtonDown(0, BUTTON_CIRCLE))
 	{
 		// exit game, stop tick
-		SceneManager::GetInstance()->m_bExitGame;
+		SceneManager::GetInstance()->m_bExitGame = true;
 	}
 
 	return true;
