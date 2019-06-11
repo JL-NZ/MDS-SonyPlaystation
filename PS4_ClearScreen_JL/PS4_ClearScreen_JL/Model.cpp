@@ -319,7 +319,7 @@ void Model::DrawToon() {
 	DrawGNFTextures();
 	
 	// Define constants
-	ToonShaderConstants *constants = static_cast<ToonShaderConstants*>(gfxc.allocateFromCommandBuffer(sizeof(ToonShaderConstants), Gnm::kEmbeddedDataAlignment4));
+	ShaderConstants *constants = static_cast<ShaderConstants*>(gfxc.allocateFromCommandBuffer(sizeof(ShaderConstants), Gnm::kEmbeddedDataAlignment4));
 
 	if (constants)
 	{
@@ -337,7 +337,7 @@ void Model::DrawToon() {
 
 		// Init constant buffer
 		Gnm::Buffer constBuffer;
-		constBuffer.initAsConstantBuffer(constants, sizeof(ToonShaderConstants));
+		constBuffer.initAsConstantBuffer(constants, sizeof(ShaderConstants));
 
 		// Set constant buffer to the VS stage
 		gfxc.setConstantBuffers(

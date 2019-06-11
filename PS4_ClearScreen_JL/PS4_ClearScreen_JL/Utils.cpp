@@ -54,40 +54,40 @@ void Utils::setCubeData(std::vector<Vertex>& vertices, std::vector<uint32_t>& in
 	std::vector<Vertex> Vertices;
 
 	// Front Face
-	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f,		1.0f, 0.0f, 0.0f,	1.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f));
-	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f,		0.0f, 0.0f, 1.0f,	1.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 1.0f));
 
 	// Right Face
-	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f,		0.0f, 1.0f, 0.0f,	0.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, 0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, -0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 1.0f));
-	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 1.0f));
+	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f,		1.0f, 0.0f, 0.0f,	0.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, 0.5f, -0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f));
+	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f));
 
 	// Back Face
-	Vertices.push_back(Vertex(0.5f, 0.5f, -0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f));
-	Vertices.push_back(Vertex(-0.5f, 0.5f, -0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 0.0f));
-	Vertices.push_back(Vertex(-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 1.0f));
-	Vertices.push_back(Vertex(0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 1.0f));
+	Vertices.push_back(Vertex(0.5f, 0.5f, -0.5f,	0.0f, 0.0f, -1.0f,	0.0f, 0.0f));
+	Vertices.push_back(Vertex(-0.5f, 0.5f, -0.5f,	0.0f, 0.0f, -1.0f,	1.0f, 0.0f));
+	Vertices.push_back(Vertex(-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, -1.0f,	1.0f, 1.0f));
+	Vertices.push_back(Vertex(0.5f, -0.5f, -0.5f,	0.0f, 0.0f, -1.0f,	0.0f, 1.0f));
 
 	// Left Face
-	Vertices.push_back(Vertex(-0.5f, 0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 0.0f));
-	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f,	1.0f, 1.0f, 0.0f,	1.0f, 0.0f));
-	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f,	1.0f, 1.0f, 0.0f,	1.0f, 1.0f));
-	Vertices.push_back(Vertex(-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, 0.5f, -0.5f,	-1.0f, 0.0f, 0.0f,	0.0f, 0.0f));
+	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f,	-1.0f, 0.0f, 0.0f,	1.0f, 0.0f));
+	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f,	-1.0f, 0.0f, 0.0f,	1.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, -0.5f, -0.5f,	-1.0f, 0.0f, 0.0f,	0.0f, 1.0f));
 
 	// Top Face
-	Vertices.push_back(Vertex(-0.5f, 0.5f, -0.5f,	0.0f, 1.0f, 1.0f,	0.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, 0.5f, -0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f,		0.0f, 1.0f, 1.0f,	1.0f, 1.0f));
-	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f,	0.0f, 1.0f, 1.0f,	0.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, 0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, 0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, 0.5f, 0.5f,		0.0f, 1.0f, 0.0f,	1.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, 0.5f, 0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 1.0f));
 
 	// Bottom Face
-	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f,	0.0f, 0.0f, 0.0f,	0.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f,	0.0f, 0.0f, 0.0f,	1.0f, 0.0f));
-	Vertices.push_back(Vertex(0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	1.0f, 1.0f));
-	Vertices.push_back(Vertex(-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, -0.5f, 0.5f,	0.0f, -1.0f, 0.0f,	0.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, -0.5f, 0.5f,	0.0f, -1.0f, 0.0f,	1.0f, 0.0f));
+	Vertices.push_back(Vertex(0.5f, -0.5f, -0.5f,	0.0f, -1.0f, 0.0f,	1.0f, 1.0f));
+	Vertices.push_back(Vertex(-0.5f, -0.5f, -0.5f,	0.0f, -1.0f, 0.0f,	0.0f, 1.0f));
 
 	std::vector<uint32_t> Indices
 	{

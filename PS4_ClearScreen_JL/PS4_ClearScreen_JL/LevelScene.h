@@ -45,6 +45,7 @@ protected:
 	float m_fCollectableTimer = 0.0f;
 	float m_fCollectableSpawnInterval = 3.0f;
 	float m_fLevelTime = 0.0f;
+	Vector3 m_CameraOffset = Vector3(0, 30, 3);
 
 	//// Protected Functions
 	Vector3 GetRandomPosition();

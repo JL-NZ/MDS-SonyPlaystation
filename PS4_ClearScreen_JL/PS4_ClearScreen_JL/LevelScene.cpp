@@ -91,6 +91,7 @@ bool LevelScene::Initialize()
 
 	// Create Light object
 	m_pLight = std::make_shared<Light>();
+	m_pLight->m_Position = Vector3(5.0f, 2.0f, -5.0f);
 
 	// Play background music
 	AudioManager::GetInstance()->PlaySound(m_soundBank, "bgm.wav", m_BGMsoundParams);
@@ -155,7 +156,7 @@ bool LevelScene::Update(float _deltaTick)
 
 		// Move Camera
 		sce::PhysicsEffects::PfxVector3 ballPosition = ball->GetRigidbody()->GetState().getPosition();
-		Camera::GetInstance()->SetPosition(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()) + Vector3(0.0f, 10.0f, -10.0f));
+		Camera::GetInstance()->SetPosition(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()) + m_CameraOffset);
 		Camera::GetInstance()->PointAt(Vector3(ballPosition.getX(), ballPosition.getY(), ballPosition.getZ()));
 
 		// Update text stuff

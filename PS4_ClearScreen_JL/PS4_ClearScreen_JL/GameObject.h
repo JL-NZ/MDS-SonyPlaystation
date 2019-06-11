@@ -59,7 +59,7 @@ class TerrainObject : public GameObject{
 
 class BallObject : public GameObject {
 	private:
-		float m_fMoveSpeed = 20.0f;
+		float m_fMoveSpeed = 500.0f;
 		int m_iScore = 0.0f;
 
 	public:

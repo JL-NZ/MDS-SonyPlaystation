@@ -7,11 +7,11 @@ Texture2D colorMap : register(t0);
 float4 main(VS_TOON_OUTPUT Input) : S_TARGET_OUTPUT
 {
 	// Find light direction
-	float3 lightDir = float3(1, 1,1);//normalize(float3(m_LightPos - Input.FragPos));
+	float3 lightDir = normalize(float3(Input.LightPos - Input.FragPos));
 	float intensity = dot(lightDir, normalize(Input.FragNormal));
 	float4 colourResult;
 
-	if(intensity > 0.95f){
+	if(intensity > 0.90f){
 		colourResult = float4(1.0f, 1.0f, 1.0f, 1.0f);
 	}else if(intensity > 0.5f){
 		colourResult = float4(0.6f, 0.6f, 0.6f, 1.0f);
