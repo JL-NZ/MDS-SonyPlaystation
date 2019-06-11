@@ -131,7 +131,6 @@ void BallObject::Update(float _fDeltaTick) {
 	// Check that there is input from the player
 	if (lStick.x != 0.0f && lStick.y != 0.0f) {
 		// Give them new movement
-		//Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Camera::GetInstance()->m_CameraRight * -lStick.x + Camera::GetInstance()->m_CameraFront * -lStick.y) * m_fMoveSpeed * _fDeltaTick;
 		Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Vector3(lStick.x, 0, lStick.y)) * m_fMoveSpeed * _fDeltaTick;
 		GetRigidbody()->GetState().setLinearVelocity(sce::PhysicsEffects::PfxVector3(direction.getX(), -9.81f, direction.getZ())) ;
 	}

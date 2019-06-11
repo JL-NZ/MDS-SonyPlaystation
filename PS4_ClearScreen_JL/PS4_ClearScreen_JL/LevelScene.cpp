@@ -80,7 +80,7 @@ bool LevelScene::Initialize()
 		Vector3(0.0f, 0.0f, 1.0f), 0.0f
 	);
 	CubeMap->genFetchShaderAndOffsetCache("/app0/CMshader_vv.sb", "/app0/CMshader_p.sb");
-
+	
 
 	// Create physics objects //std::shared_ptr<CubeObject> 
 	cube = std::make_shared<CubeObject>(Vector3(100.0f, 0.5f, 100.0f), "/app0/normalmap.gnf");
@@ -103,7 +103,8 @@ bool LevelScene::Initialize()
 
 	// Create Light object
 	m_pLight = std::make_shared<Light>();
-	m_pLight->m_Position = Vector3(5.0f, 25.0f, -5.0f);
+	m_pLight->m_Position = GetRandomPosition();
+	m_pLight->m_Position.setY(25.0f);
 
 	// Play background music
 	AudioManager::GetInstance()->PlaySound(m_soundBank, "bgm.wav", m_BGMsoundParams);
@@ -204,6 +205,7 @@ bool LevelScene::Render()
 			m_ObjectVector[i]->Render();
 		}
 	}
+
 
 	Render::GetInstance()->ToggleBackfaceCulling(false);
 	CubeMap->Draw(TextureType::GNF);

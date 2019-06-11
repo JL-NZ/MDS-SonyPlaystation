@@ -22,6 +22,7 @@ TextLabel::TextLabel()
 
 TextLabel::~TextLabel()
 {
+	//textVector.clear();
 }
 
 void TextLabel::Initialize()
