@@ -15,8 +15,9 @@ VS_TOON_OUTPUT main( VS_INPUT Input )
 	Output.Position = mul(m_WorldViewProj, float4(Input.Position.xyz, 1));
 	Output.Color = Input.Color;
 	Output.UV = Input.UV;
-	Output.FragPos = float3(m_Model * float4(Input.Position.xyz, 1));
-	Output.FragNormal = m_NormalMatrix * Input.Color; // Replacing colour with normals
+	Output.FragPos = mul(m_Model, float4(Input.Position.xyz, 1));
+	Output.FragNormal = float3(mul(m_NormalMatrix, float4(Input.Color.xyz,1))).xyz; // Replacing colour with normals
+	Output.LightPos = m_LightPos;
 
 
 	return Output;

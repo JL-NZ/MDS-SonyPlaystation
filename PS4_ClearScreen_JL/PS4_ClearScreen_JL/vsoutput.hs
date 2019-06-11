@@ -20,6 +20,7 @@ struct VS_TOON_OUTPUT{
 	float2 UV			: TEXCOORD1;
 	float3 FragPos;//		: POSITION1;
 	float3 FragNormal;//	: POSITION2;
+	float3 LightPos;
 
 };
 
