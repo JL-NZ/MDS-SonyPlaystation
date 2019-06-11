@@ -110,6 +110,8 @@
     <OrbisWavePsslc Include="shader_p.pssl" />
     <OrbisWavePsslc Include="shader_vv.pssl" />
     <OrbisWavePsslc Include="TextShader_p.pssl" />
+    <OrbisWavePsslc Include="toon_p.pssl" />
+    <OrbisWavePsslc Include="toon_vv.pssl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocator.h" />

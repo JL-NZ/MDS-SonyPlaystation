@@ -25,7 +25,8 @@ void GameObject::Render() {
 		UpdateModelPosition();
 	}
 	if (m_pModel) {
-		m_pModel->Draw(TextureType::GNF);
+		//m_pModel->Draw(TextureType::GNF);
+		m_pModel->DrawToon();
 	}
 }
 
@@ -130,8 +131,9 @@ void BallObject::Update(float _fDeltaTick) {
 	// Check that there is input from the player
 	if (lStick.x != 0.0f && lStick.y != 0.0f) {
 		// Give them new movement
-		Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Camera::GetInstance()->m_CameraRight * -lStick.x + Camera::GetInstance()->m_CameraFront * -lStick.y) * m_fMoveSpeed;
-		GetRigidbody()->GetState().setLinearVelocity(sce::PhysicsEffects::PfxVector3(direction.getX(), -9.81f, direction.getZ())*_fDeltaTick * m_fMoveSpeed) ;
+		//Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Camera::GetInstance()->m_CameraRight * -lStick.x + Camera::GetInstance()->m_CameraFront * -lStick.y) * m_fMoveSpeed * _fDeltaTick;
+		Vector3 direction = sce::Vectormath::Scalar::Aos::normalize(Vector3(lStick.x, 0, lStick.y)) * m_fMoveSpeed * _fDeltaTick;
+		GetRigidbody()->GetState().setLinearVelocity(sce::PhysicsEffects::PfxVector3(direction.getX(), -9.81f, direction.getZ())) ;
 	}
 
 	Vector3 velocity = Vector3(
@@ -187,7 +189,7 @@ CubeObject::CubeObject(Vector3 _scale, const char* _kcTextureFile) {
 	// Load model
 	m_pModel = new Model(ModelType::kCube, _kcTextureFile, Vector3::zero());
 	m_pModel->scale = _scale;
-	m_pModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	m_pModel->genFetchShaderAndOffsetCache("/app0/toon_vv.sb", "/app0/toon_p.sb"); //"/app0/shader_vv.sb", "/app0/shader_p.sb"	"/app0/toon_vv.sb", "/app0/toon_p.sb"
 
 	// Create rigidbody
 	m_pRigidbody = new Rigidbody(RigidbodyType::kRBBox);
@@ -209,7 +211,7 @@ CollectableObject::CollectableObject(Vector3 _scale, const char * _kcTextureFile
 	// Load model
 	m_pModel = new Model(ModelType::kSphere, _kcTextureFile, Vector3::zero());
 	m_pModel->scale = _scale;
-	m_pModel->genFetchShaderAndOffsetCache("/app0/shader_vv.sb", "/app0/shader_p.sb");
+	m_pModel->genFetchShaderAndOffsetCache("/app0/toon_vv.sb", "/app0/toon_p.sb");
 
 	// Create collision shape
 	sce::PhysicsEffects::PfxSphere sphere;

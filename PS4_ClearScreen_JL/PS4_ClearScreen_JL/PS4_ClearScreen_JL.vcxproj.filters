@@ -163,6 +163,12 @@
     <OrbisWavePsslc Include="TextShader_p.pssl">
       <Filter>shader</Filter>
     </OrbisWavePsslc>
+    <OrbisWavePsslc Include="toon_p.pssl">
+      <Filter>shader</Filter>
+    </OrbisWavePsslc>
+    <OrbisWavePsslc Include="toon_vv.pssl">
+      <Filter>shader</Filter>
+    </OrbisWavePsslc>
   </ItemGroup>
   <ItemGroup>
     <None Include="vsoutput.hs">
