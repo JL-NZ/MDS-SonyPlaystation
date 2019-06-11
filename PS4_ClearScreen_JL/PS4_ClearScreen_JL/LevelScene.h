@@ -44,7 +44,7 @@ protected:
 	unsigned int m_uiCollectableMax = 12;
 	float m_fCollectableTimer = 0.0f;
 	float m_fCollectableSpawnInterval = 3.0f;
-	float m_fLevelTime;
+	float m_fLevelTime = 0.0f;
 
 	//// Protected Functions
 	Vector3 GetRandomPosition();
